@@ -10,15 +10,16 @@ class FormsHabitacion(forms.ModelForm):
 
             'nombre_numero',
             'capacidad',
-            'cochecito_bebe',
-            'si_esta_limpia',
-            'si_posee_heladera',
-            'si_posee_aire_acondicionado',
-            'si_posee_calefaccion',
-            'si_posee_ventana',
-            'estado_libre',
-            'estado_ocupado',
-            'estado_post_ocupado',
+            'camita_bebe',
+            'esta_limpia',
+            'posee_heladera',
+            'posee_aire_acondicionado',
+            'posee_calefaccion',
+            'posee_ventana',
+            'posee_cama_matrimonial',
+             # 'estado_libre',
+             # 'estado_ocupado',
+             # 'estado_post_ocupado',
 
         ]
 
@@ -26,31 +27,34 @@ class FormsHabitacion(forms.ModelForm):
 
             'nombre_numero': 'Nombre o numero:',
             'capacidad': 'Capacidad:',
-            'si_esta_limpia': 'Si esta limpia:',
-            'si_posee_heladera': 'Posee heladera en la habitacion:',
-            'si_posee_aire_acondicionado': 'Posee aire acondicionado en la habitacion:',
-            'si_posee_calefaccion': 'Posee calefaccion en la habitacion:',
-
-            'si_posee_ventana': 'Posee ventana en la habitacion:',
-            'estado_libre': 'Disponible:',
-            'estado_ocupado': 'Ocupada:',
-            'estado_post_ocupado':'Plazo vencido:',
+            'camita_bebe': 'Posee camita bebe',
+            'esta_limpia': 'Esta limpia:',
+            'posee_heladera': 'Posee heladera en la habitacion:',
+            'posee_aire_acondicionado': 'Posee aire acondicionado:',
+            'posee_calefaccion': 'Posee calefaccion:',
+            'posee_ventana': 'Posee ventana en la habitacion:',
+            'posee_cama_matrimonial': 'Posee cama matrimonial',
+            # 'estado_libre': 'Disponible:',
+            # 'estado_ocupado': 'Ocupada:',
+            # 'estado_post_ocupado':'Plazo vencido:',
 
         }
 
         widgets = {  # lo que se va a ver en el formulario del html
             'nombre_numero': forms.TextInput(),
             'capacidad': forms.Select(),
-            'cochecito_bebe': forms.RadioSelect(),
 
-            'si_esta_limpia': forms.RadioSelect(),
-            'si_posee_heladera': forms.RadioSelect(),
-            'si_posee_aire_acondicionado': forms.RadioSelect(),
-            'si_posee_calefaccion':forms.RadioSelect(),
-            'si_posee_ventana':forms.RadioSelect(),
-            'estado_libre':  forms.ClearableFileInput(),
-            'estado_ocupado': forms.ClearableFileInput(),
-            'estado_post_ocupado': forms.ClearableFileInput(),
+            'camita_bebe': forms.RadioSelect(),
+
+            'esta_limpia': forms.RadioSelect(),
+            'posee_heladera': forms.RadioSelect(),
+            'posee_aire_acondicionado': forms.RadioSelect(),
+            'posee_calefaccion':forms.RadioSelect(),
+            'posee_ventana':forms.RadioSelect(),
+            'posee_cama_matrimonial': forms.RadioSelect(),
+            # 'estado_libre':  forms.FileInput(),
+            # 'estado_ocupado': forms.FileInput(),
+            # 'estado_post_ocupado': forms.FileInput(),
 
         # attrs={'class':'form-row'} poner en () ejemplo TextInput() seria la clase de bootdtrap
         # attrs={'placeholder':'Phone Number'} poner esto en el text input en gris pero que se puede escribir arriba de la palabra

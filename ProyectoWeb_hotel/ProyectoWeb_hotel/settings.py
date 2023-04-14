@@ -75,14 +75,19 @@ WSGI_APPLICATION = 'ProyectoWeb_hotel.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'proyectoHotel',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234521',
+#         'HOST': '127.0.0.1',
+#         'DATEBASE_PORT': '5432',
+#        # 'DATEBASE_PORT': '55647',
+#
+#     }
+#
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

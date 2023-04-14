@@ -6,4 +6,6 @@ def mostrarHabitacion(request):
 
      forms = FormsHabitacion
 
+
+
      return render(request, "habitacion/habitacion.html", {'forms': forms})
