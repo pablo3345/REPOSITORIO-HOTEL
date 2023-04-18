@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'proyectoWebApp',
     'habitacion',
+    'contrato',
 ]
 
 MIDDLEWARE = [
@@ -70,24 +72,24 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ProyectoWeb_hotel.wsgi.application'
-
+#contraseña de postgres 10 (12345211)
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'proyectoHotel',
-#         'USER': 'postgres',
-#         'PASSWORD': '1234521',
-#         'HOST': '127.0.0.1',
-#         'DATEBASE_PORT': '5432',
-#        # 'DATEBASE_PORT': '55647',
-#
-#     }
-#
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hotel_admin',
+        'USER': 'hotel1',
+        'PASSWORD': 'hotelhotel1',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+
+
+    }
+
+}
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

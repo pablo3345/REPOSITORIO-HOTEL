@@ -15,9 +15,16 @@ class Habitacion(models.Model):
     posee_calefaccion = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     posee_ventana = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     posee_cama_matrimonial = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
+    posee_televisor = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
+    posee_wifi = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     estado_libre = models.ImageField(default="libre.jpg")  # upload_to (es para decir donde vamos a dejar las imagenes cargadas, en que directorio), null= True(para decirle que  las imagenes las podemos dejar en blanco)
     estado_ocupado = models.ImageField(default="ocupado.jpg")
     estado_post_ocupado = models.ImageField(default="despues_del_plazo.jpg")
+    #-------------------------------------------------------------------------------------------------------------------
+    libre = models.CharField(max_length=10, default="LIBRE")
+    ocupada = models.CharField(max_length=10, default="OCUPADA")
+    post_ocupada = models.CharField(max_length=10, default="POST OCUPADA")
+    #-------------------------------------------------------------------------------------------------------------------
     created = models.DateTimeField(auto_now_add=True)  # aca guardamos la fecha que se creo un servicio
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
 
