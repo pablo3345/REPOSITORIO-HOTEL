@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as mensaje_de_error
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -131,3 +132,13 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/' # esto seria la url publica para que django encuentre las imagenes
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # aca le decimos donde debe ir a buscar django los archivos media
 
+MESSAGE_TAGS = { # TAGS viene de etiqueta "debug" nombro la etiqueta, abajo escribi todas las etiquetas x si mas adelante las voy a usar
+
+mensaje_de_error.DEBUG: 'alert-dark',
+mensaje_de_error.INFO: 'alert-info',
+mensaje_de_error.SUCCESS: 'alert-success',
+mensaje_de_error.WARNING: 'alert-warning',
+mensaje_de_error.ERROR:'alert-danger',
+
+
+}

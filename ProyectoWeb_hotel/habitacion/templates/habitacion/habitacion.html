@@ -16,12 +16,25 @@
 
 
 
+
  <div>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+      <a  href="{% url 'Home' %}"  style="font-size:20px; margin-left:1100px; font-weight:bold;">regresar al HOME</a>
+
 
   <form method ="post" style="background: #F5F5DC;">
    {% csrf_token %}
       <br>
-    <h2 style="margin-left:460px;color: #37517e;">CARGAR HABITACIONES</h2><br>
+    <h1 style="margin:center; text-align:center; font-family: arial; background: #37517e; color:white;">Cargar todas las habitaciones del hotel</h1><br>
 
 
 
@@ -29,11 +42,12 @@
 
 
 
-   <table style="margin-left: 50px; border-collapse: separate;border-spacing: 25px 10px;">
+   <table style="margin-left: 94px; border-collapse: separate;border-spacing: 25px 20px;" >
 
 
+ {{forms}}
 
-  {{forms}}
+
 
 </table>
       <!-- <button type="submit" style="width:200px; margin-left: 400px; margin-top:50px; background:#37517e; color:white; cursor:pointer; ">Guardar</button><br>-->
@@ -54,9 +68,12 @@
 
 
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0" style="margin-left: 170px;">
+          <div class="col-lg-6 pt-4 pt-lg-0" style="margin-left: 1px;">
 
-            <a href="#" class="btn-learn-more" style="color:#37517e; font-weight:bold;">Guardar</a>
+             <input type="submit" value="GUARDAR FORMULARIO" style=" color:#37517e; font-weight:bold;" class="btn-learn-more">&nbsp; &nbsp;
+              <a href= "{% url  'modificarHabitacion' %}" class="btn-learn-more" style="color:#37517e; font-weight:bold;">VER TABLA Y MODIFICAR</a>
+
+
           </div>
         </div>
 
@@ -64,9 +81,21 @@
     </div><!-- End About Us Section -->
 <!--  ----------------------------------------------------------------------boton section Abous us<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
  <br>
+      <!--   --------------------------------------------------boton modificar formulario-------------------------------------- -->
+
+
+
   </form>
 
+
+
+
  </div>
+
+
+
+
+
 
 {% endblock %}
 

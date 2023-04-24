@@ -4,7 +4,7 @@ from .models import Habitacion
 # Register your models here.
 
 class HabitacionAdmin(admin.ModelAdmin):
-    readonly_fields = ('created', 'updated')
+    readonly_fields = ('estado_libre', 'estado_ocupado', 'estado_post_ocupado', 'libre', 'ocupada','post_ocupada', 'created', 'updated',)
     list_display = ("nombre_numero", "capacidad", "camita_bebe", "esta_limpia", "posee_heladera","posee_aire_acondicionado" ,"posee_calefaccion", "posee_ventana", "posee_cama_matrimonial", "posee_televisor", "posee_wifi")
 
     radio_fields = {'camita_bebe': admin.HORIZONTAL, 'esta_limpia': admin.HORIZONTAL, 'posee_heladera': admin.HORIZONTAL,

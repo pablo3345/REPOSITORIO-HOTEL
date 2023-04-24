@@ -4,4 +4,10 @@ from django.shortcuts import render
 
 def inicio(request):
 
-    return render(request,"proyectoWebApp/home.html")
+    return render(request,"proyectoWebApp/inicio.html")
+
+
+
+def home(request):
+
+    return render(request, "proyectoWebApp/home.html")

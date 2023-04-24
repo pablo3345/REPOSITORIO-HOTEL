@@ -23,7 +23,7 @@ class Habitacion(models.Model):
     #-------------------------------------------------------------------------------------------------------------------
     libre = models.CharField(max_length=10, default="LIBRE")
     ocupada = models.CharField(max_length=10, default="OCUPADA")
-    post_ocupada = models.CharField(max_length=10, default="POST OCUPADA")
+    post_ocupada = models.CharField(max_length=15, default="POST OCUPADA")
     #-------------------------------------------------------------------------------------------------------------------
     created = models.DateTimeField(auto_now_add=True)  # aca guardamos la fecha que se creo un servicio
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza

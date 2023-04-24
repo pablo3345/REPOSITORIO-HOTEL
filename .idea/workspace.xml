@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6ac57718-8cbb-48e3-aa3f-10c1ca7e9d7d" name="Default Changelist" comment="" />
+    <list default="true" id="6ac57718-8cbb-48e3-aa3f-10c1ca7e9d7d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoWeb_hotel/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/ProyectoWeb_hotel/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoWeb_hotel/ProyectoWeb_hotel/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/habitacion/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoWeb_hotel/habitacion/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/habitacion/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoWeb_hotel/habitacion/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/habitacion/templates/habitacion/habitacion.html" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoWeb_hotel/habitacion/templates/habitacion/habitacion.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/habitacion/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoWeb_hotel/habitacion/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/proyectoWebApp/static/proyectoWebApp/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoWeb_hotel/proyectoWebApp/static/proyectoWebApp/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/proyectoWebApp/static/proyectoWebApp/img/hotel para home.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/proyectoWebApp/templates/proyectoWebApp/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoWeb_hotel/proyectoWebApp/templates/proyectoWebApp/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProyectoWeb_hotel/proyectoWebApp/templates/proyectoWebApp/padre.html" beforeDir="false" afterPath="$PROJECT_DIR$/ProyectoWeb_hotel/proyectoWebApp/templates/proyectoWebApp/padre.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +26,7 @@
   <component name="ProjectId" id="2Nsk8PdfVUY8KVCpEyCEiEqNPNh" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ProyectoWeb_hotel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -46,7 +58,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
