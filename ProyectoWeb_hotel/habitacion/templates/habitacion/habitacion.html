@@ -31,7 +31,9 @@
       <a  href="{% url 'Home' %}"  style="font-size:20px; margin-left:1100px; font-weight:bold;">regresar al HOME</a>
 
 
-  <form method ="post" style="background: #F5F5DC;">
+
+
+  <form method ="post" style="background: #F5F5DC">
    {% csrf_token %}
       <br>
     <h1 style="margin:center; text-align:center; font-family: arial; background: #37517e; color:white;">Cargar todas las habitaciones del hotel</h1><br>
@@ -42,7 +44,7 @@
 
 
 
-   <table style="margin-left: 94px; border-collapse: separate;border-spacing: 25px 20px;" >
+   <table  style="margin-left: 94px; border-collapse: separate;border-spacing: 25px 20px; color:  #37517e;" >
 
 
  {{forms}}

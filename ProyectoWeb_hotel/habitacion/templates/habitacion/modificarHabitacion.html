@@ -16,6 +16,17 @@
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
+
+      {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
        <!-- <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             &lt;!&ndash; Navbar Brand&ndash;&gt;
             <a class="navbar-brand ps-3" href="index.html">Start Bootstrap</a>
@@ -112,6 +123,11 @@
                 </nav>
             </div>-->
             <div id="layoutSidenav_content">
+
+
+
+
+
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4" style="margin:center; text-align:center; font-family: arial; background: #37517e; color:white;">Tabla habitaciones</h1>
@@ -182,8 +198,8 @@
                                         <td>{{habitacion.posee_cama_matrimonial}}</td>
                                         <td>{{habitacion.posee_televisor}}</td>
                                         <td>{{habitacion.posee_wifi}}</td>
-                                        <td> <a href="{% url 'actualizarTabla' habitacion.id %}"> <button type="button" style="background: #37517e; color:white; ">editar</button></a></td>
-                                        <td><a href="#"> <button type="button" style="background:#D6234A; color:white; ">eliminar</button></a></td>
+                                        <td> <a href="{% url 'actualizarTabla' habitacion.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a></td>
+                                        <td><a href="#"> <button type="button" style="background:#D6234A; color:white; border:none; ">eliminar</button></a></td>
 
                                       <!--  <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a></td>-->
