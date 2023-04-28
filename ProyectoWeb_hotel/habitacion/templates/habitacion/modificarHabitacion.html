@@ -131,17 +131,21 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4" style="margin:center; text-align:center; font-family: arial; background: #37517e; color:white;">Tabla habitaciones</h1>
+                        <a style="margin-left:500; font-weight:bold;" href="{% url 'Habitacion' %}">regresar a HABITACIONES</a><br>
+                        <a style="margin-left:500; font-weight:bold;" href="{% url 'Home' %}">regresar al Home</a>
                        <!-- <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item active">Tables</li>
                         </ol>-->
-                        <div class="card mb-4">
+                      <!--  <div class="card mb-4">
                             <div class="card-body">
                                Selecciones en la tabla la habitacion a editar o eliminar
-                                <a  href="{% url 'Habitacion' %}">REGRESAR A HABITACIONES</a>
+                               <a  href="{% url 'Habitacion' %}">regresar a HABITACIONES</a>
+                                
 
                             </div>
-                        </div>
+                        </div>  -->
+                        
                         <!--<div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -199,7 +203,7 @@
                                         <td>{{habitacion.posee_televisor}}</td>
                                         <td>{{habitacion.posee_wifi}}</td>
                                         <td> <a href="{% url 'actualizarTabla' habitacion.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a></td>
-                                        <td><a href="#"> <button type="button" style="background:#D6234A; color:white; border:none; ">eliminar</button></a></td>
+                                        <td><a href="{% url 'eliminar' habitacion.id %}"> <button type="button" style="background:#D6234A; color:white; border:none; ">eliminar</button></a></td>
 
                                       <!--  <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a></td>-->

@@ -97,6 +97,26 @@ def tabla_modificar(request, id_habitacion):
     return render(request, 'habitacion/modificar_tabla.html', {'form': form})
 
 
+def eliminarHabitacion(request, id_habitacion):
+    
+    
+    habitacion = get_object_or_404(Habitacion, id=id_habitacion)
+    
+    try:
+        habitacion.delete()
+        messages.success(request, "La habitacion se elimino correctamente...")
+        
+    except:
+        messages.error(request, "La habitacion no se elimino...")
+        
+    return redirect('modificarHabitacion')
+        
+    
+   
+    
+    
+
+
 
 
 
