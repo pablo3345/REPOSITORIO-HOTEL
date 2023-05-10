@@ -32,6 +32,8 @@ h6 {
   font-family: "Jost", sans-serif;
 }
 
+
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
@@ -395,7 +397,7 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 33vh;  /* el original era 80vh; */
+  height: 32vh;  /* el original era 80vh; */
   background: #37517e;
 }
 
@@ -536,6 +538,8 @@ section {
   padding: 60px 0;
   overflow: hidden;
 }
+
+
 
 .section-bg {
   background-color: #f3f5fa;
@@ -1854,4 +1858,12 @@ section {
   #footer .credits {
     padding-top: 4px;
   }
+
+
+ 
+   
+
+
 }
+
+

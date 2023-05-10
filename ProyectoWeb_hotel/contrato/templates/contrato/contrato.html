@@ -1,13 +1,111 @@
 
 <html>
+{% extends "proyectoWebApp/padre.html" %}
+ {% load static %}
 <head>
 
 </head>
 
 
-
 <body>
-   <h1>hola mundo...</h1>
+   {% load crispy_forms_tags %}
+   {% block content %}
+
+   {% if messages %}
+   {% for message in messages %}
+       <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+           {{ message }}
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+   {% endfor %}
+{% endif %}
+
+
+<form method ="post" class="ContenedorFormulario"> <!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
+	{% csrf_token %}
+
+   <br>
+
+   <h1 style="margin:center; text-align:center; font-family: arial; background:#37517e; color:white; ">Registrar Huesped</h1><br>
+
+
+
+
+
+
+{{formHuesped|crispy}}
+
+
+
+<p style="color:red; margin-left:380px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
+
+
+
+
+ <input type="submit" value="GUARDAR HUESPED" class="btn btn-info">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href= "{% url  'modificarHabitacion' %}" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a>
+</form>
+  
+  
+  
+
+     
+    
+   
+    
+    </div>
+    
+    
+    
+      <!-- -------------------------------------------------SEGUND FORMULARIO------------------------------------------------------------- -->
+
+  <br>
+  <br>
+
+<form method ="post" enctype="multipart/form-data" class="ContenedorFormulario"> <!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
+	{% csrf_token %}
+
+   <br>
+
+   <h1 style="margin:center; text-align:center; font-family: arial; background:#37517e; color:white; ">Registrar Contrato</h1><br>
+
+
+
+
+
+
+{{formContrato|crispy}}
+
+
+
+<p style="color:red; margin-left:380px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
+
+<input type="submit" value="GUARDAR CONTRATO" class="btn btn-info">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href= "{% url  'modificarHabitacion' %}" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a>
+
+<br>
+
+<br>
+
+</form>
+
+<br>
+
+<br>
+
+   
+  
+      
+
+
+
+
+
+
+
+   {% endblock %}
 
 </body>
 

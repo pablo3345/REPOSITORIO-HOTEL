@@ -3,16 +3,21 @@
  {% load static %}
 <head>
 
+ 
 
 
 
+ 
 
 
 </head>
 <body>
+  {% load crispy_forms_tags %}
+
+  
 
  {% block content %}
-
+  
 
 
 
@@ -28,76 +33,62 @@
     {% endfor %}
 {% endif %}
 
-      <a  href="{% url 'Home' %}"  style="font-size:20px; margin-left:1100px; font-weight:bold;">regresar al HOME</a>
+      <a  href="{% url 'Home' %}"  style="font-size:20px; margin-left:1065px; font-weight:bold;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a>
 
 
+    
 
-
-  <form method ="post" style="background: #F5F5DC">
+<div>
+  <form method ="post" class="ContenedorFormulario">
+    <h1 style="margin:center; text-align:center; font-family: arial; background:#37517e; color:white; ">Cargar las habitaciónes del hotel</h1><br>
    {% csrf_token %}
       <br>
-    <h1 style="margin:center; text-align:center; font-family: arial; background: #37517e; color:white;">Cargar todas las habitaciones del hotel</h1><br>
+    
+
+  
 
 
 
+    {{forms|crispy}} 
+  
+ 
 
 
 
-
-   <table  style="margin-left: 94px; border-collapse: separate;border-spacing: 25px 20px; color:  #37517e;" >
-
-
- {{forms}}
-
-
-
-</table>
-      <!-- <button type="submit" style="width:200px; margin-left: 400px; margin-top:50px; background:#37517e; color:white; cursor:pointer; ">Guardar</button><br>-->
 
 
 <br>
-<!--  ----------------------------------------------------------------------boton section Abous us<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
-
-   <div id="about" class="about"><!-- empieza el section About Us Section -->
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-
-        </div>
-
-        <div class="row content">
-          <div class="col-lg-6">
-
-
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0" style="margin-left: 1px;">
-
-             <input type="submit" value="GUARDAR FORMULARIO" style=" color:#37517e; font-weight:bold;" class="btn-learn-more">&nbsp; &nbsp;
-              <a href= "{% url  'modificarHabitacion' %}" class="btn-learn-more" style="color:#37517e; font-weight:bold;">VER TABLA Y MODIFICAR</a>
-
-
-          </div>
-        </div>
-
-      </div>
-    </div><!-- End About Us Section -->
-<!--  ----------------------------------------------------------------------boton section Abous us<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
- <br>
-      <!--   --------------------------------------------------boton modificar formulario-------------------------------------- -->
+     
+      <!-- <button type="submit" style="width:200px; margin-left: 400px; margin-top:50px; background:#37517e; color:white; cursor:pointer; ">Guardar</button><br>-->
+      <p style="color:red; margin-left:380px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
 
 
 
+
+  
+
+             <input type="submit" value="GUARDAR HABITACION" class="btn btn-info" style="margin:auto;">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+           
+             <a href= "{% url  'modificarHabitacion' %}" ><button type="button" class="btn btn-info" style="margin:auto;">VER TABLA Y ACTUALIZAR</button></a>
+            
   </form>
 
 
 
+  
+     
+    
+ 
 
- </div>
+
+
+<br>
+
+</div>
 
 
 
-
-
+<br>
 
 {% endblock %}
 

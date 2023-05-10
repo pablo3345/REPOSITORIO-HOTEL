@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'proyectoWebApp',
     'habitacion',
     'contrato',
+    'crispy_forms',
+    "crispy_bootstrap5", #para el formulario crispy de bootstra5
+   
 ]
 
 MIDDLEWARE = [
@@ -133,6 +136,9 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/' # esto seria la url publica para que django encuentre las imagenes
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # aca le decimos donde debe ir a buscar django los archivos media
+
+CRISPY_TEMPLATE_PACK= 'bootstrap5' # es para decirle que cargue este paquete crispy en boostrap5
+
 
 MESSAGE_TAGS = { # TAGS viene de etiqueta "debug" nombro la etiqueta, abajo escribi todas las etiquetas x si mas adelante las voy a usar
 

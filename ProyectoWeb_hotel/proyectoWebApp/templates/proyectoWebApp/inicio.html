@@ -20,13 +20,13 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="{% static 'proyectoWebApp/vendor/aos/aos.css' %}" rel="stylesheet">
+   <link href="{% static 'proyectoWebApp/vendor/aos/aos.css' %}" rel="stylesheet">
   <link href="{% static 'proyectoWebApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static 'proyectoWebApp/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
   <link href="{% static 'proyectoWebApp/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
   <link href="{% static 'proyectoWebApp/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
   <link href="{% static 'proyectoWebApp/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-  <link href="{% static 'proyectoWebApp/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'proyectoWebApp/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet"> 
 
   <!-- Template Main CSS File -->
   <link href="{% static 'proyectoWebApp/css/style.css' %}" rel="stylesheet">
@@ -40,9 +40,10 @@
 </head>
 
 <body>
+ 
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
+  <header id="header" class="fixed-top "  style="background:#F39C12">
     <div class="container d-flex align-items-center">
 
        <h1 class="logo me-auto" style="color:white;">-HOTEL-</h1>
@@ -56,8 +57,11 @@
 
   </header><!-- End Header -->
 
+  
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
+  
 
     <!-- <a href="#"><img src="{% static 'proyectoWebApp/img/open mas grande.png' %}"></a>-->
    <!--  <a href="#"><button style="background:white; border:none; size:200px">CARGAR HABITACIONES</button></a>-->
@@ -71,7 +75,7 @@
 
             <ul>-->
               <div>
-                <nav id="navbar" class="navbar" style="margin-left:15px;">
+                <nav id="navbar" class="navbar" style="margin-left:15px; margin-top:33px;">
         <ul>
           <li><a class="nav-link scrollto" href="{% url 'Home' %}"  style="font-size:18px; margin-left:550px;"><img src="{% static 'proyectoWebApp/img/open mas chico.png' %}"> INGRESAR</a></li>
 
@@ -88,7 +92,9 @@
               </div>
 
   </section><!-- End Hero -->
-
+  <br>
+  <a href="#" style="font-weight:bold; font-size:20px; margin-left:1050px"><img src="{% static 'proyectoWebApp/img/logo manual de uso mas chico.png' %}" alt="" style="width: 3em; height: 3em;">&nbsp; manual de USO</a>
+ 
     <!-- ======= Services Section ======= -->
  <br>
   <br>
@@ -110,13 +116,13 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="{% static 'proyectoWebApp/vendor/aos/aos.js' %}"></script>
+ <!--  <script src="{% static 'proyectoWebApp/vendor/aos/aos.js' %}"></script>
   <script src="{% static 'proyectoWebApp/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'proyectoWebApp/vendor/glightbox/js/glightbox.min.js' %}"></script>
   <script src="{% static 'proyectoWebApp/vendor/isotope-layout/isotope.pkgd.min.js '%}"></script>
   <script src="{% static 'proyectoWebApp/vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{% static 'proyectoWebApp/vendor/waypoints/noframework.waypoints.js' %}"></script>
-  <script src="{% static 'proyectoWebApp/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'proyectoWebApp/vendor/php-email-form/validate.js' %}"></script> -->
 
   <!-- Template Main JS File -->
   <script src="{% static 'proyectoWebApp/js/main.js' %}"></script>

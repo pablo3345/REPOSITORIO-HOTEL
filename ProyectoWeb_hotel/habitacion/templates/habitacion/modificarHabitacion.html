@@ -131,8 +131,10 @@
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4" style="margin:center; text-align:center; font-family: arial; background: #37517e; color:white;">Tabla habitaciones</h1>
-                        <a style="margin-left:500; font-weight:bold;" href="{% url 'Habitacion' %}">regresar a HABITACIONES</a><br>
-                        <a style="margin-left:500; font-weight:bold;" href="{% url 'Home' %}">regresar al Home</a>
+                        <a style="margin-left:500; font-weight:bold; text-decoration:none;font-size:20px; " href="{% url 'Habitacion' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a HABITACIONES</a><br>
+                        <a style="margin-left:500; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Home' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a>
+                        <!-- #37517e; color anterior -->
+
                        <!-- <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                             <li class="breadcrumb-item active">Tables</li>
@@ -167,8 +169,10 @@
                                             <th>cama matrimonial</th>
                                             <th>televisor</th>
                                             <th>Posee wifi</th>
-                                            <th>EDITAR</th>
-                                            <th>ELIMINAR</th>
+                                            <th>Jacuzzi</th>
+                                            <th>Otro dato</th>
+                                            <th>OPCOPNES</th>
+                                           <!--  <th>ELIMINAR</th> -->
 
                                         </tr>
                                     </thead>
@@ -202,8 +206,10 @@
                                         <td>{{habitacion.posee_cama_matrimonial}}</td>
                                         <td>{{habitacion.posee_televisor}}</td>
                                         <td>{{habitacion.posee_wifi}}</td>
-                                        <td> <a href="{% url 'actualizarTabla' habitacion.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a></td>
-                                        <td><a href="{% url 'eliminar' habitacion.id %}"> <button type="button" style="background:#D6234A; color:white; border:none; ">eliminar</button></a></td>
+                                        <td>{{habitacion.jacuzzi}}</td>
+                                        <td>{{habitacion.otro_dato}}</td>
+                                        <td> <a href="{% url 'actualizarTabla' habitacion.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a>l &nbsp;
+                                        <a href="{% url 'eliminar' habitacion.id %}"> <button type="button" style="background:#D6234A; color:white; border:none; ">eliminar</button></a></td>
 
                                       <!--  <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a></td>-->

@@ -29,6 +29,11 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'proyectoWebApp/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'proyectoWebApp/css/ContenedorFormulario.css' %}" rel="stylesheet">
+ <!-- <link href="{% static 'proyectoWebApp/css/style-form-control.css' %}" rel="stylesheet"> -->
+ 
+
+  
 
   <!-- =======================================================
   * Template Name: Arsha - v4.11.0
@@ -41,7 +46,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
+  <header id="header" class="fixed-top "  style="background:#F39C12">
     <div class="container d-flex align-items-center">
 
        <h1 class="logo me-auto" style="color:white;">-HOTEL-</h1>
@@ -56,7 +61,7 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
+  <section id="hero" class="d-flex align-items-center" style= "height: 31vh;">
 
     <!-- <a href="#"><img src="{% static 'proyectoWebApp/img/open mas grande.png' %}"></a>-->
    <!--  <a href="#"><button style="background:white; border:none; size:200px">CARGAR HABITACIONES</button></a>-->
@@ -70,25 +75,25 @@
 
             <ul>-->
               <div>
-                <nav id="navbar" class="navbar" style="margin-left:15px;">
+                <nav id="navbar" class="navbar" style="margin-left:260; margin-top:35px;">
         <ul>
         <!--  <li><a class="nav-link scrollto active" href="{% url 'Home' %}"  style="font-size:18px"><img src="{% static 'proyectoWebApp/img/open mas chico.png' %}"> Home</a></li> -->
-          <li><a  class="nav-link scrollto" href="{% url 'Habitacion' %}"  style="font-size:18px"><img src="{% static 'proyectoWebApp/img/open mas chico.png' %}">Habitaciones</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'Contrato' %}"  style="font-size:18px"><img src="{% static 'proyectoWebApp/img/open mas chico.png' %}">Contrato</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio"  style="font-size:18"><img src="{% static 'proyectoWebApp/img/open mas chico.png' %}">Panel de control</a></li>
+          <li><a {% if request.path == '/habitacion/' %}class="nav-link scrollto active"{% endif %} href="{% url 'Habitacion' %}"  style="font-size:18px"><img src="{% static 'proyectoWebApp/img/open mas chico.png' %}">Habitaciones</a></li>
+          <li> <a {% if request.path == '/contrato/' %} class="nav-link scrollto active" {% endif %} href="{% url 'Contrato' %}"  style="font-size:18px"><img src="{% static 'proyectoWebApp/img/open mas chico.png' %}">Contrato</a></li>
+          <li><a class="nav-link scrollto" href="#portfolio"  style="font-size:18"><img src="{% static 'proyectoWebApp/img/open mas chico.png' %}">Panel de administración</a></li>
     <!--       <li><a class="nav-link scrollto" href="#portfolio"  style="font-size:18"><img src="{% static 'proyectoWebApp/img/open mas chico.png' %}">eliminar</a></li> -->
 
 
 
         </ul>
-                  </li>
+                 <!-- </li> --> 
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
 
               </div>
 
-  </section><!-- End Hero -->
+  </section> <!-- End Hero -->
 
     <!-- ======= Services Section ======= -->
    {% block content %}

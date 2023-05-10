@@ -5,6 +5,7 @@ from .models import Habitacion
 
 # Create your views here.
 def mostrarHabitacion(request):
+   
 
 
 
@@ -27,7 +28,7 @@ def mostrarHabitacion(request):
           else:
 
                 form = FormsHabitacion()  # si no es un post le decimos que nos vuelva a renderizar el formulario
-
+                
 
           return render(request, 'habitacion/habitacion.html', {'forms': form})
 
