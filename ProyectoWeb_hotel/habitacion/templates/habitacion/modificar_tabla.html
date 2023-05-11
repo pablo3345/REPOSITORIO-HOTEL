@@ -13,6 +13,8 @@
   <link href="{% static 'proyectoWebApp/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
   <link href="{% static 'proyectoWebApp/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
+  <link href="{% static 'proyectoWebApp/css/ContenedorFormulario.css' %}" rel="stylesheet">
+
 
 
 
@@ -20,6 +22,7 @@
 
 </head>
 <body>
+  {% load crispy_forms_tags %}
 
 
 
@@ -33,70 +36,42 @@
 
      
 
+  <h1 style="margin:center; text-align:center; font-family: arial; background:   #37517e; color:white; ">Modificar habitaciones</h1><br>
+  <a  href="{% url 'modificarHabitacion' %}"  style="font-size:23px; margin-left:1065px; font-weight:bold; text-decoration:none;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a la Tabla</a>
 
-  <form method ="post" style="background: #F5F5DC;">
+  <form method ="post"  class="ContenedorFormulario">
    {% csrf_token %}
       <br>
-    <h1 style="margin:center; text-align:center; font-family: arial; background:   #37517e; color:white; ">Modificar habitaciones</h1><br>
-    <a  href="{% url 'modificarHabitacion' %}"  style="font-size:23px; margin-left:1065px; font-weight:bold; text-decoration:none;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a la Tabla</a>
+   
 
 
 
 
 
 
+ 
 
-   <table style="margin-left: 94px; border-collapse: separate;border-spacing: 25px 20px; color: #37517e;" >
 
-
-{{form}}
-
+{{form|crispy}}
 
 
 
 
 
-
-
-</table>
-      <!-- <button type="submit" style="width:200px; margin-left: 400px; margin-top:50px; background:#37517e; color:white; cursor:pointer; ">Guardar</button><br>-->
+<br>
 
 
 
-<!--  ----------------------------------------------------------------------boton section Abous us<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
-
-   <div id="about" class="about"><!-- empieza el section About Us Section -->
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-
-        </div>
-
-        <div class="row content">
-          <div class="col-lg-6">
-
-
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0" style="margin-left: 1px;">
-
-           &nbsp; &nbsp;  <input type="submit" value="ACTUALIZAR" style=" color:#37517e; font-weight:bold; margin-left:30px;" class="btn-learn-more">&nbsp; &nbsp;
-                <!-- <a  href="{% url 'Home' %}"  style="font-size:20px; margin-left:1100px; font-weight:bold;">regresar al HOME</a> -->
-
-
-          </div>
-        </div>
-
-      </div>
-    </div><!-- End About Us Section -->
-<!--  ----------------------------------------------------------------------boton section Abous us<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
- <br>
-      <!--   --------------------------------------------------boton modificar formulario-------------------------------------- -->
+&nbsp;  <input type="submit" value="ACTUALIZAR" class="btn btn-info">
 
 
 
   </form>
 
 
+
+<br>
+<br>
 
 
  </div>

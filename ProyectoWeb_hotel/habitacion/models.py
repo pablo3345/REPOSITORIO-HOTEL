@@ -6,7 +6,7 @@ capacidad_status = [(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5'), (6, '6'), 
 
 class Habitacion(models.Model):
 
-    nombre_numero =models.CharField(max_length=40)
+    nombre_numero =models.CharField(max_length=40, unique=True)
     capacidad = models.IntegerField( null= False, blank=False, choices=capacidad_status, default= 1)#con default = 1 me aparece solo los valores que escribi arriba y no esa line discontinua que molesta)
      # precio por noche
     precio_por_noche = models.FloatField()

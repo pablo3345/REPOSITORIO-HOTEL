@@ -18,14 +18,15 @@ class Huesped(models.Model):
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
     
     def __str__(self):
-        return f'{self.nombre_responsable} apellido {self.apellido}' # la f es de formato
+        return f'{self.nombre_responsable} apellido {self.apellido} dni {self.dni}' # la f es de formato
 
     class Meta:
         db_table = "huesped"
         verbose_name = "Huesped"
         verbose_name_plural = "Huespedes"
         ordering = ['id']  # significa que se va a ordenar por id
-    
+        
+   
     
     
 

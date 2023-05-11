@@ -160,6 +160,7 @@
 
                                             <th>Nombre numero</th>
                                             <th>Capacidad</th>
+                                            <th>Precio noche</th>
                                             <th>Camita bebe</th>
                                             <th>Esta limpia</th>
                                             <th>heladera</th>
@@ -171,7 +172,7 @@
                                             <th>Posee wifi</th>
                                             <th>Jacuzzi</th>
                                             <th>Otro dato</th>
-                                            <th>OPCOPNES</th>
+                                            <th>OPCIONES</th>
                                            <!--  <th>ELIMINAR</th> -->
 
                                         </tr>
@@ -197,6 +198,7 @@
 
                                         <td>{{habitacion.nombre_numero}}</td>
                                         <td>{{habitacion.capacidad}}</td>
+                                        <td>{{habitacion.precio_por_noche}}
                                         <td>{{habitacion.camita_bebe}}</td>
                                         <td>{{habitacion.esta_limpia}}</td>
                                         <td>{{habitacion.posee_heladera}}</td>
@@ -207,10 +209,14 @@
                                         <td>{{habitacion.posee_televisor}}</td>
                                         <td>{{habitacion.posee_wifi}}</td>
                                         <td>{{habitacion.jacuzzi}}</td>
+                                        <div style="display:flex;">
                                         <td>{{habitacion.otro_dato}}</td>
-                                        <td> <a href="{% url 'actualizarTabla' habitacion.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a>l &nbsp;
-                                        <a href="{% url 'eliminar' habitacion.id %}"> <button type="button" style="background:#D6234A; color:white; border:none; ">eliminar</button></a></td>
-
+                                      
+                                        <td>   
+                                            <div style="display:flex;">
+                                            <a href="{% url 'actualizarTabla' habitacion.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
+                                        <a href="{% url 'eliminar' habitacion.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a></td>
+                                        </div> 
                                       <!--  <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a></td>-->
 

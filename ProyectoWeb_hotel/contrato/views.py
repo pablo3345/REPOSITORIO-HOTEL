@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from contrato.formsContrtato import FormContrato 
 from contrato.formsHuesped import FormHuesped
+from django.contrib import messages
+
 
 # Create your views here.
 
 
-def guardarHuesped(request):
+def mostrarContrato(request):
      form = FormHuesped()
      form2 = FormContrato()
   
@@ -14,13 +16,30 @@ def guardarHuesped(request):
  
  
  
-def guardarContrato(request):
+def guardarHuesped(request):
      
-    form2 = FormContrato()
+    #form2 = FormContrato()
+    #form = FormHuesped()
+    
+    if request.method =='POST':
+         
+         formHuesped =FormHuesped(request.POST)
+         
+         if formHuesped.is_valid():
+              
+              formHuesped.save()
+              messages.success(request, "El huesped se guardo correctamente...")
+              
+         else:
+              messages.error(request, "El huesped no se guardo...")
+              
+              
+    else:
+         form = FormHuesped()
+         
      
      
-     
-    return render(request, "contrato/contrato.html", {'formContrato': form2})
+    return render(request, "contrato/contrato.html", {'formHuesped': form})
 
 
 

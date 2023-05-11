@@ -5,32 +5,38 @@ from .models import Habitacion
 
 # Create your views here.
 def mostrarHabitacion(request):
+    
    
 
 
 
-          if request.method == 'POST': #si aprete el boton
+    if request.method == 'POST': #si aprete el boton
+       
+       
+
+        form = FormsHabitacion(request.POST)
+              
+        if form.is_valid():  # vamos a preguntar si los datos que se ingresaron son validos
+           
+                           
+               
+            form.save()   
+            messages.success(request, "La habitacion se guardo correctamente...")
+
+            return redirect('Habitacion')
 
 
-               form = FormsHabitacion(request.POST)
-               if form.is_valid():  # vamos a preguntar si los datos que se ingresaron son validos
-                   form.save()
-                   messages.success(request, "La habitacion se guardo correctamente...")
-
-                   return redirect('Habitacion')
-
-
-               else:
-                   messages.error(request, "La habitacion no se ha guardado...")
+        else:
+            messages.error(request, "La habitacion no se ha guardado...")
 
 
 
-          else:
+    else:
 
-                form = FormsHabitacion()  # si no es un post le decimos que nos vuelva a renderizar el formulario
+        form = FormsHabitacion()  # si no es un post le decimos que nos vuelva a renderizar el formulario
                 
 
-          return render(request, 'habitacion/habitacion.html', {'forms': form})
+    return render(request, 'habitacion/habitacion.html', {'forms': form})
 
 
 

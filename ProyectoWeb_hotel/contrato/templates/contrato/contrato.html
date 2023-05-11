@@ -21,7 +21,7 @@
 {% endif %}
 
 
-<form method ="post" class="ContenedorFormulario"> <!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
+<form method ="post" class="ContenedorFormulario" style="float:left; margin-left:70px;" ><!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
 	{% csrf_token %}
 
    <br>
@@ -37,7 +37,7 @@
 
 
 
-<p style="color:red; margin-left:380px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
+<p style="color:red; margin-left:260px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
 
 
 
@@ -60,10 +60,9 @@
     
       <!-- -------------------------------------------------SEGUND FORMULARIO------------------------------------------------------------- -->
 
-  <br>
-  <br>
+ 
 
-<form method ="post" enctype="multipart/form-data" class="ContenedorFormulario"> <!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
+<form method ="post" enctype="multipart/form-data" class="ContenedorFormulario" style="float:right; margin-right:70px";> <!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
 	{% csrf_token %}
 
    <br>
@@ -79,7 +78,7 @@
 
 
 
-<p style="color:red; margin-left:380px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
+<p style="color:red; margin-left:300px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
 
 <input type="submit" value="GUARDAR CONTRATO" class="btn btn-info">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -90,6 +89,7 @@
 <br>
 
 </form>
+
 
 <br>
 
