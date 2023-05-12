@@ -18,7 +18,7 @@ class Huesped(models.Model):
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
     
     def __str__(self):
-        return f'{self.nombre_responsable} apellido {self.apellido} dni {self.dni}' # la f es de formato
+        return f'{self.nombre_responsable}  {self.apellido} dni {self.dni}' # la f es de formato
 
     class Meta:
         db_table = "huesped"
