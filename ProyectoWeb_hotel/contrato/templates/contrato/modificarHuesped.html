@@ -34,7 +34,7 @@
 
 
                             <div class="card-body">
-                                <table id="datatablesSimple" style="background: #F5F5DC;">
+                                <table id="datatablesSimple">
                                     <thead>
                                         <tr>
 
@@ -81,16 +81,19 @@
                                         <td>{{huesped.modelo_vehiculo}}</td>
                                         <td>{{huesped.correo_electronico}}</td>
                                        
-                                        <div style="display:flex;">
+                                       <!-- <div style="display:flex;"> -->
                                        
                                       
                                         <td>   
                                             <div style="display:flex;">
-                                            <a href="#"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
-                                        <a href="#"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a></td>
-                                        </div> 
-                                      <!--  <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
-                                        <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a></td>-->
+                                            <a href="{% url 'modificarTablaHuesped' huesped.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
+                                       <a href="{% url 'eliminarHuesped' huesped.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> 
+                                    </div> 
+                                    </td>
+                                       
+                                      <!-- <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
+                                        <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a> -->
+                                       
 
 
 

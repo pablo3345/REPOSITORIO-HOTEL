@@ -30,12 +30,13 @@
 
 
 
-
+<table>
 
 
 {{formHuesped|crispy}}
 
 
+</table>
 
 <p style="color:red; margin-left:260px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
 
@@ -45,6 +46,7 @@
  <input type="submit" value="GUARDAR HUESPED" class="btn btn-info">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 
 <a href= "{% url  'modificarHuesped' %}" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a>
+<br>
 </form>
   
   
@@ -52,7 +54,7 @@
 
      
     
-   
+
     
     </div>
     
@@ -60,9 +62,9 @@
     
       <!-- -------------------------------------------------SEGUND FORMULARIO------------------------------------------------------------- -->
 
- 
 
-<form method ="post" enctype="multipart/form-data" class="ContenedorFormulario" style="float:right; margin-right:70px";> <!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
+
+<form action="guardarContrato" method ="post" enctype="multipart/form-data" class="ContenedorFormulario" style="float:right; margin-right:70px";> <!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
 	{% csrf_token %}
 
    <br>
@@ -72,31 +74,26 @@
 
 
 
-
+<table>
 
 {{formContrato|crispy}}
 
-
+</table>
 
 <p style="color:red; margin-left:300px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
 
 <input type="submit" value="GUARDAR CONTRATO" class="btn btn-info">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
 
-<a href= "{% url  'modificarHabitacion' %}" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a>
+<a href= "#" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a>
 
 <br>
-
 <br>
-
 </form>
 
 
-<br>
-
-<br>
 
    
-  
+ 
       
 
 

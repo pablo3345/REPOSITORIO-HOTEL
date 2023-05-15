@@ -37,9 +37,9 @@
      
 
   <h1 style="margin:center; text-align:center; font-family: arial; background:   #37517e; color:white; ">Modificar habitaciones</h1><br>
-  <a  href="{% url 'modificarHabitacion' %}"  style="font-size:23px; margin-left:1065px; font-weight:bold; text-decoration:none;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a la Tabla</a>
+  <a  href="{% url 'modificarHuesped' %}"  style="font-size:23px; margin-left:1065px; font-weight:bold; text-decoration:none;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a la Tabla</a>
 
-  <form method ="post" class="ContenedorFormulario" style="margin:auto;">
+  <form method ="post"  class="ContenedorFormulario" style="margin:auto;">
    {% csrf_token %}
       <br>
    
@@ -50,11 +50,11 @@
 
 
  
+<table>
 
+{{formHues|crispy}}
 
-{{form|crispy}}
-
-
+</table>
 
 
 
