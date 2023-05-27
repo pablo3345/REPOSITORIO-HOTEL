@@ -14,6 +14,7 @@ import os
 from django.contrib.messages import constants as mensaje_de_error
 
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'contrato',
     'crispy_forms',
     "crispy_bootstrap5", #para el formulario crispy de bootstra5
+    'panel_de_admin',
    
 ]
 

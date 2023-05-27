@@ -13,7 +13,12 @@ urlpatterns = [
     path('modificarHuesped', views.modificarHuesped, name="modificarHuesped"),
     path('modificarTablaHuesped/<int:id_huesped>/', views.modificarTablaHuesped, name="modificarTablaHuesped"),
     path('eliminarHuesped/<int:id_huesped>/', views.eliminarHuesped, name="eliminarHuesped"),
-    path('guardarContrato', views.guardarContrato, name="guardarContrato")
+    path('guardarContrato', views.guardarContrato, name="guardarContrato"),
+    path('modificarContrato', views.modificarContrato, name="modificarContrato"),
+    path('modificarTablaContrato/<int:id_contrato>/', views.modificarTablaContrato, name="modificarTablaContrato"),
+    path('eliminarContrato/<int:id_contrato>/', views.eliminarContrato, name="eliminarContrato"),
+    path('calcularTotal', views.calcularTotal, name="calcularTotal")
+    
     
     
    

@@ -124,6 +124,8 @@ def guardarContrato(request):
      form = FormHuesped()
      form2 = FormContrato()
      contrato = Contrato()
+     
+    
     
      
      # si en el formulario no obtengo los datos con form(request.POST), no voy a preguntar si el forn is_valid()
@@ -150,6 +152,16 @@ def guardarContrato(request):
           habitacion = Habitacion.objects.get(id= habitacions)
           huesped = Huesped.objects.get(id=huespeds)
           
+          #-------funcion calcularTotal----------
+          
+          
+          
+          
+         
+          total_dias_estadia =calcularTotal(request, fecha_entra, fecha_sali)
+          total = float(habitacion.precio_por_noche) * float(total_dias_estadia)
+          total_total = total + float(importe_otros_gast)
+         
          
        
           
@@ -158,25 +170,37 @@ def guardarContrato(request):
           contrato.huesped = huesped
           contrato.fecha_entrada= fechaFormateada
           contrato.fecha_salida = fechaFormateada2
-          contrato.importe_estadia= importe_estad
+          contrato.importe_estadia= total
           contrato.importe_otros_gasto = importe_otros_gast
-          contrato.total = totals
+          contrato.total = total_total 
+          
+          
+          
                
           
           
          
           try:
           
+          
         
                
-              
-               contrato.save()
-               messages.success(request, "El contrato se guardo correctamente...")
+           print("diferencia global de la vista contrato es ", total_dias_estadia)
+           contrato.save()
+           messages.success(request, "El contrato se guardo correctamente...")
+          
                
+            
+           
+           
           except:
                messages.error(request, "El contrato no se guardo...")
-                    
+               
+               
+        
              
+                    
+      
              
           
      else:
@@ -191,7 +215,135 @@ def guardarContrato(request):
                
               
              
+def modificarContrato(request):
+          
+     contratos = Contrato.objects.all()
+     
+     return render(request, "contrato/modificarContrato.html",{'contratos': contratos})  
+
+
+
+def modificarTablaContrato(request, id_contrato):
+     contrato = Contrato()
+     formContrato = FormContrato()
+     contrato = get_object_or_404(Contrato, id=id_contrato)
+     
+     habitacions = request.POST.get("habitacion")# id
+     huespeds =request.POST.get("huesped")# id
+     
+     fecha_entra = request.POST.get("fecha_entrada")
+     fecha_sali = request.POST.get("fecha_salida")
+     importe_estad= request.POST.get("importe_estadia")
+     importe_otros_gast= request.POST.get("importe_otros_gasto")
+     totals= request.POST.get("total")
+     
+     #.....................................ahora obtengo el huesped y el contrato mediante el id........................
+   
+     
+     if request.method == "POST":
+          habitacion = Habitacion.objects.get(id= habitacions)
+          huesped = Huesped.objects.get(id=huespeds)
+          
+          
+          
+          
+          contrato.habitacion = habitacion
+          contrato.huesped = huesped
+          contrato.fecha_entrada = fecha_entra
+          contrato.fecha_salida = fecha_sali
+          contrato.importe_estadia= importe_estad
+          contrato.importe_otros_gasto = importe_otros_gast
+          contrato.total=totals
+          
+          try:
+               contrato.save()
+               messages.success(request, "El contrato se actualizo correctamente...")
+               return redirect('modificarContrato')
+               
+               
+          except:
+               messages.error(request, "El contrato no se actualizo...")
+               
+               
+     
+     
+     
+     
+     else:
+          
+          formContrato = FormContrato(instance=contrato)
+          
+     
+     
+     
+     
+     return render(request, "contrato/modificarTablaContrato.html", {'formContrato': formContrato})
+
+
+def eliminarContrato(request, id_contrato):
+     
+    contrato = get_object_or_404(Contrato, id=id_contrato)
+    
+    try:
+         contrato.delete()
+         messages.success(request, "El contrato se elimino correctamente...")
          
+    except:
+         messages.error(request, "El contrato no se elimino...")
+         
+    return redirect('modificarContrato')
+
+
+
+def calcularTotal(request, fecha_entra, fecha_sali):
+          contrato = Contrato()
+     
+     
+   
+          diferencia_global = contrato.calcularFechas(fecha_entra, fecha_sali)
+     #--------------------para volver atras para restaurar----------------
+     
+          return diferencia_global
+     
+        
+        
+     
+   
+        
+           
+       
+  
+          
+          
+          
+     
+    
+ 
+    
+       
+     
+       
+              
+            
+              
+       
+              
+     
+       
+    
+    
+
+     
+   
+   
+     
+    
+    
+         
+         
+     
+     
+     
      
    
                

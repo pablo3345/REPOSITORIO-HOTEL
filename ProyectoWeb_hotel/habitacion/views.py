@@ -70,6 +70,10 @@ def tabla_modificar(request, id_habitacion):
         posee_cama_matrimonial = request.POST.get("posee_cama_matrimonial")
         posee_televisor = request.POST.get("posee_televisor")
         posee_wifi = request.POST.get("posee_wifi")
+        posee_jacuzzi = request.POST.get("posee_jacuzzi")#lo agregue nuevo
+        posee_microondas =request.POST.get("posee_microondas")#lo agregue nuevo
+        check_out_late =request.POST.get("check_out_lates")#lo agregue nuevo
+        otro_dato = request.POST.get("otro_dato")#lo agregue nuevo
 
         #-----------------CAMPOS DEL MODELO--------------------------------------------
 
@@ -84,6 +88,10 @@ def tabla_modificar(request, id_habitacion):
         habitacion.posee_cama_matrimonial = posee_cama_matrimonial
         habitacion.posee_televisor = posee_televisor
         habitacion.posee_wifi = posee_wifi
+        habitacion.jacuzzi=posee_jacuzzi
+        habitacion.posee_microondas=posee_microondas
+        habitacion.check_out_lates=check_out_late
+        habitacion.otro_dato=otro_dato
 
         try:
             habitacion.save()

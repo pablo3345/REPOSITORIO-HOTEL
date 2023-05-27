@@ -22,6 +22,7 @@ class FormsHabitacion(forms.ModelForm):
             'posee_wifi',
             'jacuzzi',
             'posee_microondas',
+            'check_out_lates',
             'otro_dato'
             #'predio_con_pileta'
              # 'estado_libre',
@@ -46,6 +47,7 @@ class FormsHabitacion(forms.ModelForm):
             'posee_wifi': 'Posee wifi',
             'jacuzzi': 'Posee jacuzzi',
             'posee_microondas': 'Posee microondas',
+            'check_out_lates': 'Precio late check out',
             'otro_dato': 'Agregar otro dato'
            # 'predio_con_pileta': 'Predio con pileta *'
             # 'estado_libre': 'Disponible:',
@@ -71,6 +73,7 @@ class FormsHabitacion(forms.ModelForm):
             'posee_wifi': forms.RadioSelect(),
             'jacuzzi': forms.RadioSelect(),
             'posee_microondas': forms.RadioSelect(),
+            'check_out_lates': forms.NumberInput(attrs={'placeholder':'0,00'}),
             'otro_dato': forms.TextInput()
            # 'predio_con_pileta': forms.RadioSelect(),
             # 'estado_libre':  forms.FileInput(),

@@ -22,9 +22,11 @@ class Habitacion(models.Model):
     posee_televisor = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     
     posee_wifi = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
-    #--------------------------jacuzzi--------------------------------------------------
+   
     jacuzzi = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     posee_microondas = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
+    #--------------------------------------------------------------------------
+    check_out_lates = models.FloatField()
     #--------------------------------------------------------------------------
     otro_dato =models.CharField(max_length=50, null=True, blank=True)
     

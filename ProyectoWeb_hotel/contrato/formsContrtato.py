@@ -20,9 +20,9 @@ class FormContrato(forms.ModelForm):
                 'huesped',
                 'fecha_entrada',
                 'fecha_salida',
-                'importe_estadia',
+                #'importe_estadia',
                 'importe_otros_gasto',
-                'total'
+               # 'total'
                 
                 
                 
@@ -36,9 +36,9 @@ class FormContrato(forms.ModelForm):
                 'huesped': 'Huesped',
                 'fecha_entrada': 'Fecha Entrada',
                 'fecha_salida': 'Fecha Salida',
-                'importe_estadia': "Importe estadia",
-                'importe_otros_gasto': 'Importe de otros gastos',
-                'total': 'Total'
+                'importe_estadia': "Importe estadia se agrega automaticamente",
+                'importe_otros_gasto': 'Gastos extras (poner cero si no hay importe)',
+                'total': 'Total se agrega automaticamente'
                 
                 
             }
@@ -49,9 +49,9 @@ class FormContrato(forms.ModelForm):
                 'huesped': forms.Select(),
                 'fecha_entrada':DateTimeInput(), # este DateTimeInput() viene de la clase de arriba que puse para que me muestre el widgets
                 'fecha_salida': DateTimeInput(),
-                'importe_estadia': forms.NumberInput(attrs={'placeholder':'0,00'}),
-                'importe_otros_gasto': forms.NumberInput(),
-                'total': forms.NumberInput(attrs={'placeholder':'0,00'})
+                'importe_estadia': forms.NumberInput(attrs={'readonly':True,'hidden': True,'required': False}),
+                'importe_otros_gasto': forms.NumberInput(attrs={'placeholder':'0,00'}),
+                'total': forms.NumberInput(attrs={'readonly':True,'hidden': True,'required': False})
                 
                 
                 
