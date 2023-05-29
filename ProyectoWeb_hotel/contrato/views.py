@@ -140,6 +140,7 @@ def guardarContrato(request):
           importe_estad= request.POST.get("importe_estadia")
           importe_otros_gast= request.POST.get("importe_otros_gasto")
           totals= request.POST.get("total")
+          late_check_out = request.POST.get("late_chack_out")
      #.........................cambiar formato calendario.....................
           fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M') # strptime lo convierto a objeto datetime, el segundo parametro le dice como interpretar la fecha, cual es la hora, el dia, el mes etc
      
@@ -153,16 +154,19 @@ def guardarContrato(request):
           huesped = Huesped.objects.get(id=huespeds)
           
           #-------funcion calcularTotal----------
+        
+          ''' if late_check_out=="SI":
+               variable_Late_check = habitacion.check_out_lates
+          else:
+               variable_Late_check=0'''
           
           
-          
-          
-         
-          total_dias_estadia =calcularTotal(request, fecha_entra, fecha_sali)
-          total = float(habitacion.precio_por_noche) * float(total_dias_estadia)
-          total_total = total + float(importe_otros_gast)
-         
-         
+          total =calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+        
+           
+        
+             
+        
        
           
           contrato.habitacion =habitacion # obtuve la habitacion mediante el id
@@ -172,8 +176,12 @@ def guardarContrato(request):
           contrato.fecha_salida = fechaFormateada2
           contrato.importe_estadia= total
           contrato.importe_otros_gasto = importe_otros_gast
-          contrato.total = total_total 
+        # contrato.late_chack_out = late_check_out #lo agregue nuevo
+          contrato.total = total 
           
+          """  if total==0:
+               return redirect("Inicio")
+           """
           
           
                
@@ -182,10 +190,10 @@ def guardarContrato(request):
          
           try:
           
-          
+           
         
                
-           print("diferencia global de la vista contrato es ", total_dias_estadia)
+           print("el total es total", total)
            contrato.save()
            messages.success(request, "El contrato se guardo correctamente...")
           
@@ -233,9 +241,12 @@ def modificarTablaContrato(request, id_contrato):
      
      fecha_entra = request.POST.get("fecha_entrada")
      fecha_sali = request.POST.get("fecha_salida")
-     importe_estad= request.POST.get("importe_estadia")
+    # importe_estad= request.POST.get("importe_estadia")
      importe_otros_gast= request.POST.get("importe_otros_gasto")
-     totals= request.POST.get("total")
+    # late_check_out = request.POST.get("late_chack_out")
+     #totals= request.POST.get("total")
+    
+     
      
      #.....................................ahora obtengo el huesped y el contrato mediante el id........................
    
@@ -244,6 +255,11 @@ def modificarTablaContrato(request, id_contrato):
           habitacion = Habitacion.objects.get(id= habitacions)
           huesped = Huesped.objects.get(id=huespeds)
           
+          total =calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+          importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+          
           
           
           
@@ -251,9 +267,10 @@ def modificarTablaContrato(request, id_contrato):
           contrato.huesped = huesped
           contrato.fecha_entrada = fecha_entra
           contrato.fecha_salida = fecha_sali
-          contrato.importe_estadia= importe_estad
+          contrato.importe_estadia= importeEstadia
           contrato.importe_otros_gasto = importe_otros_gast
-          contrato.total=totals
+         # contrato.late_chack_out= late_check_out
+          contrato.total=total
           
           try:
                contrato.save()
@@ -263,6 +280,7 @@ def modificarTablaContrato(request, id_contrato):
                
           except:
                messages.error(request, "El contrato no se actualizo...")
+               return redirect('modificarContrato')
                
                
      
@@ -295,15 +313,34 @@ def eliminarContrato(request, id_contrato):
 
 
 
-def calcularTotal(request, fecha_entra, fecha_sali):
+def calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gasto):
           contrato = Contrato()
+          #total =0
+         
      
      
-   
-          diferencia_global = contrato.calcularFechas(fecha_entra, fecha_sali)
-     #--------------------para volver atras para restaurar----------------
+         
+          total = contrato.calcularFechas(fecha_entra, fecha_sali, habitacions, importe_otros_gasto)
+          
+    
      
-          return diferencia_global
+          return total
+     
+     
+def calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gasto):
+          
+          contrato = Contrato()
+          #total =0
+         
+     
+     
+         
+          importeEstadia = contrato.calcularFechas(fecha_entra, fecha_sali, habitacions, importe_otros_gasto)
+          
+    
+     
+          return importeEstadia
+     
      
         
         

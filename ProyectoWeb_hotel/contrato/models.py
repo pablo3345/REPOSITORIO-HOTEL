@@ -1,6 +1,9 @@
 from django.db import models
 from habitacion.models import Habitacion
 import datetime
+
+from django.contrib import messages
+from django.shortcuts import redirect
 #from contrato.models import Huesped, Contrato
 
  #Create your models here.
@@ -41,6 +44,7 @@ class Contrato(models.Model):
     fecha_salida =models.DateTimeField(auto_now=False)
     importe_estadia = models.FloatField() # poner en un casillero el total del precio de la habitacion x noche
     importe_otros_gasto = models.FloatField()
+   # late_chack_out = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     total = models.FloatField()
     created = models.DateTimeField(auto_now_add=True)  # aca guardamos la fecha que se creo un servicio
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
@@ -53,18 +57,86 @@ class Contrato(models.Model):
         
         
         
-    def calcularFechas(request, fecha_entra, fecha_sali):
+    def calcularFechas(request, fecha_entra, fecha_sali, habitacions, importe_otros_gasto):
+        habitacion = Habitacion.objects.get(id= habitacions)
+        total =0
        
         
         fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M') # strptime lo convierto a objeto datetime, el segundo parametro le dice como interpretar la fecha, cual es la hora, el dia, el mes etc
         fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
+        #---------------------esto lo saque por internet--------------------------
+       
+        #fecha_Para_comparar2 = datetime.datetime.strptime("10:01:00", "%X").time()
+        
+        #---------------------------time delta-----------------------------------
+        #...........poner un delta de fecha para que me calcule a partir de 5 dias por ejemplo. (tambien con datetime)..........
+         
+        dia_delta = datetime.timedelta(hours=7)#timedelta es una instacia de datetime
+        fecha_mas_delta = fechaConvertida2+dia_delta
+       
+       
+        
+        
+       
+       
+       
+       
+        
          
         diferencia = fechaConvertida2-fechaConvertida 
+     
+       
+       
+      
+        print(" la diferencia de dia es ",diferencia.days)
+        print("la fecha de entrada es ", fechaConvertida, "la fecha de salida es ", fechaConvertida2)
         
         
           #--------------------------check out 10--------------------------
-        if fechaConvertida2.hour ==10 and fechaConvertida2.minute ==00:
+        if fechaConvertida2.hour == 10 and fechaConvertida2.minute==0:
        
+          if fechaConvertida.hour <10 and diferencia.days >00:
+            
+            diferenciaConvertida = diferencia.days
+            diferenciaConvertida = diferenciaConvertida #+1
+            print(diferenciaConvertida)
+          
+       
+         
+          elif fechaConvertida.hour >= 10 and fechaConvertida.minute>=1: #le agregue el = al 00
+            
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida+1 #+2
+              print(diferenciaConvertida, "(10) debo sumarle uno")
+             
+          elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida #+1
+         
+              print("igual a 10 (10)", diferenciaConvertida)
+              
+          
+             
+        
+          elif diferencia.days <1:
+               diferenciaConvertida=1
+               print("menos de un dia (10)", diferenciaConvertida)
+               
+          elif fechaConvertida.hour >= 10: #le agregue el = al 00
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida+1 #+2
+              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
+              
+          
+         
+          subtotal1 = float(habitacion.precio_por_noche) * float(diferenciaConvertida)
+          total = subtotal1+ float(importe_otros_gasto)
+          print("el total es ", total)
+          
+       
+     
+            #---------------------late check out--------------------
+        elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <17:
           if fechaConvertida.hour <10 and diferencia.days >00:
             
             diferenciaConvertida = diferencia.days
@@ -97,15 +169,205 @@ class Contrato(models.Model):
               print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
               
               
-      
-             #---------------------late check out--------------------
+       
+           
+          subtotal1 = float(habitacion.precio_por_noche) * float(diferenciaConvertida)
+          total = subtotal1+ float(importe_otros_gasto)
+          total = total+ float(habitacion.check_out_lates)
+          print("el total es late cheack out", total)
+          
+          
+        if fechaConvertida2.hour <10 and fechaConvertida2.hour<17:
+            pass # aca hacer un if menor de 10 y que el resultado me de cero y luego en la vista compararlo
+             # y arriba en el if comparar con minutos
+          
+          
+          
+          
+     
+           
+           
+       
              
-        diferenciaGlobal = diferenciaConvertida
-        diferenciaGlobal_late = diferenciaGlobal+0.5
-        print(diferenciaGlobal, "diferencia global")
-        print(diferenciaGlobal_late, "diferencia global late")
+     
+       
+        print("el total de todo el alojamiento es ", total)
         
-        return diferenciaGlobal
+        return total
+    
+    
+    
+    def calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gasto):
+        habitacion = Habitacion.objects.get(id= habitacions)
+        total =0
+       
+        
+        fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M') # strptime lo convierto a objeto datetime, el segundo parametro le dice como interpretar la fecha, cual es la hora, el dia, el mes etc
+        fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
+        #---------------------esto lo saque por internet--------------------------
+       
+        #fecha_Para_comparar2 = datetime.datetime.strptime("10:01:00", "%X").time()
+        
+        #---------------------------time delta-----------------------------------
+        #...........poner un delta de fecha para que me calcule a partir de 5 dias por ejemplo. (tambien con datetime)..........
+         
+        dia_delta = datetime.timedelta(hours=7)#timedelta es una instacia de datetime
+        fecha_mas_delta = fechaConvertida2+dia_delta
+       
+       
+        
+        
+       
+       
+       
+       
+        
+         
+        diferencia = fechaConvertida2-fechaConvertida 
+     
+       
+       
+      
+        print(" la diferencia de dia es ",diferencia.days)
+        print("la fecha de entrada es ", fechaConvertida, "la fecha de salida es ", fechaConvertida2)
+        
+        
+          #--------------------------check out 10--------------------------
+        if fechaConvertida2.hour == 10 and fechaConvertida2.minute==0:
+       
+          if fechaConvertida.hour <10 and diferencia.days >00:
+            
+            diferenciaConvertida = diferencia.days
+            diferenciaConvertida = diferenciaConvertida #+1
+            print(diferenciaConvertida)
+          
+       
+         
+          elif fechaConvertida.hour >= 10 and fechaConvertida.minute>=1: #le agregue el = al 00
+            
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida+1 #+2
+              print(diferenciaConvertida, "(10) debo sumarle uno")
+             
+          elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida #+1
+         
+              print("igual a 10 (10)", diferenciaConvertida)
+              
+          
+             
+        
+          elif diferencia.days <1:
+               diferenciaConvertida=1
+               print("menos de un dia (10)", diferenciaConvertida)
+               
+          elif fechaConvertida.hour >= 10: #le agregue el = al 00
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida+1 #+2
+              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
+              
+          
+         
+          subtotal1 = float(habitacion.precio_por_noche) * float(diferenciaConvertida)
+          total = subtotal1+ float(importe_otros_gasto)
+          print("el total es ", total)
+          
+       
+     
+            #---------------------late check out--------------------
+        elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <17:
+          if fechaConvertida.hour <10 and diferencia.days >00:
+            
+            diferenciaConvertida = diferencia.days
+            diferenciaConvertida = diferenciaConvertida #+1
+            print(diferenciaConvertida)
+       
+         
+          elif fechaConvertida.hour >= 10 and fechaConvertida.minute>=1: #le agregue el = al 00
+            
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida+1 #+2
+              print(diferenciaConvertida, "(10) debo sumarle uno")
+             
+          elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida #+1
+         
+              print("igual a 10 (10)", diferenciaConvertida)
+              
+          
+             
+        
+          elif diferencia.days <1:
+               diferenciaConvertida=1
+               print("menos de un dia (10)", diferenciaConvertida)
+               
+          elif fechaConvertida.hour >= 10: #le agregue el = al 00
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida+1 #+2
+              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
+              
+              
+       
+           
+          subtotal1 = float(habitacion.precio_por_noche) * float(diferenciaConvertida)
+          total = subtotal1+ float(importe_otros_gasto)
+          total = total+ float(habitacion.check_out_lates)
+          print("el total es late cheack out", total)
+          
+          
+        if fechaConvertida2.hour <10 and fechaConvertida2.hour<17:
+            pass # aca hacer un if menor de 10 y que el resultado me de cero y luego en la vista compararlo
+             # y arriba en el if comparar con minutos
+          
+          
+          
+          
+     
+           
+           
+       
+             
+     
+       
+        print("el total de todo el alojamiento es ", total)
+        
+        return subtotal1
+        
+        
+       
+         
+           
+             
+    
+
+    
+             
+       
+             
+    
+             
+             
+            
+             
+             
+       
+             
+    
+             
+             
+            
+             
+             
+       
+        
+    
+   
+  
+
+
+   
         
         
        
