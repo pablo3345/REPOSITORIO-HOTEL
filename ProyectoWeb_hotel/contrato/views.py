@@ -194,7 +194,7 @@ def guardarContrato(request):
         
                
            print("el total es total", total)
-           contrato.save()
+          # contrato.save()
            messages.success(request, "El contrato se guardo correctamente...")
           
                

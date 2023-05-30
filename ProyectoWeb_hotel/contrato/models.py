@@ -65,14 +65,25 @@ class Contrato(models.Model):
         fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M') # strptime lo convierto a objeto datetime, el segundo parametro le dice como interpretar la fecha, cual es la hora, el dia, el mes etc
         fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
         #---------------------esto lo saque por internet--------------------------
+        
+        #cambiarle la hora con replace a una fecha datetime
+       
+        
+        #fechaConvertida2.replace(hour=10, minute=0)
+       
        
         #fecha_Para_comparar2 = datetime.datetime.strptime("10:01:00", "%X").time()
         
         #---------------------------time delta-----------------------------------
         #...........poner un delta de fecha para que me calcule a partir de 5 dias por ejemplo. (tambien con datetime)..........
          
-        dia_delta = datetime.timedelta(hours=7)#timedelta es una instacia de datetime
-        fecha_mas_delta = fechaConvertida2+dia_delta
+        #dia_delta = datetime.timedelta(hours=7)#timedelta es una instacia de datetime
+        #fecha_mas_delta = fechaConvertida2 + dia_delta
+        
+        
+      
+        fecha_modificada = fechaConvertida2.replace(hour=10, minute=0) # con replace creo una variable nueva y a fechaConvertida2 le cambio la hota etc
+       
        
        
         
@@ -83,7 +94,10 @@ class Contrato(models.Model):
        
         
          
-        diferencia = fechaConvertida2-fechaConvertida 
+       # diferencia = fechaConvertida2-fechaConvertida 
+        diferencia = fecha_modificada-fechaConvertida 
+       
+        diferenciaConvertida= diferencia.days # agregue esto
      
        
        
@@ -93,13 +107,15 @@ class Contrato(models.Model):
         
         
           #--------------------------check out 10--------------------------
-        if fechaConvertida2.hour == 10 and fechaConvertida2.minute==0:
+        if fechaConvertida2== fecha_modificada:
+          print("hora reemplazada", fecha_modificada)
        
           if fechaConvertida.hour <10 and diferencia.days >00:
             
             diferenciaConvertida = diferencia.days
             diferenciaConvertida = diferenciaConvertida #+1
             print(diferenciaConvertida)
+           
           
        
          
@@ -135,60 +151,62 @@ class Contrato(models.Model):
           
        
      
-            #---------------------late check out--------------------
+            #---------------------late check out  --------------------
         elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <17:
-          if fechaConvertida.hour <10 and diferencia.days >00:
+          
+          
+         
+          fechaConvertida2=fecha_modificada
+          
+          print("if perteneciente a late")
+          if fecha_modificada.hour ==10 and fecha_modificada.minute ==0:
+            fecha_modificada = fechaConvertida2.replace(hour=10, minute=0)
+            fechaConvertida2= fecha_modificada
+            print("fecha_modificada =", fecha_modificada)
+            if fechaConvertida.hour <10 and diferencia.days >00:
             
-            diferenciaConvertida = diferencia.days
-            diferenciaConvertida = diferenciaConvertida #+1
-            print(diferenciaConvertida)
+              diferenciaConvertida = diferencia.days
+              diferenciaConvertida = diferenciaConvertida #+1
+              print(diferenciaConvertida, "late")
+           
+          
        
          
-          elif fechaConvertida.hour >= 10 and fechaConvertida.minute>=1: #le agregue el = al 00
+            elif fechaConvertida.hour >= 10 and fechaConvertida.minute>=1: #le agregue el = al 00
+              
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno")
+              print(diferenciaConvertida, "(10) debo sumarle uno (late)")
              
-          elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
+            elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
          
-              print("igual a 10 (10)", diferenciaConvertida)
+              print("igual a 10 (10), (late)", diferenciaConvertida)
               
           
              
         
-          elif diferencia.days <1:
+            elif diferencia.days <1:
                diferenciaConvertida=1
-               print("menos de un dia (10)", diferenciaConvertida)
+               print("menos de un dia (10), (late)", diferenciaConvertida)
                
-          elif fechaConvertida.hour >= 10: #le agregue el = al 00
+            elif fechaConvertida.hour >= 10: #le agregue el = al 00
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
+              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22 (late)")
               
-              
-       
-           
+          
+         
           subtotal1 = float(habitacion.precio_por_noche) * float(diferenciaConvertida)
           total = subtotal1+ float(importe_otros_gasto)
-          total = total+ float(habitacion.check_out_lates)
-          print("el total es late cheack out", total)
+          total = total + float(habitacion.check_out_lates)
+          print("el total es ", total)
           
-          
-        if fechaConvertida2.hour <10 and fechaConvertida2.hour<17:
-            pass # aca hacer un if menor de 10 y que el resultado me de cero y luego en la vista compararlo
-             # y arriba en el if comparar con minutos
-          
-          
-          
-          
+            
+        
      
-           
-           
-       
-             
      
        
         print("el total de todo el alojamiento es ", total)
@@ -211,22 +229,18 @@ class Contrato(models.Model):
         #---------------------------time delta-----------------------------------
         #...........poner un delta de fecha para que me calcule a partir de 5 dias por ejemplo. (tambien con datetime)..........
          
-        dia_delta = datetime.timedelta(hours=7)#timedelta es una instacia de datetime
-        fecha_mas_delta = fechaConvertida2+dia_delta
+        #dia_delta = datetime.timedelta(hours=7)#timedelta es una instacia de datetime
+        #fecha_mas_delta = fechaConvertida2 + dia_delta
+        fecha_modificada = fechaConvertida2.replace(hour=10, minute=0) # con replace creo una variable nueva y a fechaConvertida2 le cambio la hota etc
+        diferencia = fecha_modificada-fechaConvertida 
+       
+        diferenciaConvertida= diferencia.days # agregue esto
        
        
-        
-        
-       
-       
-       
-       
-        
          
-        diferencia = fechaConvertida2-fechaConvertida 
+        #diferencia = fechaConvertida2-fechaConvertida 
+        
      
-       
-       
       
         print(" la diferencia de dia es ",diferencia.days)
         print("la fecha de entrada es ", fechaConvertida, "la fecha de salida es ", fechaConvertida2)
@@ -248,6 +262,9 @@ class Contrato(models.Model):
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
               print(diferenciaConvertida, "(10) debo sumarle uno")
+              
+            
+              
              
           elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
               diferenciaConvertida = diferencia.days
@@ -273,52 +290,12 @@ class Contrato(models.Model):
           total = subtotal1+ float(importe_otros_gasto)
           print("el total es ", total)
           
-       
+         
      
             #---------------------late check out--------------------
-        elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <17:
-          if fechaConvertida.hour <10 and diferencia.days >00:
-            
-            diferenciaConvertida = diferencia.days
-            diferenciaConvertida = diferenciaConvertida #+1
-            print(diferenciaConvertida)
-       
-         
-          elif fechaConvertida.hour >= 10 and fechaConvertida.minute>=1: #le agregue el = al 00
-            
-              diferenciaConvertida = diferencia.days
-              diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno")
-             
-          elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
-              diferenciaConvertida = diferencia.days
-              diferenciaConvertida = diferenciaConvertida #+1
-         
-              print("igual a 10 (10)", diferenciaConvertida)
-              
-          
-             
         
-          elif diferencia.days <1:
-               diferenciaConvertida=1
-               print("menos de un dia (10)", diferenciaConvertida)
-               
-          elif fechaConvertida.hour >= 10: #le agregue el = al 00
-              diferenciaConvertida = diferencia.days
-              diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
-              
-              
-       
-           
-          subtotal1 = float(habitacion.precio_por_noche) * float(diferenciaConvertida)
-          total = subtotal1+ float(importe_otros_gasto)
-          total = total+ float(habitacion.check_out_lates)
-          print("el total es late cheack out", total)
-          
-          
-        if fechaConvertida2.hour <10 and fechaConvertida2.hour<17:
-            pass # aca hacer un if menor de 10 y que el resultado me de cero y luego en la vista compararlo
+            #if fechaConvertida2.hour <10 and fechaConvertida2.hour<17:
+            # aca hacer un if menor de 10 y que el resultado me de cero y luego en la vista compararlo
              # y arriba en el if comparar con minutos
           
           
