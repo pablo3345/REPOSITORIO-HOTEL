@@ -175,7 +175,7 @@ def guardarContrato(request):
           contrato.huesped = huesped
           contrato.fecha_entrada= fechaFormateada
           contrato.fecha_salida = fechaFormateada2
-          contrato.importe_estadia= total
+          contrato.importe_estadia= importeEstadia
           contrato.importe_otros_gasto = importe_otros_gast
         # contrato.late_chack_out = late_check_out #lo agregue nuevo
           contrato.total = total 
