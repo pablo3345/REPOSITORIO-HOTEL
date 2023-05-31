@@ -155,14 +155,13 @@ def guardarContrato(request):
           
           #-------funcion calcularTotal----------
         
-          ''' if late_check_out=="SI":
-               variable_Late_check = habitacion.check_out_lates
-          else:
-               variable_Late_check=0'''
           
           
           total =calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
           importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+          diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
         
            
         
@@ -217,7 +216,7 @@ def guardarContrato(request):
      
      
      
-     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia})
+     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia, 'diferenciaConvertida':diferenciaConvertida})
      
      
    
@@ -341,6 +340,9 @@ def calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, import
     
      
           return importeEstadia
+     
+     
+
      
      
         
