@@ -162,6 +162,7 @@ def guardarContrato(request):
           
           
           total =calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
         
            
         
@@ -216,7 +217,7 @@ def guardarContrato(request):
      
      
      
-     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2})
+     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia})
      
      
    
@@ -335,7 +336,7 @@ def calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, import
      
      
          
-          importeEstadia = contrato.calcularFechas(fecha_entra, fecha_sali, habitacions, importe_otros_gasto)
+          importeEstadia = contrato.calcularImporteEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gasto)
           
     
      

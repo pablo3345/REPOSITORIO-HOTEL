@@ -61,6 +61,7 @@ def tabla_modificar(request, id_habitacion):
 
         nombre = request.POST.get("nombre_numero")
         capacidad = request.POST.get("capacidad")
+        precio_por_noche = request.POST.get("precio_por_noche")
         camita_bebe = request.POST.get("camita_bebe")
         esta_limpia = request.POST.get("esta_limpia")
         posee_heladera = request.POST.get("posee_heladera")
@@ -70,7 +71,7 @@ def tabla_modificar(request, id_habitacion):
         posee_cama_matrimonial = request.POST.get("posee_cama_matrimonial")
         posee_televisor = request.POST.get("posee_televisor")
         posee_wifi = request.POST.get("posee_wifi")
-        posee_jacuzzi = request.POST.get("posee_jacuzzi")#lo agregue nuevo
+        posee_jacuzzi = request.POST.get("jacuzzi")#lo agregue nuevo
         posee_microondas =request.POST.get("posee_microondas")#lo agregue nuevo
         check_out_late =request.POST.get("check_out_lates")#lo agregue nuevo
         otro_dato = request.POST.get("otro_dato")#lo agregue nuevo
@@ -79,6 +80,7 @@ def tabla_modificar(request, id_habitacion):
 
         habitacion.nombre_numero = nombre
         habitacion.capacidad = capacidad
+        habitacion.precio_por_noche = precio_por_noche
         habitacion.camita_bebe = camita_bebe
         habitacion.esta_limpia = esta_limpia
         habitacion.posee_heladera = posee_heladera
@@ -92,6 +94,7 @@ def tabla_modificar(request, id_habitacion):
         habitacion.posee_microondas=posee_microondas
         habitacion.check_out_lates=check_out_late
         habitacion.otro_dato=otro_dato
+       
 
         try:
             habitacion.save()
