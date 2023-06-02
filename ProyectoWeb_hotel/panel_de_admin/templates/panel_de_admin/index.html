@@ -24,7 +24,8 @@
             <!-- Navbar Search--> 
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for"..." aria-label="Search for..." aria-describedby="btnNavbarSearch">
+
+                    <input class="form-control" type="text" placeholder="Search for"... aria-label="Search for..."aria-describedby="btnNavbarSearch">
                     <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
                 </div>
             </form>
@@ -47,9 +48,9 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="{% url 'mostrarDiagramas' %}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                Diagramas
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -117,7 +118,7 @@
              <!-- <div class="card-body"> -->
                 <!-- aca vamos a poner los diagramas de barra y circulo-->
 
-                <div class="row">
+               {% comment %}  <div class="row">
                     <div class="col-lg-6">
                         <div class="card mb-4">
                             <div class="card-header">
@@ -139,13 +140,54 @@
                         </div>
                     </div>
                 </div>
-               
+              {% endcomment %}
+               <br>
              
-                      <!-- aca terminan los diagramas de barra y circulos-->         
-                                       
-                       <h1>hola mundo</h1>              
-                                     
-  
+                      <!-- aca terminan los diagramas de barra y circulos -->  
+                      <div class="container">
+
+                      
+                       
+                 
+                     
+                 
+                 
+                 
+                 
+                      <div class="row">
+                 
+                     {% for contrato in contrato %}
+                          <div class="col-md-2">
+                      <div class="card" style="width: 55%; margin: 9px 9px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+                 
+                      
+                 
+                      <img src="{{contrato.habitacion.estado_libre.url}}">
+                      <h7 class="card-title">{{contrato.habitacion.nombre_numero}}</h7>
+                      <h7 class="card-title"> {{contrato.habitacion.capacidad}}</h7>
+                 
+                    
+                     
+                    
+                           
+                            </div> <!--  cierra el   card  !-->
+                          </div> <!--  cierra el   col  !-->
+                 
+                 
+                 
+                 
+                 
+                   {% endfor %}
+                    </div> <!--  cierra el   row  !-->
+                        </div> <!--  cierra el   container  !-->
+                 
+                 
+                 
+              
+                 
+                   
+                    
+            
                    <!-- </div> -->
                 </main>
                

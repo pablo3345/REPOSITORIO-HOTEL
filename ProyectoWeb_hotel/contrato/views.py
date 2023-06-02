@@ -153,7 +153,11 @@ def guardarContrato(request):
           habitacion = Habitacion.objects.get(id= habitacions)
           huesped = Huesped.objects.get(id=huespeds)
           
-          #-------funcion calcularTotal----------
+          #-------fuera del horario----------
+          if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:
+                messages.error(request, "El horario no corresponde")
+                return redirect('Contrato')
+          
         
           
           
@@ -194,7 +198,7 @@ def guardarContrato(request):
         
                
            print("el total es total", total)
-          # contrato.save()
+           contrato.save()
            messages.success(request, "El contrato se guardo correctamente...")
           
                
