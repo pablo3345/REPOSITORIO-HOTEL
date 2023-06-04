@@ -538,7 +538,9 @@ class Contrato(models.Model):
         
         return diferenciaConvertida
       
- 
+      
+      
+   
       
       
       

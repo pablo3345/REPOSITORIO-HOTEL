@@ -181,7 +181,10 @@ def guardarContrato(request):
           contrato.importe_estadia= importeEstadia
           contrato.importe_otros_gasto = importe_otros_gast
         # contrato.late_chack_out = late_check_out #lo agregue nuevo
-          contrato.total = total 
+          contrato.total = total
+          #-----------le agregue esto para probar--------------
+          habitacionOcupada(request, habitacions)
+        
           
           """  if total==0:
                return redirect("Inicio")
@@ -199,6 +202,8 @@ def guardarContrato(request):
                
            print("el total es total", total)
            contrato.save()
+           
+        
            messages.success(request, "El contrato se guardo correctamente...")
           
                
@@ -344,6 +349,19 @@ def calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, import
     
      
           return importeEstadia
+     
+     
+     
+     
+def habitacionOcupada(request, habitacions):
+     
+    # habitacion=Habitacion()
+     
+     if request.method == 'POST':
+           habitacion = Habitacion.objects.get(id= habitacions)
+           habitacion.estado="ocupada"
+           
+           habitacion.save()
      
      
 

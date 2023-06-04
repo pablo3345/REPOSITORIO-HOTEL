@@ -24,6 +24,7 @@ class FormsHabitacion(forms.ModelForm):
             'posee_microondas',
             'check_out_lates',
             'otro_dato'
+           
             #'predio_con_pileta'
              # 'estado_libre',
              # 'estado_ocupado',

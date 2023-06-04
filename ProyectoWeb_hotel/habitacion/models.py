@@ -37,7 +37,9 @@ class Habitacion(models.Model):
     libre = models.CharField(max_length=10, default="LIBRE")
     ocupada = models.CharField(max_length=10, default="OCUPADA")
     post_ocupada = models.CharField(max_length=15, default="POST OCUPADA")
-    #-------------------------------------------------------------------------------------------------------------------
+    #------------------------------------------------estado------------------------------------------------------------
+    estado = models.CharField(max_length=10, default="Null")
+    #----------------------------------------------------------
     created = models.DateTimeField(auto_now_add=True)  # aca guardamos la fecha que se creo un servicio
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
 
@@ -49,5 +51,8 @@ class Habitacion(models.Model):
         verbose_name = "Habitacion"
         verbose_name_plural = "Habitaciones"
         ordering = ['id']  # significa que se va a ordenar por id
+        
+        
+   
 
 

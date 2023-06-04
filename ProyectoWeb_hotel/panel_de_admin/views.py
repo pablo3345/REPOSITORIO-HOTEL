@@ -7,8 +7,37 @@ from contrato.models import Contrato
 def mostrarPanel(request):
     habitacion = Habitacion.objects.all()
     contrato = Contrato.objects.all()
+    #habitacion = Habitacion()
     
-    return render(request, "panel_de_admin/index.html", {'contrato': contrato, 'habitacion': habitacion})
+    habitacionesLibres = list()
+    habitacionesOcupadas = list()
+    
+    
+    for habi in habitacion:
+      if habi.estado =="Null":
+          habitacionesLibres.append(habi)
+          
+          
+    """ for habi in habitacion:
+      if habi.estado =="ocupada":
+          habitacionesOcupadas.append(habi)
+           """
+          
+    
+          
+        
+    
+    
+    
+   
+   
+    
+    
+  
+    
+   
+    
+    return render(request, "panel_de_admin/index.html", {'habitacion': habitacionesLibres, 'contrato': contrato})
 
 
 

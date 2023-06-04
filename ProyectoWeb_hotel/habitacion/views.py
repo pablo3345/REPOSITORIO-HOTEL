@@ -5,6 +5,7 @@ from .models import Habitacion
 
 # Create your views here.
 def mostrarHabitacion(request):
+    habitacion = Habitacion()
     
    
 
@@ -17,11 +18,21 @@ def mostrarHabitacion(request):
         form = FormsHabitacion(request.POST)
               
         if form.is_valid():  # vamos a preguntar si los datos que se ingresaron son validos
+            
+            #---------------le agrrego esto para probar..----------
+           
            
                            
                
             form.save()   
             messages.success(request, "La habitacion se guardo correctamente...")
+            
+           
+            
+            
+            
+           
+            
 
             return redirect('Habitacion')
 
