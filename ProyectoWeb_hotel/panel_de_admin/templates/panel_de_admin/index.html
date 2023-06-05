@@ -110,9 +110,8 @@
                 </nav>
             </div>
           
-            <div id="layoutSidenav_content">
+            <div id="layoutSidenav_content" style="background:#D5D8DC;">
                 <main>
-                    
                      <br>
                     <a style="margin-left:820px; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Contrato' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a CONTRATO</a><br> <!--le ahregue esto -->     <br>    
              <!-- <div class="card-body"> -->
@@ -160,7 +159,7 @@
                      {% for habitacion in habitacion %}
                  
                           <div class="col-md-2">
-                      <div class="card" style="width: 55%; margin: 9px 9px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+                      <div class="card" style="width: 40%; margin: 9px 9px;font-size:14px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
                  
                        
                  
@@ -182,10 +181,11 @@
                           {% endfor %}
 
                     <!-- -------------------------------------otro for--------------------- -->
-                    {% for contrato in contrato %}
+                  {% comment %}   {% for contrato in contrato %}
+                 
                  
                     <div class="col-md-2">
-                <div class="card" style="width: 55%; margin: 9px 9px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+                <div class="card" style="width: 40%; margin: 9px 9px; font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
            
                  
            
@@ -193,6 +193,9 @@
                 <h7 class="card-title">{{contrato.habitacion.nombre_numero}}</h7>
                 <h7 class="card-title">{{contrato.fecha_salida}}</h7>
                <!--  <h7 class="card-title"> Salida: {{contrato.fecha_salida}}</h7> -->
+
+
+
               
 
               
@@ -206,10 +209,87 @@
                    
            
                     {% endfor %}
+ {% endcomment %}
+        <!--  -------------------------------habitaciones no limpias.....---------- -->
+
+               {% for habi in habitacionesNoLimpias %}
+               
+               <div class="col-md-2">
+                <div class="card" style="width: 40%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+
+
+
+               <img src="{{habi.estado_post_ocupado.url}}">
+               <h7 class="card-title">{{habi.nombre_numero}}</h7>
+               <h7 class="card-title" style="color:red;">NO ESTA LISTA</h7>
+
+
+        
+              
            
            
                  
-                 
+            </div> <!--  cierra el   card  !-->
+        </div> <!--  cierra el   col  !-->
+
+       
+
+        {% endfor %}
+
+        <!-- --------------------------------habitaciones post ocupadas------------------------------ -->
+
+       {% for habiOcu in habitaciones_post %}
+               
+        <div class="col-md-2">
+         <div class="card" style="width: 40%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+
+
+
+        <img src="{{habiOcu.habitacion.estado_post_ocupado.url}}">
+        <h7 class="card-title">{{habiOcu.habitacion.nombre_numero}}</h7>
+        <h7 class="card-title" style="color:red;">FIN DE LA ESTADIA</h7>
+
+
+ 
+       
+    
+    
+          
+     </div> <!--  cierra el   card  !-->
+ </div> <!--  cierra el   col  !-->
+
+
+
+ {% endfor %} 
+  <!-- --------------------------------habitaciones  ocupadas------------------------------ -->
+
+  {% for habiOcup in habitacionesOcupadas %}
+               
+  <div class="col-md-2">
+   <div class="card" style="width: 40%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+
+
+
+  <img src="{{habiOcup.habitacion.estado_ocupado.url}}">
+  <h7 class="card-title">{{habiOcup.habitacion.nombre_numero}}</h7>
+  <h7 class="card-title"> {{habiOcup.fecha_salida}}</h7> 
+  
+
+
+
+ 
+
+
+    
+</div> <!--  cierra el   card  !-->
+</div> <!--  cierra el   col  !-->
+
+
+
+{% endfor %} 
+
+           
+
                  
 
                   

@@ -5,6 +5,7 @@ from django.contrib import messages
 from contrato.models import Huesped, Contrato
 import datetime
 from habitacion.models import Habitacion
+from panel_de_admin.views import mostrarPanel
 
 
 # Create your views here.
@@ -183,7 +184,7 @@ def guardarContrato(request):
         # contrato.late_chack_out = late_check_out #lo agregue nuevo
           contrato.total = total
           #-----------le agregue esto para probar--------------
-          habitacionOcupada(request, habitacions)
+         
         
           
           """  if total==0:
@@ -202,6 +203,8 @@ def guardarContrato(request):
                
            print("el total es total", total)
            contrato.save()
+           habitacionOcupada(request, habitacions)
+           #mostrarPanel(request, fechaConvertida2)
            
         
            messages.success(request, "El contrato se guardo correctamente...")
@@ -243,17 +246,9 @@ def modificarContrato(request):
 def modificarTablaContrato(request, id_contrato):
      contrato = Contrato()
      formContrato = FormContrato()
-     contrato = get_object_or_404(Contrato, id=id_contrato)
      
-     habitacions = request.POST.get("habitacion")# id
-     huespeds =request.POST.get("huesped")# id
+    
      
-     fecha_entra = request.POST.get("fecha_entrada")
-     fecha_sali = request.POST.get("fecha_salida")
-    # importe_estad= request.POST.get("importe_estadia")
-     importe_otros_gast= request.POST.get("importe_otros_gasto")
-    # late_check_out = request.POST.get("late_chack_out")
-     #totals= request.POST.get("total")
     
      
      
@@ -261,14 +256,36 @@ def modificarTablaContrato(request, id_contrato):
    
      
      if request.method == "POST":
+          contrato = get_object_or_404(Contrato, id=id_contrato)
+     
+          habitacions = request.POST.get("habitacion")# id
+          huespeds =request.POST.get("huesped")# id
+     
+          fecha_entra = request.POST.get("fecha_entrada")
+          fecha_sali = request.POST.get("fecha_salida")
+         # importe_estad= request.POST.get("importe_estadia")
+          importe_otros_gast= request.POST.get("importe_otros_gasto")
+         # late_check_out = request.POST.get("late_chack_out")
+          #totals= request.POST.get("total")
           habitacion = Habitacion.objects.get(id= habitacions)
           huesped = Huesped.objects.get(id=huespeds)
+          fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
+          
+          
+             #-------fuera del horario----------
+          if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:
+                messages.error(request, "El horario no corresponde")
+                return redirect('Contrato')
+          
+           
+          
+          
           
           total =calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           
           importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           
-          
+          #diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           
           
           
@@ -280,6 +297,15 @@ def modificarTablaContrato(request, id_contrato):
           contrato.importe_otros_gasto = importe_otros_gast
          # contrato.late_chack_out= late_check_out
           contrato.total=total
+          
+          #-------------------------para ver los datos abajos----------------------------
+          
+        
+        
+           #-----------------------------------------------------------------------------------------------
+          
+          
+          
           
           try:
                contrato.save()
@@ -310,13 +336,25 @@ def modificarTablaContrato(request, id_contrato):
 def eliminarContrato(request, id_contrato):
      
     contrato = get_object_or_404(Contrato, id=id_contrato)
+    nombre = Contrato.habitacion
+    
+    ponerNull_elimino(request, id_contrato)
+ 
+  
     
     try:
          contrato.delete()
+        
+         
+     
+       
          messages.success(request, "El contrato se elimino correctamente...")
+         
          
     except:
          messages.error(request, "El contrato no se elimino...")
+         
+   
          
     return redirect('modificarContrato')
 
@@ -365,11 +403,29 @@ def habitacionOcupada(request, habitacions):
      
      
 
+def  ponerNull_elimino(request, id_contrato):
+     # esta funcion es para cuando elimino un contrato la habitacion me aparezca Null o sea lista para alquilar
+      contrato = Contrato.objects.get(id= id_contrato)
+      
+      id = contrato.habitacion.id
+      
+      if request.method == 'GET':
+            habitacion = Habitacion.objects.get(id= id)
+            habitacion.estado="Null"
+            habitacion.save()
+           
+           
+      
+     
+    
+    
+    
+    
      
      
-        
-        
-     
+    
+    
+    
    
         
            

@@ -18,6 +18,7 @@ urlpatterns = [
     path('modificarTablaContrato/<int:id_contrato>/', views.modificarTablaContrato, name="modificarTablaContrato"),
     path('eliminarContrato/<int:id_contrato>/', views.eliminarContrato, name="eliminarContrato"),
     path('calcularTotal', views.calcularTotal, name="calcularTotal")
+  
     
     
     
