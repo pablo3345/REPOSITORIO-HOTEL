@@ -141,6 +141,9 @@
                 </div>
               {% endcomment %}
                <br>
+               <a href="{% url 'Panel' %}" class="btn btn-primary" style="font-size:16px; margin-left:500px;">RECARGAR</a>
+               <br>
+               <br>
              
                       <!-- aca terminan los diagramas de barra y circulos -->  
                       <div class="container">
@@ -159,12 +162,12 @@
                      {% for habitacion in habitacion %}
                  
                           <div class="col-md-2">
-                      <div class="card" style="width: 40%; margin: 9px 9px;font-size:14px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+                      <div class="card" style="width: 45%; margin: 9px 9px;font-size:14px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
                  
                        
                  
                       <img src="{{habitacion.estado_libre.url}}">
-                      <h7 class="card-title">{{habitacion.nombre_numero}}</h7>
+                      <h7 class="card-title" style="text-align:center;">{{habitacion.nombre_numero}}</h7>
                      <!--  <h7 class="card-title"> Salida: {{contrato.fecha_salida}}</h7> -->
                     
 
@@ -215,21 +218,25 @@
                {% for habi in habitacionesNoLimpias %}
                
                <div class="col-md-2">
-                <div class="card" style="width: 40%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+                <div class="card" style="width: 45%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
 
 
 
                <img src="{{habi.estado_post_ocupado.url}}">
-               <h7 class="card-title">{{habi.nombre_numero}}</h7>
+               <h7 class="card-title" style="text-align:center;">{{habi.nombre_numero}}</h7>
                <h7 class="card-title" style="color:red;">NO ESTA LISTA</h7>
+              
 
 
         
-              
+      
+                <a href="#"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
+            
            
            
                  
             </div> <!--  cierra el   card  !-->
+            
         </div> <!--  cierra el   col  !-->
 
        
@@ -241,13 +248,14 @@
        {% for habiOcu in habitaciones_post %}
                
         <div class="col-md-2">
-         <div class="card" style="width: 40%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+         <div class="card" style="width: 45%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
 
 
 
         <img src="{{habiOcu.habitacion.estado_post_ocupado.url}}">
-        <h7 class="card-title">{{habiOcu.habitacion.nombre_numero}}</h7>
+        <h7 class="card-title" style="text-align:center;">{{habiOcu.habitacion.nombre_numero}}</h7>
         <h7 class="card-title" style="color:red;">FIN DE LA ESTADIA</h7>
+        <a href="#"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
 
 
  
@@ -266,13 +274,14 @@
   {% for habiOcup in habitacionesOcupadas %}
                
   <div class="col-md-2">
-   <div class="card" style="width: 40%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
+   <div class="card" style="width: 45%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
 
 
 
   <img src="{{habiOcup.habitacion.estado_ocupado.url}}">
-  <h7 class="card-title">{{habiOcup.habitacion.nombre_numero}}</h7>
+  <h7 class="card-title" style="text-align:center;">{{habiOcup.habitacion.nombre_numero}}</h7>
   <h7 class="card-title"> {{habiOcup.fecha_salida}}</h7> 
+  <a href="#"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
   
 
 

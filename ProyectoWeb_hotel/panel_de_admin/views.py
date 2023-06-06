@@ -59,12 +59,12 @@ def mostrarPanel(request):
       
       
       
-       if hoy >= fecha_sali:
+       if hoy >= fecha_sali and contra.habitacion.estado == "ocupada":
          
           habitaciones_post.append(contra)
           
        
-       elif  fecha_sali > hoy:
+       elif  fecha_sali > hoy and contra.habitacion.estado == "ocupada":
            habitacionesOcupadas.append(contra)
          
            
