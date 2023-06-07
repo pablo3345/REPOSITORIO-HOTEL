@@ -24,7 +24,9 @@ def mostrarHabitacion(request):
            
                            
                
-            form.save()   
+            form.save()
+            
+            No_Limpia(request)   
             messages.success(request, "La habitacion se guardo correctamente...")
             
            
@@ -130,15 +132,64 @@ def eliminarHabitacion(request, id_habitacion):
     
     
     habitacion = get_object_or_404(Habitacion, id=id_habitacion)
+    #eliminar_y_Poner_Null(request, id_habitacion)
     
     try:
         habitacion.delete()
+       
         messages.success(request, "La habitacion se elimino correctamente...")
         
     except:
         messages.error(request, "La habitacion no se elimino...")
         
     return redirect('modificarHabitacion')
+
+
+
+
+def No_Limpia(request):
+   # habitacion = Habitacion()
+    #form = FormsHabitacion()
+    habitaciones = Habitacion.objects.all()
+    esta_limpia = request.POST.get("esta_limpia")
+    
+    if request.method == 'POST':
+        for habi in habitaciones:
+            if habi.esta_limpia=="NO":
+                habi.estado="ocupada"
+                habi.save()
+        
+        
+       
+def habilitar_NoLimpias(request, id_habitacion):
+    habitacion = get_object_or_404(Habitacion, id=id_habitacion)
+    
+    if habitacion.esta_limpia=="NO" and habitacion.estado=="ocupada":
+        habitacion.estado="Null"
+        habitacion.esta_limpia="SI"
+        habitacion.save()
+        
+        return redirect('Panel')
+    
+    
+    
+def habilitarPost_time(reuest, id_habitacion):
+    habitacion = get_object_or_404(Habitacion, id=id_habitacion)
+    
+    if habitacion.estado=="ocupada":
+        habitacion.estado="Null"
+        habitacion.save()
+        
+        return redirect('Panel')
+            
+
+    
+   
+      
+       
+        
+    
+    
         
     
    

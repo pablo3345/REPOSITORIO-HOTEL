@@ -169,6 +169,8 @@
                       <img src="{{habitacion.estado_libre.url}}">
                       <h7 class="card-title" style="text-align:center;">{{habitacion.nombre_numero}}</h7>
                      <!--  <h7 class="card-title"> Salida: {{contrato.fecha_salida}}</h7> -->
+                     <a href="{% url 'Contrato' %}"  class="btn btn-info" style="font-size:12px;">Contrato</a>
+                    
                     
 
                     
@@ -230,7 +232,7 @@
 
         
       
-                <a href="#"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
+                <a href="{% url ' habilitar_NoLimpias' habi.id %}"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
             
            
            
@@ -255,7 +257,7 @@
         <img src="{{habiOcu.habitacion.estado_post_ocupado.url}}">
         <h7 class="card-title" style="text-align:center;">{{habiOcu.habitacion.nombre_numero}}</h7>
         <h7 class="card-title" style="color:red;">FIN DE LA ESTADIA</h7>
-        <a href="#"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
+        <a href="{% url 'habilitarPost_time' habiOcu.habitacion.id %}"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
 
 
  
@@ -280,8 +282,8 @@
 
   <img src="{{habiOcup.habitacion.estado_ocupado.url}}">
   <h7 class="card-title" style="text-align:center;">{{habiOcup.habitacion.nombre_numero}}</h7>
-  <h7 class="card-title"> {{habiOcup.fecha_salida}}</h7> 
-  <a href="#"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
+  <h7 class="card-title" style="font-size:12px;"> {{habiOcup.fecha_salida}}</h7> 
+  <a href="{% url 'habilitar_ocupadas' habiOcup.habitacion.id %}"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
   
 
 

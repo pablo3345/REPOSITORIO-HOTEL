@@ -39,6 +39,9 @@ class Huesped(models.Model):
 
 
 class Contrato(models.Model):
+  
+  
+   
     
     habitacion = models.ForeignKey(Habitacion, on_delete= models.CASCADE, default=1)
     huesped = models.ForeignKey(Huesped, on_delete= models.CASCADE, default=1) #con default=1 en el select, me borra esa linea discontinua que aparece
@@ -537,6 +540,21 @@ class Contrato(models.Model):
         print("el total de todo el alojamiento es ", total)
         
         return diferenciaConvertida
+      
+      
+    # def habitacionesLibres(request):
+      
+    #   habitacionesLibres = list()
+      
+    #   habitaciones = Habitacion.objects.all()
+      
+    #   for habitacion in habitaciones:
+    #     if habitacion.estado=="Null":
+    #       habitacionesLibres.append(habitacion)
+          
+    #   return habitacionesLibres
+      
+      
       
       
       

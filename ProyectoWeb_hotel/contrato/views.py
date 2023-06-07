@@ -413,6 +413,22 @@ def  ponerNull_elimino(request, id_contrato):
             habitacion = Habitacion.objects.get(id= id)
             habitacion.estado="Null"
             habitacion.save()
+            
+            
+            
+def habilitar_ocupadas(request, id_habitacion):
+     
+     if request.method == 'GET':
+            habitacion = Habitacion.objects.get(id= id_habitacion)
+            habitacion.estado="Null"
+            habitacion.save()
+            return redirect('Panel')
+            
+     
+            
+          
+            
+
            
            
       

@@ -42,7 +42,7 @@ def mostrarPanel(request):
           
           
     for habi2 in habitacion:
-      if habi2.esta_limpia =="NO" and habi2.estado=="Null":
+      if habi2.esta_limpia =="NO" and habi2.estado=="ocupada":
           habitacionesNoLimpias.append(habi2)
          
           

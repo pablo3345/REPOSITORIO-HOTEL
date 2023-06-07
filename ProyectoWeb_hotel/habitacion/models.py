@@ -52,6 +52,8 @@ class Habitacion(models.Model):
         verbose_name_plural = "Habitaciones"
         ordering = ['id']  # significa que se va a ordenar por id
         
+   
+        
         
    
 
