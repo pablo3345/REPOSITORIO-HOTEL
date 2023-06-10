@@ -14,10 +14,10 @@ class DateTimeInput(forms.DateTimeInput):
 class FormContrato(forms.ModelForm):
     
         def __init__(self, *args, **kwargs):
-             super(FormContrato, self).__init__(*args, **kwargs) # para filtrar el select de habitacion libres
-             self.fields['habitacion'].queryset= Habitacion.objects.filter(estado="Null")
-           
-    
+               super(FormContrato, self).__init__(*args, **kwargs) # para filtrar el select de habitacion libres
+               self.fields['habitacion'].queryset= Habitacion.objects.filter(estado="Null")
+            
+      
     
         class Meta:
             model=Contrato

@@ -29,7 +29,8 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4" style="margin:center; text-align:center; font-family: arial; background: #37517e; color:white;">Tabla Contratos</h1>
         <a style="margin-left:500; font-weight:bold; text-decoration:none;font-size:20px; " href="{% url 'Contrato' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a CONTRATO</a><br>
-        <a style="margin-left:500; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Home' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a>
+        <a style="margin-left:500; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Home' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a><br>
+        <a style="margin-left:500; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Panel' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; ir al PANEL</a>
         <!-- #37517e; color anterior -->
 
 
@@ -49,7 +50,7 @@
 
                                             <th>Total</th>
                                            
-                                            <th>OPCIONES</th>
+                                           <!-- <th>OPCION</th> -->
                                            <!--  <th>ELIMINAR</th> -->
 
                                         </tr>
@@ -87,12 +88,12 @@
                                        <!-- <div style="display:flex;"> -->
                                        
                                       
-                                        <td>   
+                                     <!--  <td>   
                                             <div style="display:flex;">
-                                            <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
-                                       <a href="{% url 'eliminarContrato' contrato.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> 
+                                          <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp; 
+                                        <a href="{% url 'eliminarContrato' contrato.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a>
                                     </div> 
-                                    </td>
+                                    </td> -->
                                        
                                       <!-- <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a> -->

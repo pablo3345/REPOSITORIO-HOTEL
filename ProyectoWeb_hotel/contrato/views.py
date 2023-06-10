@@ -126,6 +126,10 @@ def guardarContrato(request):
      form2 = FormContrato()
      contrato = Contrato()
      
+     true_variable = True
+     
+    # habitacion = Habitacion.objects.get(id= id_habitacion)
+    
     
     
      
@@ -154,6 +158,9 @@ def guardarContrato(request):
           habitacion = Habitacion.objects.get(id= habitacions)
           huesped = Huesped.objects.get(id=huespeds)
           
+          #-------------------------id contrato para ponerle True----------------------
+          id_contrato = contrato.id
+          
           #-------fuera del horario----------
           if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:
                 messages.error(request, "El horario no corresponde")
@@ -181,6 +188,8 @@ def guardarContrato(request):
           contrato.fecha_salida = fechaFormateada2
           contrato.importe_estadia= importeEstadia
           contrato.importe_otros_gasto = importe_otros_gast
+          #----------------poner true cuando guardo el estado--------------
+          contrato.estado=true_variable
         # contrato.late_chack_out = late_check_out #lo agregue nuevo
           contrato.total = total
           #-----------le agregue esto para probar--------------
@@ -200,12 +209,17 @@ def guardarContrato(request):
           
            
         
-               
+           ponerTrue_alUltimoContrato(request, habitacions)
+           ponerOcupada_ultimaHabitacion(request, habitacions)
+          
+           
+           
+           
            print("el total es total", total)
            contrato.save()
-           habitacionOcupada(request, habitacions)
-           #mostrarPanel(request, fechaConvertida2)
+           #habitacionOcupada(request, habitacions)
            
+          
         
            messages.success(request, "El contrato se guardo correctamente...")
           
@@ -244,8 +258,10 @@ def modificarContrato(request):
 
 
 def modificarTablaContrato(request, id_contrato):
-     contrato = Contrato()
+     #contrato = Contrato()
      formContrato = FormContrato()
+     
+     contrato = get_object_or_404(Contrato, id=id_contrato)
      
     
      
@@ -256,7 +272,8 @@ def modificarTablaContrato(request, id_contrato):
    
      
      if request.method == "POST":
-          contrato = get_object_or_404(Contrato, id=id_contrato)
+          #contrato = get_object_or_404(Contrato, id=id_contrato)
+          variable_true = True
      
           habitacions = request.POST.get("habitacion")# id
           huespeds =request.POST.get("huesped")# id
@@ -286,6 +303,9 @@ def modificarTablaContrato(request, id_contrato):
           importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           
           #diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          #ponerNull_habi_anterior_actualizar(request, id_contrato)
+          
+         # ponerFalse_contrato_cuando_actualizo(request, id_contrato)
           
           
           
@@ -296,6 +316,7 @@ def modificarTablaContrato(request, id_contrato):
           contrato.importe_estadia= importeEstadia
           contrato.importe_otros_gasto = importe_otros_gast
          # contrato.late_chack_out= late_check_out
+          contrato.estado= variable_true
           contrato.total=total
           
           #-------------------------para ver los datos abajos----------------------------
@@ -309,7 +330,11 @@ def modificarTablaContrato(request, id_contrato):
           
           try:
                contrato.save()
+               habitacionOcupada(request, habitacions)#acabo de copiar esto de abajo
+              
+              
                messages.success(request, "El contrato se actualizo correctamente...")
+               
                return redirect('modificarContrato')
                
                
@@ -338,12 +363,18 @@ def eliminarContrato(request, id_contrato):
     contrato = get_object_or_404(Contrato, id=id_contrato)
     nombre = Contrato.habitacion
     
-    ponerNull_elimino(request, id_contrato)
+   
+   
+    #ponerFalse_cuando_elimino(request, id_contrato)
+  
+    
+   
  
   
     
     try:
          contrato.delete()
+        
         
          
      
@@ -403,30 +434,120 @@ def habitacionOcupada(request, habitacions):
      
      
 
-def  ponerNull_elimino(request, id_contrato):
-     # esta funcion es para cuando elimino un contrato la habitacion me aparezca Null o sea lista para alquilar
-      contrato = Contrato.objects.get(id= id_contrato)
+# def  ponerNull_elimino(request, id_contrato):
+#      # esta funcion es para cuando elimino un contrato la habitacion me aparezca Null o sea lista para alquilar
+#       contrato = Contrato.objects.get(id= id_contrato)
       
-      id = contrato.habitacion.id
+#       id = contrato.habitacion.id
       
-      if request.method == 'GET':
-            habitacion = Habitacion.objects.get(id= id)
-            habitacion.estado="Null"
-            habitacion.save()
-            
-            
+#       if request.method == 'GET':
+#             habitacion = Habitacion.objects.get(id= id)
+#             habitacion.estado="Null"
+#             habitacion.save()
             
 def habilitar_ocupadas(request, id_habitacion):
+     
+     contrato = Contrato.objects.all()
+     
+     False_variable = False
      
      if request.method == 'GET':
             habitacion = Habitacion.objects.get(id= id_habitacion)
             habitacion.estado="Null"
             habitacion.save()
+            
+            
+            #-------------le greguego esto------------------------
+            
+            for contr in contrato:
+                 
+                 if contr.habitacion== habitacion:
+                      contr.estado= False_variable
+                      contr.save()
             return redirect('Panel')
-            
+       
+       
+       
+
+        
+      
+def ponerFalse_cuando_elimino(request, id_contrato):
+      contrato = Contrato.objects.get(id= id_contrato)
      
-            
+      id = contrato.habitacion.id
+      habitacion = Habitacion.objects.get(id= id)
+     
+      #------le agrego esto---------------------
+     
+     
+    
+   
+      #False_variable=False
+     
+     
+      #contrato.estado= False_variable
+     # #-------le agreegue esto-----------
+      #contrato.habitacion.estado = "Null"
+      # #-----------------------------------
+      #contrato.save()
+     
+      #habitacion.estado="Null"
+      #habitacion.save()
+    
+      return redirect('Panel')
+ 
+ 
+def ponerTrue_alUltimoContrato(request, habitacions):
+     contrato=Contrato()
+     habitacion = Habitacion.objects.get(id = habitacions)
+    
+     variableTrue = True
+     variableFalse = False
+     
+     contratos = Contrato.objects.filter(habitacion=habitacion)
+     ultimo=list()
+     
+     habitacion = Habitacion.objects.get(id=habitacions)
+    
           
+    
+     
+     for contra in contratos:
+          if contra.importe_estadia >0:
+               ultimo.append(contra)
+              #print("contratos de habitaciones", contratos)
+              # print("ultimo contrarto", ultimo[-1])
+               if ultimo[-1] == contra.habitacion:
+                    contra.estado=variableTrue
+                   
+                    contra.save()
+                    
+               else:
+                    contra.estado=variableFalse
+                  
+                    contra.save()
+                   
+                    
+    
+def ponerOcupada_ultimaHabitacion(request, habitacions):
+      habitacion = Habitacion.objects.get(id=habitacions)
+      
+      habitacion.estado="ocupada"
+      habitacion.save()
+     
+     
+  
+              
+               
+    
+     
+    
+               
+           
+                    
+               
+         
+     
             
 
            

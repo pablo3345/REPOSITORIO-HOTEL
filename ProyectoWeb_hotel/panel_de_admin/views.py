@@ -32,6 +32,11 @@ def mostrarPanel(request):
     #----------------------------
     habitaciones_post = list()
     habitacionesOcupadas = list()
+    #-----------traer el ultimo elemento de la lista----------
+    ultimo_ocupado=list()
+    ultimo_Post=list()
+   
+    
     
     
     for habi in habitacion:
@@ -59,15 +64,16 @@ def mostrarPanel(request):
       
       
       
-       if hoy >= fecha_sali and contra.habitacion.estado == "ocupada":
+       if hoy >= fecha_sali and contra.habitacion.estado == "ocupada" and contra.estado==True: # le agregue el true
          
           habitaciones_post.append(contra)
-          
+         # ultimo_Post= habitaciones_post[-1]
+        
        
-       elif  fecha_sali > hoy and contra.habitacion.estado == "ocupada":
+       elif  fecha_sali > hoy and contra.habitacion.estado == "ocupada" and contra.estado==True:
            habitacionesOcupadas.append(contra)
-         
-           
+          # ultimo_ocupado= habitacionesOcupadas[-1]
+          
         
          
    

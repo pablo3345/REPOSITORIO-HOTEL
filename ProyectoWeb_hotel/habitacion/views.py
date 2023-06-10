@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from habitacion.forms import FormsHabitacion
 from django.contrib import messages
 from .models import Habitacion
+from contrato.models import Contrato
 
 # Create your views here.
 def mostrarHabitacion(request):
@@ -175,11 +176,21 @@ def habilitar_NoLimpias(request, id_habitacion):
     
 def habilitarPost_time(reuest, id_habitacion):
     habitacion = get_object_or_404(Habitacion, id=id_habitacion)
+    contrato = Contrato.objects.all()
+     
+    False_variable = False
     
     if habitacion.estado=="ocupada":
         habitacion.estado="Null"
         habitacion.save()
         
+        #-------------le greguego esto------------------------
+            
+        for contr in contrato:
+                 
+            if contr.habitacion== habitacion:
+                contr.estado= False_variable
+                contr.save()
         return redirect('Panel')
             
 

@@ -167,9 +167,10 @@
                        
                  
                       <img src="{{habitacion.estado_libre.url}}">
-                      <h7 class="card-title" style="text-align:center;">{{habitacion.nombre_numero}}</h7>
+                      <h7 class="card-title" style="text-align:center;color:green;">{{habitacion.nombre_numero}}</h7>
+                      <h7 class="card-title" style="text-align:center;">{{habitacion.libre}}</h7>
                      <!--  <h7 class="card-title"> Salida: {{contrato.fecha_salida}}</h7> -->
-                     <a href="{% url 'Contrato' %}"  class="btn btn-info" style="font-size:12px;">Contrato</a>
+                   <!--  <a href="{% url 'Contrato' %}"  class="btn btn-info" style="font-size:11px;">Contrato</a> -->
                     
                     
 
@@ -245,6 +246,8 @@
 
         {% endfor %}
 
+      
+
         <!-- --------------------------------habitaciones post ocupadas------------------------------ -->
 
        {% for habiOcu in habitaciones_post %}
@@ -281,7 +284,9 @@
 
 
   <img src="{{habiOcup.habitacion.estado_ocupado.url}}">
-  <h7 class="card-title" style="text-align:center;">{{habiOcup.habitacion.nombre_numero}}</h7>
+  <h7 class="card-title" style="text-align:center;color:blue;">{{habiOcup.habitacion.nombre_numero}}</h7>
+ 
+  <h7 class="card-title" style="text-align:center;">{{habiOcup.huesped.apellido}}</h7>
   <h7 class="card-title" style="font-size:12px;"> {{habiOcup.fecha_salida}}</h7> 
   <a href="{% url 'habilitar_ocupadas' habiOcup.habitacion.id %}"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
   

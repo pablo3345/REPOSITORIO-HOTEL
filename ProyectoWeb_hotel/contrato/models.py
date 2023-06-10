@@ -51,8 +51,12 @@ class Contrato(models.Model):
     importe_otros_gasto = models.FloatField()
    # late_chack_out = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     total = models.FloatField()
+    estado = models.BooleanField()
     created = models.DateTimeField(auto_now_add=True)  # aca guardamos la fecha que se creo un servicio
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
+    
+    def __str__(self):
+        return f'{self.habitacion}  {self.huesped} {self.fecha_entrada} {self.fecha_salida}' # la f es de formato
     
     class Meta:
         db_table = "contrato"

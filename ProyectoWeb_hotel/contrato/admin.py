@@ -19,7 +19,7 @@ class adminHuesped(admin.ModelAdmin):
     
 class adminContrato(admin.ModelAdmin):
     readonly_fields=("created", "updated")
-    list_display=("habitacion", "huesped", "fecha_entrada", "fecha_salida", "importe_estadia", "importe_otros_gasto", "total")
+    list_display=("habitacion", "huesped", "fecha_entrada", "fecha_salida", "importe_estadia", "importe_otros_gasto","estado", "total")
     search_fields=("habitacion", "huesped")
     list_filter=("habitacion", "huesped")
 
