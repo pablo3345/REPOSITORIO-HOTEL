@@ -19,6 +19,7 @@ urlpatterns = [
     path('eliminarContrato/<int:id_contrato>/', views.eliminarContrato, name="eliminarContrato"),
     path('calcularTotal', views.calcularTotal, name="calcularTotal"),
     path('habilitar_ocupadas/<int:id_habitacion>/', views.habilitar_ocupadas, name="habilitar_ocupadas") # para hablitar las habitaciones ocupadas
+   # path('agregarOtrosGastos/<int:id_contrato>/', views.agregarOtrosGastos, name="agregarOtrosGastos"),
   
     
     

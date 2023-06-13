@@ -50,7 +50,7 @@
 
                                             <th>Total</th>
                                            
-                                           <!-- <th>OPCION</th> -->
+                                            <th>opciones</th> 
                                            <!--  <th>ELIMINAR</th> -->
 
                                         </tr>
@@ -85,24 +85,28 @@
                                         <td>{{contrato.total}}</td>
                                       
                                        
-                                       <!-- <div style="display:flex;"> -->
+                                      <!-- <div style="display:flex;"> -->
                                        
                                       
-                                     <!--  <td>   
-                                            <div style="display:flex;">
-                                          <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp; 
-                                        <a href="{% url 'eliminarContrato' contrato.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a>
-                                    </div> 
-                                    </td> -->
+                                       <td>   
+                                            <div style="display:flex;"> 
+                                      
+                                        <a href="{% url 'eliminarContrato' contrato.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> &nbsp;
+                                        <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a>&nbsp;
+                                       <!-- <a href="{% url 'agregarOtrosGastos' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;"> otros gastos</button></a> -->
+                                   <!-- </div> -->
+                                    </td> 
                                        
                                       <!-- <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a> -->
                                        
-
+                                       
 
 
                                     </tr>
-
+                                    <br>
+       <br>
+    
 
                                          {% endfor %}
 
@@ -113,8 +117,10 @@
                <!--     </div>      este div me aparecia con error -->
         </main>
 
-       <br>
-       <br>
+       
+ 
+<br>
+
 
 
 

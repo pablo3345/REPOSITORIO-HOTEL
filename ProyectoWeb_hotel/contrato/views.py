@@ -252,16 +252,24 @@ def guardarContrato(request):
 def modificarContrato(request):
           
      contratos = Contrato.objects.all()
+     true = True
+     contratos_true = list()
      
-     return render(request, "contrato/modificarContrato.html",{'contratos': contratos})  
+     for contrato in contratos:
+          if contrato.estado== true:
+               contratos_true.append(contrato)
+     
+     return render(request, "contrato/modificarContrato.html",{'contratos': contratos_true})  
 
 
 
 def modificarTablaContrato(request, id_contrato):
-     #contrato = Contrato()
+       #contrato = Contrato()
      formContrato = FormContrato()
      
      contrato = get_object_or_404(Contrato, id=id_contrato)
+     
+     habitacion_para_form = contrato.habitacion
      
     
      
@@ -275,76 +283,78 @@ def modificarTablaContrato(request, id_contrato):
           #contrato = get_object_or_404(Contrato, id=id_contrato)
           variable_true = True
      
-          habitacions = request.POST.get("habitacion")# id
+          habitacions = contrato.habitacion.id
           huespeds =request.POST.get("huesped")# id
      
-          fecha_entra = request.POST.get("fecha_entrada")
+         # fecha_entra = request.POST.get("fecha_entrada")
           fecha_sali = request.POST.get("fecha_salida")
+          fecha_entra = request.POST.get("fecha_entrada")
          # importe_estad= request.POST.get("importe_estadia")
           importe_otros_gast= request.POST.get("importe_otros_gasto")
          # late_check_out = request.POST.get("late_chack_out")
           #totals= request.POST.get("total")
-          habitacion = Habitacion.objects.get(id= habitacions)
-          huesped = Huesped.objects.get(id=huespeds)
-          fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
+         # habitacion = Habitacion.objects.get(id= habitacions)
+         # huesped = Huesped.objects.get(id=huespeds)
+          id_habitacion = contrato.habitacion.id
+          habitacion = get_object_or_404(Habitacion, id=id_habitacion)
           
+        
+          fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M')
+     
+          fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
+          fechaFormateada2 = fechaConvertida2.strftime('%Y-%m-%dT%H:%M') 
+          
+          fechaFormateada = fechaConvertida.strftime('%Y-%m-%dT%H:%M') 
+          
+          
+          #paraAnular_habitacionAnterior_Actualizar(request, contrato)
           
              #-------fuera del horario----------
           if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:
                 messages.error(request, "El horario no corresponde")
                 return redirect('Contrato')
-          
            
-          
-          
-          
-          total =calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
-          
-          importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
-          
-          #diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
-          #ponerNull_habi_anterior_actualizar(request, id_contrato)
-          
-         # ponerFalse_contrato_cuando_actualizo(request, id_contrato)
-          
-          
-          
-          contrato.habitacion = habitacion
-          contrato.huesped = huesped
-          contrato.fecha_entrada = fecha_entra
-          contrato.fecha_salida = fecha_sali
-          contrato.importe_estadia= importeEstadia
-          contrato.importe_otros_gasto = importe_otros_gast
-         # contrato.late_chack_out= late_check_out
-          contrato.estado= variable_true
-          contrato.total=total
-          
-          #-------------------------para ver los datos abajos----------------------------
-          
-        
-        
-           #-----------------------------------------------------------------------------------------------
-          
-          
-          
-          
-          try:
-               contrato.save()
-               habitacionOcupada(request, habitacions)#acabo de copiar esto de abajo
+           
+          else:
               
+               id_habitacion = contrato.habitacion.id
+               habitacion = get_object_or_404(Habitacion, id=id_habitacion)
+              # importe_otros_gast= contrato.importe_otros_gasto
+               late_check_out = habitacion.check_out_lates
+               #importe_estadia = float(contrato.importe_estadia)+ float(late_check_out)
+              # total = float(importe_estadia)+ float(importe_otros_gast)
+               total =calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+               importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+               
+               contrato.total=total
+          
+               contrato.fecha_salida = fechaFormateada2
+               contrato.fecha_entrada=fechaFormateada
+               contrato.importe_estadia= importeEstadia
+               contrato.importe_otros_gasto= importe_otros_gast
+               
+               
               
-               messages.success(request, "El contrato se actualizo correctamente...")
                
-               return redirect('modificarContrato')
+               try:
+                contrato.save()
+                #habitacionOcupada(request, habitacions)#acabo de copiar esto de abajo
+        
+              
+                messages.success(request, "El contrato se actualizo correctamente...")
+               
+                return redirect('modificarContrato')
                
                
-          except:
-               messages.error(request, "El contrato no se actualizo...")
-               return redirect('modificarContrato')
+               except:
+                messages.error(request, "El contrato no se actualizo...")
+                return redirect('modificarContrato')
+            
+              
                
-               
-     
-     
+          
      
      
      else:
@@ -355,8 +365,10 @@ def modificarTablaContrato(request, id_contrato):
      
      
      
-     return render(request, "contrato/modificarTablaContrato.html", {'formContrato': formContrato})
+     return render(request, "contrato/modificarTablaContrato.html", {'formContrato': formContrato, 'contrato':contrato, 'habitacion_para_form': habitacion_para_form})
 
+
+    
 
 def eliminarContrato(request, id_contrato):
      
@@ -366,6 +378,13 @@ def eliminarContrato(request, id_contrato):
    
    
     #ponerFalse_cuando_elimino(request, id_contrato)
+    
+    #----------------------agrego esto antes no estaba----------------------------------
+    id_habitacion = contrato.habitacion.id
+    habitacion = get_object_or_404(Habitacion, id=id_habitacion)
+    habitacion.estado="Null"
+    habitacion.save()
+    
   
     
    
@@ -538,15 +557,98 @@ def ponerOcupada_ultimaHabitacion(request, habitacions):
      
   
               
+# def agregarOtrosGastos(request, id_contrato): 
+#         #contrato = Contrato()
+#      formContrato = FormContrato()
+     
+#      contrato = get_object_or_404(Contrato, id=id_contrato)
+     
+    
+     
+    
+     
+     
+#      #.....................................ahora obtengo el huesped y el contrato mediante el id........................
+   
+     
+#      if request.method == "POST":
+        
+        
+     
+          
+        
+         
+      
+#           importe_otros_gast= request.POST.get("importe_otros_gasto")
+        
+          
+     
+         
+#           importe_estadia = float(contrato.importe_estadia)
+#           total = float(importe_otros_gast)+float(importe_estadia)
+        
+#           contrato.importe_otros_gasto= importe_otros_gast
+#           contrato.importe_estadia= importe_estadia
+#           contrato.total= total
                
+#           try:
+#                contrato.save()
+             
+              
+#                messages.success(request, "El gasto se agrego correctamente...")
+               
+#                return redirect('modificarContrato')
+               
+               
+#           except:
+#                messages.error(request, "El gasto no se agrego...")
+#                return redirect('modificarContrato')
+               
+               
+               
+     
+     
+#      else:
+          
+#           formContrato = FormContrato()
+          
+     
+     
+     
+     
+#      return render(request, "contrato/agregar_otrosGastos.html", {'formContrato': formContrato, 'contrato':contrato})
+            
     
      
     
                
-           
-                    
-               
+""" def paraAnular_habitacionAnterior_Actualizar(request, contrato):
+     contratos = Contrato.objects.all()
+     variable=True
+     variable2=False
+     lista = list()
+     id = contrato.id
+     contrato = Contrato.objects.get(id=id)
+     
+     for contra in contratos:
+          lista.append(contra.habitacion)
+          lista[-1]
+          
          
+          if  contrato.habitacion != lista[-1]:
+               
+              contrato.estado=variable2
+              contra.save()
+          
+          else:
+                if contrato.habitacion != lista[-1]:
+                     contrato.estado= variable2
+                     contrato.save()
+            
+          
+                 
+               
+          """
      
             
 

@@ -14,8 +14,10 @@ class DateTimeInput(forms.DateTimeInput):
 class FormContrato(forms.ModelForm):
     
         def __init__(self, *args, **kwargs):
-               super(FormContrato, self).__init__(*args, **kwargs) # para filtrar el select de habitacion libres
-               self.fields['habitacion'].queryset= Habitacion.objects.filter(estado="Null")
+                super(FormContrato, self).__init__(*args, **kwargs) # para filtrar el select de habitacion libres
+                self.fields['habitacion'].queryset= Habitacion.objects.filter(estado="Null")
+                
+        
             
       
     
@@ -43,7 +45,7 @@ class FormContrato(forms.ModelForm):
             ]
             
             labels={
-                'habitacion': 'Habitacion',
+                'habitacion': 'Habitacion (libres)',
                 'huesped': 'Huesped',
                 'fecha_entrada': 'Fecha Entrada',
                 'fecha_salida': 'Fecha Salida',

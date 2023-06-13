@@ -44,13 +44,13 @@
 
 
 
-<div style="display:flex;">
 
- <input type="submit" value="GUARDAR HUESPED" class="btn btn-info">&nbsp; &nbsp;
+
+ <input type="submit" value="GUARDAR HUESPED" class="btn btn-info">&nbsp; &nbsp; &nbsp;
 
 <a href= "{% url  'modificarHuesped' %}" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a>
 
-</div>
+
 <br>
 </form>
   
@@ -87,25 +87,25 @@
 
 <p style="color:red; margin-left:300px; font-weight:bold; font-size:14px;">* campos obligatorios</p><br>
 
-<!-- <div style="display:flex;"> -->
+ 
 
-<input type="submit" value="GUARDAR Y CALCULAR" class="btn btn-info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
+<input type="submit" value="GUARDAR Y CALCULAR" class="btn btn-info"><br><br>
 
 
- <a href= "{% url 'modificarContrato' %}"  style="margin:auto"><button type="button" class="btn btn-info">MOSTRAR TABLA</button></a><br>
-</div> 
+ <a href= "{% url 'modificarContrato' %}"  style="margin:auto"><button type="button" class="btn btn-info">CONTRATOS ACTIVOS MODIFICAR Y ELIMINAR</button></a><br><br>
+
+ <!-- <a href= "#"  style="margin:auto"><button type="button" class="btn btn-info">AGREGAR LATE CHECK OUT</button></a><br> -->
+
 
 
 
 <!--  <a href= "#" style="margin:auto;"><button type="button" class="btn btn-info">CALCULAR EL TOTAL</button></a> -->
 <br>
 <br>
-<h4 style="color:#00FF00">Noches de estadia: {{diferenciaConvertida}} </h4>
-<h4 style="color:#00FF00">Importe de estadia: {{importe_estadia}} </h4>
-<h4 style="color:#00FF00">Importe de otros gastos es: {{importe_de_otros_gastos}} </h4>
-<h4 style="color:#00FF00">El total es de: {{total}} </h4>
+<h4 style="color:green">Noches de estadia: {{diferenciaConvertida}} </h4>
+<h4 style="color:green">Importe de estadia: {{importe_estadia}} </h4>
+<h4 style="color:green">Importe de otros gastos es: {{importe_de_otros_gastos}} </h4>
+<h4 style="color:green">El total es de: {{total}} </h4>
 </form>
 
 
