@@ -50,7 +50,7 @@
 
                                             <th>Total</th>
                                            
-                                            <th>opciones</th> 
+                                            <th>ELIMINAR / EDITAR / LATE CHECK OUT</th> 
                                            <!--  <th>ELIMINAR</th> -->
 
                                         </tr>
@@ -93,7 +93,8 @@
                                       
                                         <a href="{% url 'eliminarContrato' contrato.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> &nbsp;
                                         <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a>&nbsp;
-                                       <!-- <a href="{% url 'agregarOtrosGastos' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;"> otros gastos</button></a> -->
+                                        <a href="{% url 'late_check' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">late check out</button></a>&nbsp;
+                               
                                    <!-- </div> -->
                                     </td> 
                                        

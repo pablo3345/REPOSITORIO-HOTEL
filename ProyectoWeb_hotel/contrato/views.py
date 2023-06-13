@@ -553,169 +553,63 @@ def ponerOcupada_ultimaHabitacion(request, habitacions):
       
       habitacion.estado="ocupada"
       habitacion.save()
-     
-     
-  
-              
-# def agregarOtrosGastos(request, id_contrato): 
-#         #contrato = Contrato()
-#      formContrato = FormContrato()
-     
-#      contrato = get_object_or_404(Contrato, id=id_contrato)
-     
-    
-     
-    
-     
-     
-#      #.....................................ahora obtengo el huesped y el contrato mediante el id........................
-   
-     
-#      if request.method == "POST":
-        
-        
-     
-          
-        
-         
       
-#           importe_otros_gast= request.POST.get("importe_otros_gasto")
-        
-          
+      
+def lateCheckout(request, id_contrato):
+     formContrato=FormContrato()
      
-         
-#           importe_estadia = float(contrato.importe_estadia)
-#           total = float(importe_otros_gast)+float(importe_estadia)
-        
-#           contrato.importe_otros_gasto= importe_otros_gast
-#           contrato.importe_estadia= importe_estadia
-#           contrato.total= total
-               
-#           try:
-#                contrato.save()
-             
-              
-#                messages.success(request, "El gasto se agrego correctamente...")
-               
-#                return redirect('modificarContrato')
-               
-               
-#           except:
-#                messages.error(request, "El gasto no se agrego...")
-#                return redirect('modificarContrato')
-               
-               
-               
-     
-     
-#      else:
-          
-#           formContrato = FormContrato()
-          
-     
-     
-     
-     
-#      return render(request, "contrato/agregar_otrosGastos.html", {'formContrato': formContrato, 'contrato':contrato})
-            
+     contrato = Contrato.objects.get(id= id_contrato)
     
      
-    
-               
-""" def paraAnular_habitacionAnterior_Actualizar(request, contrato):
-     contratos = Contrato.objects.all()
-     variable=True
-     variable2=False
-     lista = list()
-     id = contrato.id
-     contrato = Contrato.objects.get(id=id)
+     fecha_entra = contrato.fecha_entrada
+     fechaFormateada = fecha_entra.strftime('%Y-%m-%dT%H:%M') 
+     habitacions = contrato.habitacion.id
+     importe_otros_gast= contrato.importe_otros_gasto
      
-     for contra in contratos:
-          lista.append(contra.habitacion)
-          lista[-1]
+     
+     
+     if request.method == "POST":
+          fecha_sali = request.POST.get("fecha_salida")
+          fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
           
-         
-          if  contrato.habitacion != lista[-1]:
-               
-              contrato.estado=variable2
-              contra.save()
           
+     
+          
+          if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:
+                messages.error(request, "El horario no corresponde")
+                return redirect('Contrato')
           else:
-                if contrato.habitacion != lista[-1]:
-                     contrato.estado= variable2
-                     contrato.save()
-            
-          
-                 
                
-          """
+              
+               fechaFormateada2 = fechaConvertida2.strftime('%Y-%m-%dT%H:%M') 
+               total =calcularTotal(request, fechaFormateada, fecha_sali, habitacions, importe_otros_gast)
+          
+               importeEstadia =calcularImporteEstadia(request, fechaFormateada, fecha_sali, habitacions, importe_otros_gast)
      
-            
-
+               contrato.importe_estadia= importeEstadia
+               contrato.total= total
+               contrato.fecha_salida= fechaFormateada2
+               try:
+                    
+                    
+                  contrato.save()
+                  messages.success(request, "El late check out se agrego correctamente...")
+                  return redirect('modificarContrato')
+                    
+               except:
+                    
+                  messages.error(request, "El late check out no se agrego...")
+                  return redirect('modificarContrato')
+                    
            
-           
-      
-     
-    
-    
-    
-    
-     
-     
-    
-    
-    
-   
-        
-           
-       
-  
           
           
           
      
-    
- 
-    
-       
-     
-       
-              
-            
-              
-       
-              
-     
-       
-    
-    
-
-     
-   
-   
-     
-    
-    
-         
-         
      
      
+     return render(request, "contrato/late_check.html", {'contrato': contrato, 'formContrato': formContrato})
      
-     
-   
-               
-     
-               
-    
      
   
-    
-    
-    
-
-
-
-
-
-
-
+              
