@@ -568,11 +568,11 @@ def lateCheckout(request, id_contrato):
      
      
      
+     
      if request.method == "POST":
           fecha_sali = request.POST.get("fecha_salida")
           fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
-          
-          
+        
      
           
           if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:

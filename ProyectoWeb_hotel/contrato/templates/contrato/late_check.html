@@ -52,7 +52,9 @@
         {% comment %} <div>
       <h5>{{formContrato.fecha_entrada|as_crispy_field}}<h5><br>
       </div> {% endcomment %}
+      
       <h5> {{formContrato.fecha_salida|as_crispy_field}}<h5><br>
+        <!-- form crispy individual, div class form-group otro div class form-control-->
        
 
 <br>
@@ -63,6 +65,7 @@
         <li>  <h5 style="font-weight:bold;">Salida: {{contrato.fecha_salida}}</h5></li>
         <li>  <h5 style="font-weight:bold;">Huesped: {{contrato.habitacion}}</h5></li>
         <li>  <h5 style="font-weight:bold;">Huesped: {{contrato.huesped}}</h5></li>
+        <li>  <h5 style="font-weight:bold;">Importe estadia: {{contrato.importe_estadia}}</h5></li>
     
          <!-- <li>  <h5 style="font-weight:bold;">Importe estadia: {{contrato.importe_estadia}}</h5></li>--> 
  
