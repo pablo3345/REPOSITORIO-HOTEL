@@ -577,7 +577,11 @@ def lateCheckout(request, id_contrato):
           
           if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:
                 messages.error(request, "El horario no corresponde")
-                return redirect('Contrato')
+                return redirect('modificarContrato')
+          elif  fechaConvertida2.hour ==10 or fechaConvertida2.minute==0:
+               messages.error(request, "El horario no corresponde al late check out")
+               return redirect('modificarContrato')
+          
           else:
                
               
@@ -612,4 +616,8 @@ def lateCheckout(request, id_contrato):
      
      
   
-              
+def contratosTotales(request):
+     
+     contratos = Contrato.objects.all()  
+     
+     return render(request, 'contrato/tablaContratos_totales.html', {'contratos':contratos})   
