@@ -51,27 +51,27 @@
  
   <br>
 <a  href="{% url 'Home' %}"  style="font-size:23px; margin-left:1065px; font-weight:bold; text-decoration:none;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a>
-<br>
+
+
 <div class="card-body">
 
-<table style="border-collapse: separate; border-spacing: 60px; margin-left: 185px; margin-top:15px;">
+<table style="border-collapse: separate; border-spacing: 60px; margin-left: 160px;">
   <thead>
     <tr>
 
-        <th style="background:black;color:white; text-align:center;">Registrar Proveedores</th>
-        <th style="background:black;color:white; text-align:center; ">Registrar Insumos</th>
-        <th style="background:black;color:white;  text-align:center;">Productos venta al huesped</th>
+      <th colspan="3" class="text-center" style="background: #F39C12; color:white"><h2> Registrar Proveedor, Insumo, Productos de venta </h2> </th>
     </tr>
   </thead>
+ 
   <tbody>
     <tr>
       <td style="width: 30%;">
-  <form method ="post"  style=" color: #F39C12;font-weight:bold;">
+  <form method ="post"  style=" color: #F39C12;font-weight:bold;  margin-top:1px;">
  
    {% csrf_token %}
    
+   <h4 style= "background: black; color:white; text-align:center;">Registrar Proveedores</h4>
    
-    
       <div>
      {{formProveedor|crispy}}
  
@@ -100,10 +100,11 @@
 <td  style="width: 30%;">
 <!-- ------------------------------ -SEGUNDO FORMULARIO INSUMOS-------------------------- --------------------------- -->
 
-<form method ="post"  style="color: #F39C12; font-weight:bold;">
+<form method ="post"  style="color: #F39C12; font-weight:bold; margin-top:10px;">
  
   {% csrf_token %}
-  
+  <h4 style= "background: black; color:white; text-align:center;">Registrar Insumos</h4>
+   
   
    
      <div>
@@ -135,12 +136,14 @@
 
 
 <td style="width: 30%;">
- 
-<form method ="post" style="color: #F39C12; font-weight:bold;" >
+
+  
+<form method ="post" style="color: #F39C12; font-weight:bold; margin-top:92px;" >
  
   {% csrf_token %}
   
-  
+  <h4 style= "background: black; color:white; text-align:center;">Productos de venta</h4>
+
    
      <div>
     {{formProductoPublico|crispy}}
@@ -173,9 +176,9 @@
 </table>
 </div>
 
+<!-- Footer -->
 
-<!-- End Footer -->
-
+<!-- End 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
