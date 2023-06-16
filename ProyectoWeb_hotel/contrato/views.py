@@ -162,7 +162,7 @@ def guardarContrato(request):
           id_contrato = contrato.id
           
           #-------fuera del horario----------
-          if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:
+          if fechaConvertida2.hour <10 or fechaConvertida2.hour>=18:
                 messages.error(request, "El horario no corresponde")
                 return redirect('Contrato')
           
@@ -310,7 +310,7 @@ def modificarTablaContrato(request, id_contrato):
           #paraAnular_habitacionAnterior_Actualizar(request, contrato)
           
              #-------fuera del horario----------
-          if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:
+          if fechaConvertida2.hour <10 or fechaConvertida2.hour>=18:
                 messages.error(request, "El horario no corresponde")
                 return redirect('Contrato')
            
@@ -575,7 +575,7 @@ def lateCheckout(request, id_contrato):
         
      
           
-          if fechaConvertida2.hour <10 or fechaConvertida2.hour>=17:
+          if fechaConvertida2.hour <10 or fechaConvertida2.hour>=18:
                 messages.error(request, "El horario no corresponde")
                 return redirect('modificarContrato')
           elif  fechaConvertida2.hour ==10 or fechaConvertida2.minute==0:

@@ -8,6 +8,8 @@ import datetime
 #from django.shortcuts import redirect
 #from contrato.models import Huesped, Contrato
 
+
+
  #Create your models here.
 
 class Huesped(models.Model):
@@ -163,7 +165,7 @@ class Contrato(models.Model):
        
      
             #---------------------late check out  --------------------
-        elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <17:
+        elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <18:
           
           
          
@@ -315,7 +317,7 @@ class Contrato(models.Model):
      
             #---------------------late check out--------------------
             
-        elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <17:
+        elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <18:
           
           
          
@@ -472,7 +474,7 @@ class Contrato(models.Model):
      
             #---------------------late check out--------------------
             
-        elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <17:
+        elif fechaConvertida2.hour >=10 and fechaConvertida2.hour <18:
           
           
          

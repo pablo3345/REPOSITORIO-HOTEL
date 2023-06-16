@@ -1,3 +1,5 @@
+
+
 <html>
 
  {% load static %}
@@ -33,58 +35,37 @@
 
  <div>
 
-
+   
 
      
 
-  <h1 style="margin:center; text-align:center; font-family: arial; background:   #37517e; color:white; ">Agregar Late check out</h1><br>
-  <a  href="{% url 'modificarContrato' %}"  style="font-size:23px; margin-left:1065px; font-weight:bold; text-decoration:none;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a la Tabla</a>
+  <h1 style="margin:center; text-align:center; font-family: arial; background:  #F39C12; color:white; ">Guardar Proveedor</h1><br>
+  <a  href="{% url 'Home' %}"  style="font-size:23px; margin-left:1065px; font-weight:bold; text-decoration:none;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a>
 
-  <form method ="post" class="ContenedorFormulario" style="margin:auto;">
+  <form method ="post" class="ContenedorFormulario" style="margin:auto; color: #F39C12;">
    {% csrf_token %}
    
    
-      <br>
-      <div>
-
-     
-  
-        {% comment %} <div>
-      <h5>{{formContrato.fecha_entrada|as_crispy_field}}<h5><br>
-      </div> {% endcomment %}
-
-      <p>El horario del late check out tambien puede ingresarlo cuando crea un contrato, o cuando edita dicho contrato, directamente pone el horario en fecha salida, o bien lo agregas desde aqui.</p>
-      
-      <h5> {{formContrato.fecha_salida|as_crispy_field}}<h5><br>
-        <!-- form crispy individual, div class form-group y luego class form-control-->
-       
-      </div>
-<br>
- <ul style="color:green">
-  
-   
-      <li>  <h5 style="font-weight:bold;">Entrada: {{contrato.fecha_entrada}}</h5></li>
-        <li>  <h5 style="font-weight:bold;">Salida: {{contrato.fecha_salida}}</h5></li>
-        <li>  <h5 style="font-weight:bold;">Huesped: {{contrato.habitacion}}</h5></li>
-        <li>  <h5 style="font-weight:bold;">Huesped: {{contrato.huesped}}</h5></li>
-        <li>  <h5 style="font-weight:bold;">Importe estadia: {{contrato.importe_estadia}}</h5></li>
     
-         <!-- <li>  <h5 style="font-weight:bold;">Importe estadia: {{contrato.importe_estadia}}</h5></li>--> 
+      <div>
+     {{formProveedor|crispy}}
  
-<br>
+  <div>
+   
+    
 
 
 
 
-</ul> 
-
-<br>
 
 
 
 
-&nbsp;  <input type="submit" value="ACTUALIZAR CONTRATO" class="btn btn-info">
-<br>
+
+
+
+
+  <input type="submit" value="GUARDAR PROVEEDOR" class="btn btn-info">
 
 
 
@@ -129,3 +110,16 @@
 
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

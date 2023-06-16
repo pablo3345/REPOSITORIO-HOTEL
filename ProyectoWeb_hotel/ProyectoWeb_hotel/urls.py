@@ -22,4 +22,5 @@ urlpatterns = [
     path('habitacion/', include("habitacion.urls")),
     path('contrato/', include("contrato.urls")),
     path('panelAdmin/', include("panel_de_admin.urls")),
+    path('productos/', include("productos.urls")),
 ]
