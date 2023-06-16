@@ -34,9 +34,9 @@ class Insumos(models.Model):
     marca_insumos = models.CharField(max_length=40)
     precio= models.FloatField()
     medida = models.FloatField()
-    proveedor = models.ForeignKey(Proveedores, on_delete= models.CASCADE)
+    proveedor = models.ForeignKey(Proveedores, on_delete= models.CASCADE, default=1)
     algun_otro_dato = models.CharField(max_length=40, null = True, blank= True)
-    disponibilidad = models.BooleanField(choices=(('SI', True), ('NO', False)), default=1)
+    disponibilidad = models.BooleanField(choices=((True, 'SI'), (False, 'NO')), default=1)
     created = models.DateTimeField(auto_now_add=True)  # aca guardamos la fecha que se creo un servicio
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
     
@@ -59,7 +59,7 @@ class Producto_al_publico(models.Model):
         precio_al_publico = models.FloatField()
         precio_de_costo = models.FloatField()
         medida = models.FloatField()
-        proveedor = models.ForeignKey(Proveedores, on_delete= models.CASCADE)
+        proveedor = models.ForeignKey(Proveedores, on_delete= models.CASCADE, default=1)
         disponibilidad = models.BooleanField(choices=(('SI', True), ('NO', False)), default=1)
         precio_promocion = models.FloatField(default = 0.0)
         algun_otro_dato = models.CharField(max_length=40, null = True, blank= True)

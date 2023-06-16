@@ -45,5 +45,98 @@ class ProveedoresForm(forms.ModelForm):
             
             
             
+class InsumosForm(forms.ModelForm):
+    
+    class Meta:
+        model = Insumos
         
-
+        
+        fields=[
+            'nombre_insumos',
+            'marca_insumos',
+            'precio',
+            'medida',
+            'proveedor',
+            'algun_otro_dato',
+            'disponibilidad'
+            
+            
+            
+            
+        ]
+        labels ={
+            
+            'nombre_insumos': 'Nombre',
+            'marca_insumos': 'Marca',
+            'precio': 'Precio',
+            'medida': 'Medida',
+            'proveedor': 'Proveedor',
+            'algun_otro_dato': 'Algun otro dato',
+            'disponibilidad': 'Disponibilidad'
+            
+        }
+        
+        widgets = {
+            
+            'nombre_insumos':  forms.TextInput(),
+            'marca_insumos': forms.TextInput(),
+            'precio': forms.NumberInput(),
+            'medida':  forms.NumberInput(),
+            'proveedor': forms.Select(),
+            'algun_otro_dato': forms.TextInput(),
+            'disponibilidad': forms.RadioSelect()
+            
+            
+            
+        }
+        
+class ProductoPublicoForm(forms.ModelForm):
+    
+    class Meta:
+        model=Producto_al_publico
+        
+        fields= [
+             'nombre_producto',
+             'marca_producto', 
+             'precio_al_publico', 
+             'precio_de_costo', 
+             'medida',
+             'proveedor',  
+             'disponibilidad', 
+             'precio_promocion' 
+    
+        ]
+        
+        labels = {
+            
+             'nombre_producto':'Nombre',
+             'marca_producto':'Marca' ,
+             'precio_al_publico': 'Precio al publico',
+             'precio_de_costo': 'Precio al costo', 
+             'medida': 'Medida',
+             'proveedor': 'Proveedor',  
+             'disponibilidad': 'Disponibilidad', 
+             'precio_promocion': 'Precio promocion'
+            
+            
+            
+        }
+        
+        widgets ={
+            
+             'nombre_producto': forms.TextInput(),
+             'marca_producto': forms.TextInput(),
+             'precio_al_publico':  forms.NumberInput(),
+             'precio_de_costo':  forms.NumberInput(), 
+             'medida':  forms.NumberInput(),
+             'proveedor':  forms.Select(),
+             'disponibilidad':  forms.RadioSelect(),
+             'precio_promocion': forms.NumberInput()
+            
+            
+            
+        }
+        
+        
+        
+    
