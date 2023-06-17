@@ -19,7 +19,7 @@ class Proveedores(models.Model):
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
     
     def __str__(self):
-        return f'{self.nombre}  {self.apellido} dni {self.nombre_empresa}' # la f es de formato
+        return f'{self.nombre_proveedor}  {self.apellido} dni {self.nombre_empresa}' # la f es de formato
     
     class Meta:
         db_table = "proveedores"
@@ -41,7 +41,7 @@ class Insumos(models.Model):
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
     
     def __str__(self):
-        return f'{self.nombre}  {self.marca_insumos}' 
+        return f'{self.nombre_insumos}  {self.marca_insumos}' 
     
     class Meta:
         db_table = "insumos"
