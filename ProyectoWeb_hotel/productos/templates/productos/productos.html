@@ -101,7 +101,7 @@
 <td  style="width: 30%;">
 <!-- ------------------------------ -SEGUNDO FORMULARIO INSUMOS-------------------------- --------------------------- -->
 
-<form method ="post"  style="color: #F39C12; font-weight:bold; margin-top:10px;">
+<form  action="guardarInsumos"  method ="post" action="guardarInsumos"  style="color: #F39C12; font-weight:bold; margin-top:10px;">
  
   {% csrf_token %}
   <h4 style= "background: black; color:white; text-align:center;">Registrar Insumos</h4>
@@ -131,7 +131,7 @@
  <br>
  <br>
 
- <a href= "#" ><button type="button" class="btn btn-dark" style="margin:auto;">VER TABLA Y EDITAR O ELIMINAR</button></a>
+ <a href= "{% url 'modificarInsumo' %}" ><button type="button" class="btn btn-dark" style="margin:auto;">VER TABLA Y EDITAR O ELIMINAR</button></a>
 
 
 

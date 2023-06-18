@@ -285,6 +285,15 @@ def modificarTablaContrato(request, id_contrato):
      
           habitacions = contrato.habitacion.id
           huespeds =request.POST.get("huesped")# id
+          #--------------------------------------------------------
+          
+          huesped = Huesped.objects.get(id= huespeds)
+          
+          
+          
+          #-------------------------------------------------------------
+          
+          
      
          # fecha_entra = request.POST.get("fecha_entrada")
           fecha_sali = request.POST.get("fecha_salida")
@@ -334,6 +343,8 @@ def modificarTablaContrato(request, id_contrato):
                contrato.fecha_entrada=fechaFormateada
                contrato.importe_estadia= importeEstadia
                contrato.importe_otros_gasto= importe_otros_gast
+               #---------------agregue el huesped-----------------
+               contrato.huesped=huesped
                
                
               

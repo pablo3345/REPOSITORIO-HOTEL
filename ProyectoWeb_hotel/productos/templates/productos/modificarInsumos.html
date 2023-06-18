@@ -158,13 +158,13 @@
                                     <thead>
                                         <tr>
 
-                                            <th>Nombre</th>
-                                            <th>Apellido</th>
-                                            <th>Direccion</th>
-                                            <th>Telefono</th>
-                                            <th>email</th>
-                                            <th>Nombre Empresa</th>
+                                            <th>Nombre insumo</th>
+                                            <th>Marca insumo</th>
+                                            <th>Precio</th>
+                                            <th>Medida</th>
+                                            <th>Proveedor</th>
                                             <th>Algun otro dato</th>
+                                            <th>Disponibilidad</th>
                                             
                                             <th>OPCIONES</th>
                                            <!--  <th>ELIMINAR</th> -->
@@ -187,24 +187,27 @@
                                         </tr>&ndash;&gt;
                                     </tfoot>-->
                                     <tbody>
-                                    {%  for proveedor in proveedores %}
+                                    {%  for insumo in insumos %}
                                     <tr>
 
-                                        <td>{{proveedor.nombre_proveedor}}</td>
-                                        <td>{{proveedor.apellido}}</td>
-                                        <td>{{proveedor.direccion}}</td>
-                                        <td>{{proveedor.telefono}}</td>
-                                        <td>{{proveedor.mail}}</td>
-                                        <td>{{proveedor.nombre_empresa}}</td>
-                                        <td>{{proveedor.algun_otro_dato}}</td>
+                                        <td>{{insumo.nombre_insumos}}</td>
+                                        <td>{{insumo.marca_insumos}}</td>
+                                        <td>{{insumo.precio}}</td>
+                                        
+
+                                       
+                                        <td>{{insumo.medida}}</td>
+                                        <td>{{insumo.proveedor}}</td>
+                                        <td>{{insumo.algun_otro_dato}}</td>
+                                        <td>{{insumo.disponibilidad}}</td>
                                        
                                       <!--  <div style="display:flex;"> -->
                                         
                                       
                                         <td>   
                                             <div style="display:flex;">
-                                            <a href="{%  url 'modificarTabla_proveedor' proveedor.id%}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
-                                        <a href="{% url 'eliminarProveedor' proveedor.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a></td>
+                                            <a href="{% url 'modificarTabla_insumos' insumo.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
+                                        <a href="{% url 'eliminarInsumo' insumo.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a></td>
                                         </div> 
                                       <!--  <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a></td>-->
