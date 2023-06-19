@@ -18,7 +18,13 @@ class Huesped(models.Model):
     apellido =models.CharField(max_length=40)
     edad =models.IntegerField()
     dni= models.CharField(max_length=20)
-    demas_huespedes = models.CharField(max_length= 200,  null= True, blank=True)
+    #-------------------------------------
+    direccion =models.CharField(max_length=40)
+    localidad =models.CharField(max_length=40)
+    codigo_postal =models.CharField(max_length=40)
+    pais =models.CharField(max_length=40)
+    #----------------------------------------
+    demas_huespedes = models.CharField(max_length= 1500,  null= True, blank=True)
     patente_vehiculo= models.CharField(max_length=20,  null= True, blank=True)
     modelo_vehiculo= models.CharField(max_length=40,  null= True, blank=True)
     correo_electronico = models.EmailField(null=True, blank=True)

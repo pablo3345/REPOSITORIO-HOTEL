@@ -72,7 +72,7 @@ class InsumosForm(forms.ModelForm):
             'medida': 'Medida',
             'proveedor': 'Proveedor',
             'algun_otro_dato': 'Algun otro dato',
-            'disponibilidad': 'Disponibilidad'
+            'disponibilidad': 'Stock disponible'
             
         }
         
@@ -115,7 +115,7 @@ class ProductoPublicoForm(forms.ModelForm):
              'precio_de_costo': 'Precio al costo', 
              'medida': 'Medida',
              'proveedor': 'Proveedor',  
-             'disponibilidad': 'Disponibilidad', 
+             'disponibilidad': 'Stock disponible', 
              'precio_promocion': 'Precio promocion'
             
             

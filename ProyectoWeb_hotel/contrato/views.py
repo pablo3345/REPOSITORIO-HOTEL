@@ -61,6 +61,11 @@ def modificarTablaHuesped(request, id_huesped):
      patente_vehicu = request.POST.get("patente_vehiculo")
      modelo_vehicu = request.POST.get("modelo_vehiculo")
      correo_electro =request.POST.get("correo_electronico")
+     #----------------------------------------------------------
+     direccion= request.POST.get("direccion")
+     localidad = request.POST.get("localidad")
+     codigo_postal =  request.POST.get("codigo_postal")
+     pais= request.POST.get("pais")
      
      if request.method =='POST':
           
@@ -72,6 +77,11 @@ def modificarTablaHuesped(request, id_huesped):
           huesped.patente_vehiculo= patente_vehicu
           huesped.modelo_vehiculo= modelo_vehicu
           huesped.correo_electronico= correo_electro
+          #---------------------------------------
+          huesped.direccion= direccion
+          huesped.localidad= localidad
+          huesped.codigo_postal= codigo_postal
+          huesped.pais=pais
           
          
           

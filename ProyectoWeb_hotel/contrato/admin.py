@@ -8,7 +8,7 @@ class adminHuesped(admin.ModelAdmin):
     
     readonly_fields=("created", "updated")
     
-    list_display=("nombre_responsable", "apellido", "dni", "edad", "demas_huespedes", "patente_vehiculo", "modelo_vehiculo", "correo_electronico", "created", "updated")
+    list_display=("nombre_responsable", "apellido", "dni", "edad", "demas_huespedes", "patente_vehiculo", "modelo_vehiculo", "correo_electronico", "direccion", "localidad","codigo_postal", "pais", "created", "updated")
     
     search_fields=("nombre_responsable", "apellido")
     

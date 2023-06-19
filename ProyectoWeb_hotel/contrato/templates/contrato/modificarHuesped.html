@@ -37,17 +37,24 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-
+                                            <th>OPCIONES</th>
                                             <th>Nombre reponsable</th>
                                             <th>Apellido</th>
                                             <th>Edad</th>
                                             <th>DNI</th>
-                                            <th>Demas huespedes</th>
+                                            <th>Direccion</th>
+                                            <th>Localidad</th>
+                                            <th>Codigo Postal</th>
+                                            <th>Pais</th>
+                                           
+                                            <th><div style="width:390px;"> Demas huespedes </div></th>
+
+                                           
                                             <th>Patente vehiculo</th>
                                             <th>Modelo vehiculo</th>
                                             <th>Correo electronico</th>
                                            
-                                            <th>OPCIONES</th>
+                                          
                                            <!--  <th>ELIMINAR</th> -->
 
                                         </tr>
@@ -70,13 +77,24 @@
                                     <tbody>
                                     {%  for huesped in huespedes %}
                                     <tr>
+                                        <td>   
+                                            <div style="display:flex;">
+                                            <a href="{% url 'modificarTablaHuesped' huesped.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
+                                       <a href="{% url 'eliminarHuesped' huesped.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> 
+                                    </div> 
+                                    </td>
 
                                         <td>{{huesped.nombre_responsable}}</td>
                                         <td>{{huesped.apellido}}</td>
                                     
                                         <td>{{huesped.edad}}</td>
                                         <td>{{huesped.dni}}</td>
-                                        <td>{{huesped.demas_huespedes}}</td>
+                                        <td>{{huesped.direccion}}</td>
+                                        <td>{{huesped.localidad}}</td>
+                                        <td>{{huesped.codigo_postal}}</td>
+                                        <td>{{huesped.pais}}</td>
+                                        
+                                        <td><div style="font-size:12px;">{{huesped.demas_huespedes}}</div></td>
                                         <td>{{huesped.patente_vehiculo}}</td>
                                         <td>{{huesped.modelo_vehiculo}}</td>
                                         <td>{{huesped.correo_electronico}}</td>
@@ -84,12 +102,12 @@
                                        <!-- <div style="display:flex;"> -->
                                        
                                       
-                                        <td>   
+                                       {% comment %}  <td>   
                                             <div style="display:flex;">
                                             <a href="{% url 'modificarTablaHuesped' huesped.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
                                        <a href="{% url 'eliminarHuesped' huesped.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> 
                                     </div> 
-                                    </td>
+                                    </td> {% endcomment %}
                                        
                                       <!-- <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a> -->
