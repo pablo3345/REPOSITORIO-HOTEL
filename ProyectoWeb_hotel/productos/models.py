@@ -60,7 +60,7 @@ class Producto_al_publico(models.Model):
         precio_de_costo = models.FloatField()
         medida = models.FloatField()
         proveedor = models.ForeignKey(Proveedores, on_delete= models.CASCADE, default=1)
-        disponibilidad = models.BooleanField(choices=(('SI', True), ('NO', False)), default=1)
+        disponibilidad = models.BooleanField(choices=((True, 'SI'), (False, 'NO')), default=1)
         precio_promocion = models.FloatField(default = 0.0)
         algun_otro_dato = models.CharField(max_length=40, null = True, blank= True)
         created = models.DateTimeField(auto_now_add=True)  # aca guardamos la fecha que se creo un servicio

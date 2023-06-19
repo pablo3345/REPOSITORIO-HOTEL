@@ -130,7 +130,7 @@
 
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4" style="margin:center; text-align:center; font-family: arial; background: #F39C12; color:white;">Tabla Insumos</h1>
+                        <h1 class="mt-4" style="margin:center; text-align:center; font-family: arial; background: #F39C12; color:white;">Tabla Producto venta al publico</h1>
                         <a style="margin-left:500; font-weight:bold; text-decoration:none;font-size:20px; " href="{% url 'guardarProveedor' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al FORMULARIO</a><br>
                         <a style="margin-left:500; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Home' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a>
                         <!-- #37517e; color anterior -->
@@ -158,13 +158,15 @@
                                     <thead>
                                         <tr>
 
-                                            <th>Nombre insumo</th>
-                                            <th>Marca insumo</th>
-                                            <th>Precio</th>
+                                            <th>Nombre Producto</th>
+                                            <th>Marca</th>
+                                            <th>Precio al publico</th>
+                                            <th>Precio de costo</th>
                                             <th>Medida</th>
                                             <th>Proveedor</th>
-                                            <th>Algun otro dato</th>
                                             <th>Disponibilidad</th>
+                                            <th>Precio promocion</th>
+                                            <th>Algun otro dato</th>
                                             <th>fecha de actualizacion</th>
                                             
                                             <th>OPCIONES</th>
@@ -188,28 +190,31 @@
                                         </tr>&ndash;&gt;
                                     </tfoot>-->
                                     <tbody>
-                                    {%  for insumo in insumos %}
+                                    {%  for producto in productos %}
                                     <tr>
 
-                                        <td>{{insumo.nombre_insumos}}</td>
-                                        <td>{{insumo.marca_insumos}}</td>
-                                        <td>{{insumo.precio}}</td>
+                                        <td>{{producto.nombre_producto}}</td>
+                                        <td>{{producto.marca_producto}}</td>
+                                        <td>{{producto.precio_al_publico}}</td>
+                                        <td>{{producto.precio_de_costo}}</td>
+                                        <td>{{producto.medida}}</td>
+                                        <td>{{producto.proveedor}}</td>
+                                        <td>{{producto.disponibilidad}}</td>
+                                        <td>{{producto.precio_promocion}}</td>
+                                        <td>{{producto.algun_otro_dato}}</td>
+                                        <td>{{producto.updated}}</td>
                                         
-
+                                    
                                        
-                                        <td>{{insumo.medida}}</td>
-                                        <td>{{insumo.proveedor}}</td>
-                                        <td>{{insumo.algun_otro_dato}}</td>
-                                        <td>{{insumo.disponibilidad}}</td>
-                                        <td>{{insumo.updated}}</td>
+                                       
                                        
                                       <!--  <div style="display:flex;"> -->
                                         
                                       
                                         <td>   
                                             <div style="display:flex;">
-                                            <a href="{% url 'modificarTabla_insumos' insumo.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
-                                        <a href="{% url 'eliminarInsumo' insumo.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a></td>
+                                            <a href="{% url 'modificarTabla_productos' producto.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
+                                        <a href="{% url 'eliminarProducto' producto.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a></td>
                                         </div> 
                                       <!--  <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a></td>-->

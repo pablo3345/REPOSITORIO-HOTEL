@@ -11,4 +11,12 @@ urlpatterns = [
     path('modificarInsumos', views.modificarInsumos, name="modificarInsumo"),
     path('modificarTabla_insumos/<int:id_insumos>/', views.modificar_tabla_insumos, name="modificarTabla_insumos"),
     path('eliminarInsumo/<int:id_insumo>/', views.eliminarInsumo, name="eliminarInsumo"),
+    path('guardarProducto', views.guardarProducto, name="guardarProducto"),
+    path('modificarProducto', views.modificarProducto, name="modificarProducto"),
+    path('modificarTabla_productos/<int:id_producto>/', views.modificar_tabla_productos, name="modificarTabla_productos"),
+     path('eliminarProducto/<int:id_producto>/', views.eliminarProducto, name="eliminarProducto"),
+    
+    
+    
+    
 ]

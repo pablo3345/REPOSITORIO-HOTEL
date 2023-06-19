@@ -144,7 +144,7 @@
 <td style="width: 30%;">
 
   
-<form method ="post" style="color: #F39C12; font-weight:bold; margin-top:92px;" >
+<form action="guardarProducto" method ="post" style="color: #F39C12; font-weight:bold; margin-top:92px;" >
  
   {% csrf_token %}
   
@@ -173,7 +173,7 @@
 
 <br>
 <br>
- <a href= "#" ><button type="button" class="btn btn-dark" style="margin:auto;">VER TABLA Y EDITAR O ELIMINAR</button></a>
+ <a href= "{% url 'modificarProducto' %}" ><button type="button" class="btn btn-dark" style="margin:auto;">VER TABLA Y EDITAR O ELIMINAR</button></a>
 
  </form>
 
