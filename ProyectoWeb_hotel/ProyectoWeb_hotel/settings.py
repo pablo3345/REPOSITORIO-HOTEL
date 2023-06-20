@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@z7_d**)$q+apty(csu=)^q(k2l*x)g-)=xt^g0*78r(65k2x+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True #para ver los errores, si estaria en False me mostraria el html del error 404 por ejemplo, averiguar como se pone en produccion
 
 ALLOWED_HOSTS = []
 

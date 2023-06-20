@@ -1,6 +1,7 @@
 
 from django.urls import path
 from . import views
+from .views import generar_reporter_huesped
 
 
 
@@ -21,6 +22,7 @@ urlpatterns = [
     path('habilitar_ocupadas/<int:id_habitacion>/', views.habilitar_ocupadas, name="habilitar_ocupadas"), # para hablitar las habitaciones ocupadas
     path('late_check/<int:id_contrato>/', views.lateCheckout, name="late_check"),
     path('contratosTotales', views.contratosTotales, name="contratosTotales"),
+    path('generarReporte', generar_reporter_huesped.as_view(), name="generarReporte"),
   
     
     

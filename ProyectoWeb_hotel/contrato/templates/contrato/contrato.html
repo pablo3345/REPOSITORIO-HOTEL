@@ -48,10 +48,11 @@
 
  <input type="submit" value="GUARDAR HUESPED" class="btn btn-info">&nbsp; &nbsp; &nbsp;
 
-<a href= "{% url  'modificarHuesped' %}" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a>
+<a href= "{% url  'modificarHuesped' %}" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a><br><br>
+<a href= "{% url  'generarReporte' %}" style="margin:auto;"><button type="button" class="btn btn-info">IMPRIMIR HUESPED</button></a>
 
-
-
+<br>
+<br>
 <br>
 </form>
   
@@ -113,6 +114,8 @@
 <h4 style="color:green">Importe de estadia: {{importe_estadia}} </h4>
 <h4 style="color:green">Importe de otros gastos es: {{importe_de_otros_gastos}} </h4>
 <h4 style="color:green">El total es de: {{total}} </h4>
+
+
 </form>
 
 

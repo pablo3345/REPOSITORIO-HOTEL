@@ -1,0 +1,52 @@
+<html>
+<head>
+
+
+
+</head> 
+<body>
+
+    <table border=1>
+           <thead>
+            <th>nombre</thead>
+                <th>apellido</thead>
+                    <th>dni</thead>
+                        <th>demas huespedes</thead>
+
+           </thead>
+           <tbody>
+
+            {% for huesped in huespedes %}
+
+            <tr> 
+                <td>
+                    {{huesped.nombre_responsable}}
+                </td>
+                <td>
+                    {{huesped.apellido}}
+                </td>
+                <td>
+                    {{huesped.dni}}
+                </td>
+                <td>
+                    {{huesped.demas_huespedes}}
+                </td>
+
+
+            </tr>
+                {% endfor %}
+
+           </tbody>
+
+
+    </table>
+
+
+</body>
+
+
+
+
+
+
+</html>

@@ -6,6 +6,9 @@ from contrato.models import Huesped, Contrato
 import datetime
 from habitacion.models import Habitacion
 from panel_de_admin.views import mostrarPanel
+from django.views.generic import View
+from .utilitario import render_to_pdf
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -642,3 +645,21 @@ def contratosTotales(request):
      contratos = Contrato.objects.all()  
      
      return render(request, 'contrato/tablaContratos_totales.html', {'contratos':contratos})   
+
+
+
+
+class generar_reporter_huesped(View):
+     
+     def get(self, request, *args, **kwargs): # **kwargs es un diccionario de argumentos por si les paso
+          huespedes = Huesped.objects.all()
+          
+          template_name= "contrato/reporter_huesped.html"
+          
+          data={'cantidad': huespedes.count(), # a count() es solo un ejemplo no lo voy a usar
+                'huespedes': huespedes
+                } # count es para saber la cantidad de objetos que tiene el modelo huesped
+          
+          pdf = render_to_pdf(template_name, data) # aca le mando el template y el contenido(contexto, diccionario) a la funcion de utulitario donde me convierte el template a pdf
+          
+          return HttpResponse(pdf, content_type= 'application/pdf' )
