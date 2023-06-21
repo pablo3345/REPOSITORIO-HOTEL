@@ -6,41 +6,69 @@
 </head> 
 <body>
 
-    <table border=1>
+    <table>
            <thead>
-            <th>nombre</thead>
-                <th>apellido</thead>
-                    <th>dni</thead>
-                        <th>demas huespedes</thead>
+           <h2 colspan=3 style="background:black; color:white; text-align:center; font-size:25px; font-familly:Time New Roman;"> LISTA DE HUESPEDES (guest list)</h2>
+           <br>
+            <th style= "font-size:15px;">NOMBRE (name))</th>&nbsp;&nbsp;
+                <th style= "font-size:15px;">APELLIDO (last name)</th>&nbsp;&nbsp;
+                    <th style= "font-size:15px;">DNI (id)</th>&nbsp;&nbsp;
+                        <th  colspan = 3 style= "font-size:15px;">
+                           
+                            DEMAS HUESPEDES (other guests)
+                       
+                        </th>
+                        <br>
+                      
+                          
+
 
            </thead>
            <tbody>
 
-            {% for huesped in huespedes %}
+          
 
             <tr> 
-                <td>
+                <td><div style="font-size:15px;">
                     {{huesped.nombre_responsable}}
+                </div>
                 </td>
                 <td>
+                    <div style="font-size:15px;">
                     {{huesped.apellido}}
+                    </div>
                 </td>
+              
                 <td>
+                    <div style="font-size:15px;">
                     {{huesped.dni}}
+                    </div>
+                </td>
+                <td colspan=4>
+                    <div style="font-size:15px; ">
+                        {{huesped.demas_huespedes}}
+                        </div>
+                  
                 </td>
                 <td>
-                    {{huesped.demas_huespedes}}
+                  
                 </td>
+
+                
+              
 
 
             </tr>
-                {% endfor %}
-
+             
+        
+                
            </tbody>
 
-
+          
     </table>
-
+    <br>
+    <br>
+    <h2 style="font-size:20px; margin-left:200px">-----------  Firmar (sign)  -----------</h2>
 
 </body>
 

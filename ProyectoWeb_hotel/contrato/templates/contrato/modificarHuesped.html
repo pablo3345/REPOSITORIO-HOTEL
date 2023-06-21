@@ -3,6 +3,7 @@
 
 <html>
 {% load static %}
+
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -80,7 +81,8 @@
                                         <td>   
                                             <div style="display:flex;">
                                             <a href="{% url 'modificarTablaHuesped' huesped.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a> &nbsp;
-                                       <a href="{% url 'eliminarHuesped' huesped.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> 
+                                       <a href="{% url 'eliminarHuesped' huesped.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a>  &nbsp;
+                                       <a href="{% url 'generarReportes' huesped.id %} "> <button type="button" style="background:#37517e;; color:white; border:none;">imprimir</button></a> 
                                     </div> 
                                     </td>
 

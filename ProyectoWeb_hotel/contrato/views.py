@@ -470,6 +470,7 @@ def habitacionOcupada(request, habitacions):
     # habitacion=Habitacion()
      
      if request.method == 'POST':
+          
            habitacion = Habitacion.objects.get(id= habitacions)
            habitacion.estado="ocupada"
            
@@ -495,7 +496,9 @@ def habilitar_ocupadas(request, id_habitacion):
      False_variable = False
      
      if request.method == 'GET':
-            habitacion = Habitacion.objects.get(id= id_habitacion)
+           # habitacion = Habitacion.objects.get(id= id_habitacion)
+            habitacion = get_object_or_404(Habitacion, id=id_habitacion)
+
             habitacion.estado="Null"
             habitacion.save()
             
@@ -582,7 +585,9 @@ def ponerOcupada_ultimaHabitacion(request, habitacions):
 def lateCheckout(request, id_contrato):
      formContrato=FormContrato()
      
-     contrato = Contrato.objects.get(id= id_contrato)
+    # contrato = Contrato.objects.get(id= id_contrato)
+     contrato = get_object_or_404(Contrato, id=id_contrato)
+
     
      
      fecha_entra = contrato.fecha_entrada
@@ -649,15 +654,30 @@ def contratosTotales(request):
 
 
 
-class generar_reporter_huesped(View):
+class generar_reporter_huespedes(View):
+     
+   
+   
      
      def get(self, request, *args, **kwargs): # **kwargs es un diccionario de argumentos por si les paso
+         
+          id=self.kwargs.get("id") # lo reconoce como id a los dos nombres, pongo id_huesped y no funciona
+       
           huespedes = Huesped.objects.all()
+          huesped = get_object_or_404(Huesped, id=id)
           
           template_name= "contrato/reporter_huesped.html"
           
           data={'cantidad': huespedes.count(), # a count() es solo un ejemplo no lo voy a usar
-                'huespedes': huespedes
+                'huespedes': huespedes,
+                'huesped': huesped
+                
+              
+                
+               
+             
+              
+                
                 } # count es para saber la cantidad de objetos que tiene el modelo huesped
           
           pdf = render_to_pdf(template_name, data) # aca le mando el template y el contenido(contexto, diccionario) a la funcion de utulitario donde me convierte el template a pdf
