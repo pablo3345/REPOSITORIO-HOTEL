@@ -665,16 +665,16 @@ class generar_reporter_huespedes(View):
        
           huespedes = Huesped.objects.all()
           huesped = get_object_or_404(Huesped, id=id)
+          fecha = huesped.created
           
           template_name= "contrato/reporter_huesped.html"
           
           data={'cantidad': huespedes.count(), # a count() es solo un ejemplo no lo voy a usar
                 'huespedes': huespedes,
-                'huesped': huesped
+                'huesped': huesped,
+                'fecha': fecha
                 
               
-                
-               
              
               
                 
@@ -683,3 +683,32 @@ class generar_reporter_huespedes(View):
           pdf = render_to_pdf(template_name, data) # aca le mando el template y el contenido(contexto, diccionario) a la funcion de utulitario donde me convierte el template a pdf
           
           return HttpResponse(pdf, content_type= 'application/pdf' )
+     
+     
+     
+def cambiar_total(request, id_contrato):
+     
+     contrato = get_object_or_404(Contrato, id=id_contrato)
+   
+     data={
+          'habitacion': contrato.habitacion,
+          'huesped': contrato.huesped,
+          'fecha_entrada': contrato.fecha_entrada,
+          'fecha_salida': contrato.fecha_salida,
+          'total_anterior': contrato.total
+          
+     }
+     
+     if request.method == "POST":
+          total_cambiado = request.POST.get("cambiar_total")
+          contrato.total= total_cambiado
+          try:
+           contrato.save()
+           messages.success(request, "El total se actualizo correctamente...")
+           
+          except:
+               messages.error(request, "El total no se actualizo...")
+          return redirect('modificarContrato')
+     
+     
+     return render(request, "contrato/cambiar_total.html", {'data': data})
