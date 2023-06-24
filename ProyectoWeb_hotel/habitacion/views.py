@@ -27,7 +27,7 @@ def mostrarHabitacion(request):
                
             form.save()
             
-            No_Limpia(request)   
+           # No_Limpia(request)   
             messages.success(request, "La habitacion se guardo correctamente...")
             
            
@@ -77,7 +77,7 @@ def tabla_modificar(request, id_habitacion):
         capacidad = request.POST.get("capacidad")
         precio_por_noche = request.POST.get("precio_por_noche")
         camita_bebe = request.POST.get("camita_bebe")
-        esta_limpia = request.POST.get("esta_limpia")
+        #esta_limpia = request.POST.get("esta_limpia")
         posee_heladera = request.POST.get("posee_heladera")
         posee_aire_acondicionado = request.POST.get("posee_aire_acondicionado")
         posee_calefaccion = request.POST.get("posee_calefaccion")
@@ -96,7 +96,7 @@ def tabla_modificar(request, id_habitacion):
         habitacion.capacidad = capacidad
         habitacion.precio_por_noche = precio_por_noche
         habitacion.camita_bebe = camita_bebe
-        habitacion.esta_limpia = esta_limpia
+       # habitacion.esta_limpia = esta_limpia
         habitacion.posee_heladera = posee_heladera
         habitacion.posee_aire_acondicionado = posee_aire_acondicionado
         habitacion.posee_calefaccion = posee_calefaccion
@@ -108,10 +108,14 @@ def tabla_modificar(request, id_habitacion):
         habitacion.posee_microondas=posee_microondas
         habitacion.check_out_lates=check_out_late
         habitacion.otro_dato=otro_dato
+        
+        #....................................le agregue esto antes no estaba-----------------
+       
        
 
         try:
             habitacion.save()
+          
             messages.success(request, "La habitacion se actualizo correctamente...")
 
         except:
@@ -192,7 +196,10 @@ def habilitarPost_time(reuest, id_habitacion):
                 contr.estado= False_variable
                 contr.save()
         return redirect('Panel')
-            
+    
+    
+    
+
 
     
    

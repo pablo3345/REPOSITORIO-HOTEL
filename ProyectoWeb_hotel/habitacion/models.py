@@ -13,7 +13,7 @@ class Habitacion(models.Model):
     #------------------------------------------------------------
     camita_bebe = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
    
-    esta_limpia =  models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
+    #esta_limpia =  models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     posee_heladera = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     posee_aire_acondicionado = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     posee_calefaccion = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)

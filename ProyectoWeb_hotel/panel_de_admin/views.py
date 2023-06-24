@@ -40,16 +40,16 @@ def mostrarPanel(request):
     
     
     for habi in habitacion:
-      if habi.estado =="Null" and habi.esta_limpia =="SI":
+      if habi.estado =="Null": # and habi.esta_limpia =="SI": (le saques esto al if)
           habitacionesLibres.append(habi)
           
       
           
           
-    for habi2 in habitacion:
+    """  for habi2 in habitacion:
       if habi2.esta_limpia =="NO" and habi2.estado=="ocupada":
           habitacionesNoLimpias.append(habi2)
-         
+          """
           
     
           

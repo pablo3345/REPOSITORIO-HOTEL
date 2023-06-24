@@ -712,3 +712,4 @@ def cambiar_total(request, id_contrato):
      
      
      return render(request, "contrato/cambiar_total.html", {'data': data})
+

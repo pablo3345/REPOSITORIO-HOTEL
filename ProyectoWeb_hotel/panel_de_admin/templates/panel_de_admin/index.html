@@ -113,7 +113,8 @@
             <div id="layoutSidenav_content" style="background:#D5D8DC;">
                 <main>
                      <br>
-                    <a style="margin-left:820px; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Contrato' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a CONTRATO</a><br> <!--le ahregue esto -->     <br>    
+                    <a style="margin-left:820px; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Contrato' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a CONTRATO</a><br> <!--le ahregue esto -->     
+                    <a style="margin-left:820px; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Home' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a><br> <!--le ahregue esto -->     <br>     
              <!-- <div class="card-body"> -->
                 <!-- aca vamos a poner los diagramas de barra y circulo-->
 
@@ -140,6 +141,11 @@
                     </div>
                 </div>
               {% endcomment %}
+            <div style="margin-left:80px; display:flex;">
+              <h5 style= "color:green;"><img src="{% static 'proyectoWebApp/img/libre.jpg' %}" style="width: 1em; height: 1em;"> Habitaciones Libres</h5>&nbsp;&nbsp;&nbsp;
+              <h5  style= "color:blue;"><img src="{% static 'proyectoWebApp/img/ocupado.jpg' %}" style="width: 1em; height: 1em;"> Habitaciones ocupadas</h5>&nbsp;&nbsp;&nbsp;
+              <h5  style= "color:red;"><img src="{% static 'proyectoWebApp/img/despues_del_plazo.jpg' %}" style="width: 1em; height: 1em;"> Habitaciones despúes del plazo de estadia</h5>
+            </div>
                <br>
                <a href="{% url 'Panel' %}" class="btn btn-primary" style="font-size:16px; margin-left:500px;">RECARGAR</a>
                <br>
@@ -218,7 +224,7 @@
  {% endcomment %}
         <!--  -------------------------------habitaciones no limpias.....---------- -->
 
-               {% for habi in habitacionesNoLimpias %}
+              {% comment %}  {% for habi in habitacionesNoLimpias %}
                
                <div class="col-md-2">
                 <div class="card" style="width: 45%; margin: 9px 9px;font-size:15px;"> <!-- el ancho estaba en 85 se lo cambie a 95 para centrar los botones !-->
@@ -245,7 +251,7 @@
        
 
         {% endfor %}
-
+ {% endcomment %}
       
 
         <!-- --------------------------------habitaciones post ocupadas------------------------------ -->
@@ -259,7 +265,8 @@
 
         <img src="{{habiOcu.habitacion.estado_post_ocupado.url}}">
         <h7 class="card-title" style="text-align:center;">{{habiOcu.habitacion.nombre_numero}}</h7>
-        <h7 class="card-title" style="color:red;">FIN DE LA ESTADIA</h7>
+        <h7 class="card-title" style="color:red; text-align:center;">FIN DE LA ESTADIA</h7>
+        <h7 class="card-title" style="color:red; text-align:center;">NO ESTA LISTA</h7>
         <a href="{% url 'habilitarPost_time' habiOcu.habitacion.id %}"  class="btn btn-info" style="font-size:12px;">Habilitar</a> <!-- adonde nos lleva el vinculo en el futuro !-->
 
 

@@ -12,7 +12,7 @@ class FormsHabitacion(forms.ModelForm):
             'capacidad',
             'precio_por_noche',
             'camita_bebe',
-            'esta_limpia',
+           # 'esta_limpia',
             'posee_heladera',
             'posee_aire_acondicionado',
             'posee_calefaccion',
@@ -38,7 +38,7 @@ class FormsHabitacion(forms.ModelForm):
             'capacidad': 'Capacidad de personas',
             'precio_por_noche': 'Precio por noche',
             'camita_bebe': 'Posee camita bebe',
-            'esta_limpia': 'Esta limpia y preparada',
+           # 'esta_limpia': 'Esta limpia y preparada',
             'posee_heladera': 'Posee frigobar',
             'posee_aire_acondicionado': 'Posee aire acondicionado',
             'posee_calefaccion': 'Posee calefaccion',
@@ -64,7 +64,7 @@ class FormsHabitacion(forms.ModelForm):
 
             'camita_bebe': forms.RadioSelect(),
 
-            'esta_limpia': forms.RadioSelect(),
+           # 'esta_limpia': forms.RadioSelect(),
             'posee_heladera': forms.RadioSelect(),
             'posee_aire_acondicionado': forms.RadioSelect(),
             'posee_calefaccion':forms.RadioSelect(),
