@@ -159,6 +159,8 @@ def guardarContrato(request):
           importe_otros_gast= request.POST.get("importe_otros_gasto")
           totals= request.POST.get("total")
           late_check_out = request.POST.get("late_chack_out")
+          
+          descuento= request.POST.get("descuento")
      #.........................cambiar formato calendario.....................
           fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M') # strptime lo convierto a objeto datetime, el segundo parametro le dice como interpretar la fecha, cual es la hora, el dia, el mes etc
      
@@ -187,10 +189,36 @@ def guardarContrato(request):
           importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           
           diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
         
+           #---------------para sacar la promocion de descuento-------------- pr volver------
+         # total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          #total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+           #para volver atras--------------
            
         
-             
+          if descuento != None:
+               messages.success(request, "agrego descuento")
+              # total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+              # total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+               if fechaConvertida2.hour==10 and fechaConvertida2.minute==0:
+                     total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+                     contrato.importe_estadia= total_estadia_con_descuento_diez
+                     contrato.total = total_estadia_con_descuento_diez + float(importe_otros_gast)
+                    
+               else:
+                    if fechaConvertida2.hour >=10 and fechaConvertida2.hour <18:
+                          total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+                          contrato.importe_estadia= total_estadia_con_descuento_Late
+                          contrato.total= total_estadia_con_descuento_Late + float(importe_otros_gast)
+                          
+                    
+                         
+          else:
+                contrato.importe_estadia= importeEstadia
+                contrato.total= total
+               
+               
         
        
           
@@ -199,20 +227,21 @@ def guardarContrato(request):
           contrato.huesped = huesped
           contrato.fecha_entrada= fechaFormateada
           contrato.fecha_salida = fechaFormateada2
-          contrato.importe_estadia= importeEstadia
+          
+         
+       
+          #contrato.importe_estadia= importeEstadia
+                    
+          #contrato.importe_estadia= importeEstadia (era el de antes que funcionaba perfecto)
           contrato.importe_otros_gasto = importe_otros_gast
           #----------------poner true cuando guardo el estado--------------
           contrato.estado=true_variable
         # contrato.late_chack_out = late_check_out #lo agregue nuevo
-          contrato.total = total
+          #contrato.total = total
           #-----------le agregue esto para probar--------------
          
         
-          
-          """  if total==0:
-               return redirect("Inicio")
-           """
-          
+         
           
                
           
@@ -226,11 +255,15 @@ def guardarContrato(request):
            ponerOcupada_ultimaHabitacion(request, habitacions)
           
            
+          
+           
            
            
            print("el total es total", total)
            contrato.save()
+           
            #habitacionOcupada(request, habitacions)
+           
            
           
         
@@ -255,7 +288,7 @@ def guardarContrato(request):
      
      
      
-     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia, 'diferenciaConvertida':diferenciaConvertida})
+     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia, 'diferenciaConvertida':diferenciaConvertida, 'descuento':descuento})
      
      
    
@@ -713,3 +746,116 @@ def cambiar_total(request, id_contrato):
      
      return render(request, "contrato/cambiar_total.html", {'data': data})
 
+
+
+
+
+def descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast):
+          contrato= Contrato()
+          
+          
+     
+          habitacions = request.POST.get("habitacion")
+          
+          habitacion = Habitacion.objects.get(id = habitacions)
+        
+          fecha_entra = request.POST.get("fecha_entrada")
+          fecha_sali = request.POST.get("fecha_salida")
+         
+          importe_otros_gast= request.POST.get("importe_otros_gasto")
+          
+          descuento= request.POST.get("descuento")
+        
+         
+     
+          importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+          print("radioButton descuento---", descuento)
+          
+          retas1 = importeEstadia 
+          
+          resta2 = retas1- float(habitacion.check_out_lates)
+          
+          resta3 = resta2 / diferenciaConvertida
+          
+          #..................aca tengo el precio por noche de la habitacion-----------
+          
+          total1 = resta3 * int(descuento) /100
+          #..................................................
+          total2 = diferenciaConvertida*total1
+          
+          #----------------------------------------------
+          
+          total_con_descuento = importeEstadia - total2
+          
+          #------------le agrego el late check aut---------------------
+          
+          
+          
+          
+          
+          
+          return total_con_descuento # este seria el importe de estadia NO  el total
+
+          
+
+def descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast):
+          contrato= Contrato()
+          
+         
+          
+     
+          habitacions = request.POST.get("habitacion")
+          
+          habitacion = Habitacion.objects.get(id = habitacions)
+        
+          fecha_entra = request.POST.get("fecha_entrada")
+          fecha_sali = request.POST.get("fecha_salida")
+         
+          importe_otros_gast= request.POST.get("importe_otros_gasto")
+          
+          descuento= request.POST.get("descuento")
+          
+        
+         
+     
+          importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+          print("radioButton descuento---", descuento)
+          
+          retas1 = importeEstadia 
+          
+          resta2 = retas1
+          
+          resta3 = resta2 / diferenciaConvertida
+          
+          #..................aca tengo el precio por noche de la habitacion-----------
+          #para volver-------------------------------------
+          
+          total1 = resta3 * int(descuento) /100
+          #..................................................
+          total2 = diferenciaConvertida*total1
+          
+          #----------------------------------------------
+          
+          total_con_descuento = importeEstadia - total2
+          
+          
+          
+          return total_con_descuento # este seria el importe de estadia NO  el total
+
+          
+          
+    
+   
+     
+    
+   
+     
+    
+     
+   
+     
+     

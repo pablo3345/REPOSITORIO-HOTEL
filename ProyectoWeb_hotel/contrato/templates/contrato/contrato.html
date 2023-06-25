@@ -89,10 +89,60 @@
 
 {{formContrato|crispy}}
 
+
+
+
 </table>
+<br>
+
+<p style="font-size: 14px;">SI DESEA HACER DESCUENTOS AL IMPORTE DE LA NOCHE DE ESTADIA MARQUE EL CASILLERO</p><br>
+<!-- le agruegue estos ckek box ------------------------------ -->
+{% comment %} <label><input type="checkbox" id="10%" name="diez" value=10> 10%</label> &nbsp;
+<label><input type="checkbox" id="15%" name="quince" value=15> 15%</label> &nbsp;
+
+<label><input type="checkbox" id="50%" name="cincuenta" value=50> 50%</label> {% endcomment %}
+
+<div style="display:flex;">
+<div class ="form-check">
+<label><input class="form-check-input" type="radio" name="descuento" value=10>10%</label> 
+
+
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check" >
+   <label><input class="form-check-input" type="radio" name="descuento" value=15>15%</label> 
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento" value=20>20%</label>
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento" value=25>25%</label> 
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento" value=30>30%</label> 
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento" value=35>35%</label> 
+</div> 
+</div><br>
+<div style="display:flex;">
+<div class ="form-check">
+
+   <label><input class="form-check-input" type="radio" name="descuento" value=40>40%</label> 
+
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento" value=45>45%</label> 
+</div> &nbsp; &nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento" value=50>50%</label> 
+</div>&nbsp; &nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento" value=60>60%</label> 
+</div>
+</div>
 <!--<p style="color:red; margin-left:119px; font-weight:bold; font-size:14px;">El total y las noches se sacan automaticamente</p> -->
 
-
+<br>
 <p style="color:red; margin-left:300px; font-weight:bold; font-size:14px;">* campos obligatorios</p><br>
 <p style = "font-size: 13px;">EL IMPORTE Y LOS DIAS DE ESTADIA SE CALCULAN AUTOMATICAMENTE</p>
 
@@ -117,9 +167,10 @@
 <br>
 <br>
 <h4 style="color:green">Noches de estadia: {{diferenciaConvertida}} </h4>
-<h4 style="color:green">Importe de estadia: {{importe_estadia}} </h4>
+<h4 style="color:green">Descuento en el precio de la habitacion: {{descuento}} %</h4>
+<!-- <h4 style="color:green">Importe de estadia: {{importe_estadia}} </h4>
 <h4 style="color:green">Importe de otros gastos es: {{importe_de_otros_gastos}} </h4>
-<h4 style="color:green">El total es de: {{total}} </h4>
+<h4 style="color:green">El total es de: {{total}} </h4> -->
 
 
 </form>

@@ -38,7 +38,7 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-
+                                            <th><div style= "width:350px;">ELIMINAR / EDITAR / LATE CHECK OUT / CAMBIAR TOTAL</div></th>
                                             <th>Habitacion</th>
                                             <th>Huesped</th>
                                             <th>Fecha entrada</th>
@@ -50,7 +50,7 @@
 
                                             <th>Total</th>
                                            
-                                            <th><div style= "width:350px;">ELIMINAR / EDITAR / LATE CHECK OUT / CAMBIAR TOTAL</div></th> 
+                                             
                                            <!--  <th>ELIMINAR</th> -->
 
                                         </tr>
@@ -73,7 +73,16 @@
                                     <tbody>
                                     {%  for contrato in contratos %}
                                     <tr>
-
+                                        <td>   
+                                            <div style="display:flex;"> 
+                                      
+                                        <a href="{% url 'eliminarContrato' contrato.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> &nbsp;
+                                        <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a>&nbsp;
+                                        <a href="{% url 'late_check' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">late check out</button></a>&nbsp;
+                                        <a href="{% url 'cambiarTotal' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">cambiar total</button></a>
+                               
+                                   <!-- </div> -->
+                                    </td> 
                                         <td>{{contrato.habitacion}}</td>
                                         <td>{{contrato.huesped}}</td>
                                     
@@ -88,7 +97,7 @@
                                       <!-- <div style="display:flex;"> -->
                                        
                                       
-                                       <td>   
+                                      {% comment %}  <td>   
                                             <div style="display:flex;"> 
                                       
                                         <a href="{% url 'eliminarContrato' contrato.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> &nbsp;
@@ -97,7 +106,7 @@
                                         <a href="{% url 'cambiarTotal' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">cambiar total</button></a>
                                
                                    <!-- </div> -->
-                                    </td> 
+                                    </td>  {% endcomment %}
                                        
                                       <!-- <td> <a href="#"> <button type="button" style="background:blue; color:white;">modificar</button></a></td>
                                         <td><a href="#"> <button type="button" style="background:red; color:white;">eliminar</button></a> -->

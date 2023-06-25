@@ -5,6 +5,9 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
+  // agregue esto-------------------------
+  
+  //---------------------------------------
   type: 'bar',
   data: {
     labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
