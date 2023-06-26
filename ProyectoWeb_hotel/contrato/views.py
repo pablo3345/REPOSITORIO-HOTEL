@@ -161,6 +161,8 @@ def guardarContrato(request):
           late_check_out = request.POST.get("late_chack_out")
           
           descuento= request.POST.get("descuento")
+          descuento_total= request.POST.get("descuento_total")
+          
      #.........................cambiar formato calendario.....................
           fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M') # strptime lo convierto a objeto datetime, el segundo parametro le dice como interpretar la fecha, cual es la hora, el dia, el mes etc
      
@@ -195,7 +197,13 @@ def guardarContrato(request):
          # total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           #total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
            #para volver atras--------------
-           
+          
+          if descuento != None and descuento_total != None:
+               
+               messages.error(request, "igreso descuentos en ambos casilleros")
+               return redirect('Contrato')
+               
+          
         
           if descuento != None:
                messages.success(request, "agrego descuento")
@@ -211,12 +219,22 @@ def guardarContrato(request):
                           total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
                           contrato.importe_estadia= total_estadia_con_descuento_Late
                           contrato.total= total_estadia_con_descuento_Late + float(importe_otros_gast)
+                          #------para volver atras--------------------------
                           
                     
                          
           else:
+               if descuento_total != None:
                 contrato.importe_estadia= importeEstadia
-                contrato.total= total
+                
+                descuentoTotal = total* float(descuento_total) /100
+                descuentoTotal2 = descuentoTotal
+                contrato.total= total - descuentoTotal2
+                messages.success(request, "agrego descuento")
+               else:
+                    contrato.importe_estadia= importeEstadia
+                    contrato.total= total
+                    
                
                
         
@@ -288,7 +306,7 @@ def guardarContrato(request):
      
      
      
-     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia, 'diferenciaConvertida':diferenciaConvertida, 'descuento':descuento})
+     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia, 'diferenciaConvertida':diferenciaConvertida, 'descuento':descuento, 'descuento_total': descuento_total})
      
      
    
@@ -848,7 +866,9 @@ def descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, 
 
           
           
-    
+def descuento_al_total(request): 
+     
+     pass
    
      
     

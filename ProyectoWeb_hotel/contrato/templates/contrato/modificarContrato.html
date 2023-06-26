@@ -38,7 +38,7 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th><div style= "width:350px;">ELIMINAR / EDITAR / LATE CHECK OUT / CAMBIAR TOTAL</div></th>
+                                            <th><div style= "width:350px;">ELIMINAR / LATE CHECK OUT / CAMBIAR TOTAL</div></th>
                                             <th>Habitacion</th>
                                             <th>Huesped</th>
                                             <th>Fecha entrada</th>
@@ -77,7 +77,7 @@
                                             <div style="display:flex;"> 
                                       
                                         <a href="{% url 'eliminarContrato' contrato.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> &nbsp;
-                                        <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a>&nbsp;
+                                      <!--  <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a>&nbsp; -->
                                         <a href="{% url 'late_check' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">late check out</button></a>&nbsp;
                                         <a href="{% url 'cambiarTotal' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">cambiar total</button></a>
                                
