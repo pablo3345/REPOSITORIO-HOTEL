@@ -54,8 +54,8 @@
 
 
 <a href= "{% url  'modificarHuesped' %}" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a><br><br>
-<p style = "font-size: 13px;">CON LIMPIAR FORMULARIO PUEDE LIMPIAR EL FORMULARIO Y VOLVER A CARGAR</p>
- <a href= "{% url 'Contrato' %}"  style="margin:auto"><button type="button" class="btn btn-dark">LIMPIAR FORMULARIO</button></a><br><br>
+<!-- <p style = "font-size: 13px;">CON LIMPIAR FORMULARIO PUEDE LIMPIAR EL FORMULARIO Y VOLVER A CARGAR</p>
+ <a href= "{% url 'Contrato' %}"  style="margin:auto"><button type="button" class="btn btn-dark">LIMPIAR FORMULARIO</button></a><br><br> -->
 
 
 <br>
@@ -97,7 +97,7 @@
 </table>
 <br>
 
-<p style="font-size: 14px;">SI DESEA HACER DESCUENTOS AL IMPORTE DE LA NOCHE DE ESTADIA</p><br>
+<p style="font-size: 14px;">SI DESEA HACER DESCUENTO AL IMPORTE DE CADA NOCHE DE ESTADIA</p><br>
 <!-- le agruegue estos ckek box ------------------------------ -->
 {% comment %} <label><input type="checkbox" id="10%" name="diez" value=10> 10%</label> &nbsp;
 <label><input type="checkbox" id="15%" name="quince" value=15> 15%</label> &nbsp;
@@ -105,6 +105,11 @@
 <label><input type="checkbox" id="50%" name="cincuenta" value=50> 50%</label> {% endcomment %}
 
 <div style="display:flex;">
+   <div class ="form-check">
+      <label><input class="form-check-input" type="radio" name="descuento" value=5>5%</label> 
+      
+      
+      </div> &nbsp; &nbsp;&nbsp;&nbsp;
 <div class ="form-check">
 <label><input class="form-check-input" type="radio" name="descuento" value=10>10%</label> 
 
@@ -122,11 +127,13 @@
 <div class ="form-check">
    <label><input class="form-check-input" type="radio" name="descuento" value=30>30%</label> 
 </div> &nbsp; &nbsp;&nbsp;&nbsp;
+</div> <br>
+<div style="display:flex;">
 <div class ="form-check">
    <label><input class="form-check-input" type="radio" name="descuento" value=35>35%</label> 
-</div> 
-</div><br>
-<div style="display:flex;">
+</div>  &nbsp; &nbsp;&nbsp;&nbsp;
+
+
 <div class ="form-check">
 
    <label><input class="form-check-input" type="radio" name="descuento" value=40>40%</label> 
@@ -140,13 +147,22 @@
 </div>&nbsp; &nbsp;&nbsp;
 <div class ="form-check">
    <label><input class="form-check-input" type="radio" name="descuento" value=60>60%</label> 
+</div>&nbsp; &nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento" value=70>70%</label> 
 </div>
 </div>
 <!--<p style="color:red; margin-left:119px; font-weight:bold; font-size:14px;">El total y las noches se sacan automaticamente</p> -->
 <br>
-<p style="font-size: 14px;">SI DESEA HACER DESCUENTOS AL TOTAL DEL IMPORTE CALCULADO</p><br>
+<p style="font-size: 14px;">SI DESEA HACER DESCUENTO AL TOTAL DEL IMPORTE CALCULADO</p><br>
 
 <div style="display:flex;">
+   <div class ="form-check">
+      <label><input class="form-check-input" type="radio" name="descuento" value=5>5%</label> 
+      
+      
+      </div> &nbsp; &nbsp;&nbsp;&nbsp;
+  
 <div class ="form-check">
 <label><input class="form-check-input" type="radio" name="descuento_total" value=10>10%</label> 
 
@@ -164,11 +180,12 @@
 <div class ="form-check">
    <label><input class="form-check-input" type="radio" name="descuento_total" value=30>30%</label> 
 </div> &nbsp; &nbsp;&nbsp;&nbsp;
-<div class ="form-check">
-   <label><input class="form-check-input" type="radio" name="descuento_total" value=35>35%</label> 
-</div> 
 </div><br>
 <div style="display:flex;">
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento_total" value=35>35%</label> 
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+
 <div class ="form-check">
 
    <label><input class="form-check-input" type="radio" name="descuento_total" value=40>40%</label> 
@@ -182,6 +199,9 @@
 </div>&nbsp; &nbsp;&nbsp;
 <div class ="form-check">
    <label><input class="form-check-input" type="radio" name="descuento_total" value=60>60%</label> 
+</div>&nbsp; &nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="descuento_total" value=70>70%</label> 
 </div>
 </div>
 
