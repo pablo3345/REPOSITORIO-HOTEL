@@ -56,7 +56,7 @@ class Contrato(models.Model):
     fecha_entrada= models.DateTimeField(auto_now=False)
     fecha_salida =models.DateTimeField(auto_now=False)
     importe_estadia = models.FloatField() # poner en un casillero el total del precio de la habitacion x noche
-    importe_otros_gasto = models.FloatField()
+    importe_otros_gasto = models.FloatField(default=0.0)
    # late_chack_out = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     total = models.FloatField()
     estado = models.BooleanField()

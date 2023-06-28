@@ -50,7 +50,7 @@ class FormContrato(forms.ModelForm):
                 'fecha_entrada': 'Fecha Entrada',
                 'fecha_salida': 'Fecha Salida',
                 'importe_estadia': "Importe estadia se agrega automaticamente",
-                'importe_otros_gasto': 'Gastos extras (poner cero si no hay importe)',
+                'importe_otros_gasto': 'Gastos extras (dejar en cero si no hay importe)',
                 #'late_chack_out':'Late check out',
                 'total': 'Total se agrega automaticamente'
                 

@@ -97,7 +97,7 @@
 </table>
 <br>
 
-<p style="font-size: 14px;">SI DESEA HACER DESCUENTO AL IMPORTE DE CADA NOCHE DE ESTADIA</p><br>
+<p style="font-size: 14px; color:#F39C12;">SI DESEA HACER DESCUENTO AL IMPORTE DE CADA NOCHE DE ESTADIA</p><br>
 <!-- le agruegue estos ckek box ------------------------------ -->
 {% comment %} <label><input type="checkbox" id="10%" name="diez" value=10> 10%</label> &nbsp;
 <label><input type="checkbox" id="15%" name="quince" value=15> 15%</label> &nbsp;
@@ -154,11 +154,11 @@
 </div>
 <!--<p style="color:red; margin-left:119px; font-weight:bold; font-size:14px;">El total y las noches se sacan automaticamente</p> -->
 <br>
-<p style="font-size: 14px;">SI DESEA HACER DESCUENTO AL TOTAL DEL IMPORTE CALCULADO</p><br>
+<p style="font-size: 14px; color: green;">SI DESEA HACER DESCUENTO AL TOTAL DEL IMPORTE CALCULADO</p><br>
 
 <div style="display:flex;">
    <div class ="form-check">
-      <label><input class="form-check-input" type="radio" name="descuento" value=5>5%</label> 
+      <label><input class="form-check-input" type="radio" name="descuento_total" value=5>5%</label> 
       
       
       </div> &nbsp; &nbsp;&nbsp;&nbsp;
@@ -203,12 +203,59 @@
 <div class ="form-check">
    <label><input class="form-check-input" type="radio" name="descuento_total" value=70>70%</label> 
 </div>
+</div><br>
+<p style="font-size: 14px; color: red;">SI DESEA CARGAR UN AUMENTO AL TOTAL CALCULADO</p><br>
+<div style="display:flex;">
+   <div class ="form-check">
+      <label><input class="form-check-input" type="radio" name="aumento" value=4>4%</label> 
+      
+      
+      </div> &nbsp; &nbsp;&nbsp;&nbsp;
+   <div class ="form-check">
+      <label><input class="form-check-input" type="radio" name="aumento" value=5>5%</label> 
+      
+      
+      </div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check">
+<label><input class="form-check-input" type="radio" name="aumento" value=10>10%</label> 
+
+
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check" >
+   <label><input class="form-check-input" type="radio" name="aumento" value=15>15%</label> 
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="aumento" value=20>20%</label>
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="aumento" value=25>25%</label> 
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
 </div>
+</br>
+<div style="display:flex;">
+   <div class ="form-check">
+      <label><input class="form-check-input" type="radio" name="aumento" value=30>30%</label> 
+   </div> &nbsp; &nbsp;&nbsp;&nbsp;
+ 
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="aumento" value=35>35%</label> 
+</div>  &nbsp; &nbsp;&nbsp;&nbsp;
 
 
+<div class ="form-check">
+
+   <label><input class="form-check-input" type="radio" name="aumento" value=40>40%</label> 
+
+</div> &nbsp; &nbsp;&nbsp;&nbsp;
+<div class ="form-check">
+   <label><input class="form-check-input" type="radio" name="aumento" value=45>45%</label> 
+</div>
+</div>
+<br>
 <br>
 <p style="color:red; margin-left:300px; font-weight:bold; font-size:14px;">* campos obligatorios</p><br>
 <p style = "font-size: 13px;">EL IMPORTE Y LOS DIAS DE ESTADIA SE CALCULAN AUTOMATICAMENTE</p>
+
 
 
 
@@ -237,11 +284,13 @@
 <h4 style="color:green">Noches de estadia: {{diferenciaConvertida}} </h4>
 <h4 style="color:green">Descuento en el precio de la habitacion: {{descuento}} %</h4>
 <h4 style="color:green">Descuento al total importe: {{descuento_total}} %</h4>
+<h4 style="color:green">Aumento sobre el total: {{aumento}} %</h4>
 <!-- <h4 style="color:green">Importe de estadia: {{importe_estadia}} </h4>
 <h4 style="color:green">Importe de otros gastos es: {{importe_de_otros_gastos}} </h4>
 <h4 style="color:green">El total es de: {{total}} </h4> -->
 
-
+<br>
+<br>
 </form>
 
 

@@ -162,6 +162,7 @@ def guardarContrato(request):
           
           descuento= request.POST.get("descuento")
           descuento_total= request.POST.get("descuento_total")
+          aumento= request.POST.get("aumento")
           
      #.........................cambiar formato calendario.....................
           fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M') # strptime lo convierto a objeto datetime, el segundo parametro le dice como interpretar la fecha, cual es la hora, el dia, el mes etc
@@ -200,8 +201,21 @@ def guardarContrato(request):
           
           if descuento != None and descuento_total != None:
                
-               messages.error(request, "igreso descuentos en ambos casilleros")
+               messages.error(request, "ingreso porcentajes en varios casilleros")
                return redirect('Contrato')
+          
+          elif  descuento != None and aumento != None:
+               messages.error(request, "ingreso porcentajes en varios casilleros")
+               return redirect('Contrato')
+          elif descuento_total != None and aumento != None:
+               messages.error(request,"ingreso porcentajes en varios casilleros")
+               return redirect('Contrato')
+          
+          elif descuento_total != None and aumento != None and descuento != None:
+                messages.error(request,"ingreso porcentajes en varios casilleros")
+                return redirect('Contrato')
+          
+               
                
           
         
@@ -223,22 +237,30 @@ def guardarContrato(request):
                           
                     
                          
-          else:
-               if descuento_total != None:
-                contrato.importe_estadia= importeEstadia
+          elif  descuento_total != None:
+                 
+                  contrato.importe_estadia= importeEstadia
                 
-                descuentoTotal = total* float(descuento_total) /100
-                descuentoTotal2 = descuentoTotal
-                contrato.total= total - descuentoTotal2
-                messages.success(request, "agrego descuento")
-               else:
-                    contrato.importe_estadia= importeEstadia
-                    contrato.total= total
+                  descuentoTotal = total* float(descuento_total) /100
+                  descuentoTotal2 = descuentoTotal
+                  contrato.total= total - descuentoTotal2
+                  messages.success(request, "agrego descuento")
+                  
+          elif aumento != None:
+               contrato.importe_estadia= importeEstadia
+                
+               aumento_total = total* float(aumento) /100
+               aumento_total2 = aumento_total
+               contrato.total= total + aumento_total2
+               messages.success(request, "agrego un aumento al total")
+              
+               
+               
+          else:
+               contrato.importe_estadia= importeEstadia
+               contrato.total= total
                     
-               
-               
-        
-       
+     
           
           contrato.habitacion =habitacion # obtuve la habitacion mediante el id
           
@@ -306,7 +328,7 @@ def guardarContrato(request):
      
      
      
-     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia, 'diferenciaConvertida':diferenciaConvertida, 'descuento':descuento, 'descuento_total': descuento_total})
+     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia, 'diferenciaConvertida':diferenciaConvertida, 'descuento':descuento, 'descuento_total': descuento_total, 'aumento':aumento})
      
      
    
