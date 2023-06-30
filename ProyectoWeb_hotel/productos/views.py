@@ -3,6 +3,7 @@ from productos.formsProducto import ProveedoresForm, InsumosForm, ProductoPublic
 from django.contrib import messages
 from productos.models import Proveedores, Insumos, Producto_al_publico
 
+
 # Create your views here.
 
 def guardarProveedor(request):
@@ -358,9 +359,7 @@ def eliminarProducto(request, id_producto):
 
 
 
-        
-    
-    
+
 
 
     

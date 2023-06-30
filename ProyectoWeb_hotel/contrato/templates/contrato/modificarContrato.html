@@ -38,15 +38,19 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th><div style= "width:350px;">ELIMINAR / LATE CHECK OUT / CAMBIAR TOTAL</div></th>
-                                            <th>Habitacion</th>
-                                            <th>Huesped</th>
-                                            <th>Fecha entrada</th>
-                                            <th>Fecha salida</th>
+                                            <th><div style= "width:350px;">ELIMINAR / CAMBIAR TOTAL / MODIFICAR / LATE CHECK OUT</div></th>
+                                            <th><div style= "width:180px;">Habitacion </div></th>
+                                            <th><div style= "width:180px;"> Huesped</div></th>
+                                            <th><div style= "width:180px;"> Fecha Entrada</div></th>
+                                            <th><div style= "width:180px;">Fecha Salida</div> </th>
                                          
                                             <th>Importe estadia</th>
                                             <th>Importe otros gastos</th>
                                            <!-- <th>Late check out</th> -->
+                                           <th>Descuento habitacion noche</th>
+                                         
+                                            <th>Descuento al total</th>
+                                            <th>Aumento al total</th>
 
                                             <th>Total</th>
                                            
@@ -77,8 +81,8 @@
                                             <div style="display:flex;"> 
                                       
                                         <a href="{% url 'eliminarContrato' contrato.id %}"> <button type="button" style="background:#D6234A; color:white; border:none;">eliminar</button></a> &nbsp;
-                                      <!--  <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a>&nbsp; -->
-                                        <a href="{% url 'late_check' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">late check out</button></a>&nbsp;
+                                        <a href="{% url 'modificarTablaContrato' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">editar</button></a>&nbsp; 
+                                        <a href="{% url 'late_check' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">late check out</button></a>&nbsp; 
                                         <a href="{% url 'cambiarTotal' contrato.id %}"> <button type="button" style="background: #37517e; color:white; border:none;">cambiar total</button></a>
                                
                                    <!-- </div> -->
@@ -91,6 +95,12 @@
                                         <td>{{contrato.importe_estadia}}</td>
                                         <td>{{contrato.importe_otros_gasto}}</td>
                                        <!-- <td>{{contrato.late_chack_out}}</td> -->
+
+                                       <td>{{contrato.descuento_importe_noche}}</td>
+                                        <td>{{contrato.descuento_total_calcularo}}</td>
+                                        <td>{{contrato.aumento_total}}</td>
+
+
                                         <td>{{contrato.total}}</td>
                                       
                                        

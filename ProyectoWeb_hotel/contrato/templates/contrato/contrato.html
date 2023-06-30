@@ -97,14 +97,14 @@
 </table>
 <br>
 
-<p style="font-size: 14px; color:#F39C12;">SI DESEA HACER DESCUENTO AL IMPORTE DE CADA NOCHE DE ESTADIA</p><br>
-<!-- le agruegue estos ckek box ------------------------------ -->
+{% comment %} <p style="font-size: 14px; color:#F39C12;">SI DESEA HACER DESCUENTO AL IMPORTE DE CADA NOCHE DE ESTADIA</p><br>
+<!-- le agruegue estos ckek box ------------------------------ --> {% endcomment %}
 {% comment %} <label><input type="checkbox" id="10%" name="diez" value=10> 10%</label> &nbsp;
 <label><input type="checkbox" id="15%" name="quince" value=15> 15%</label> &nbsp;
 
 <label><input type="checkbox" id="50%" name="cincuenta" value=50> 50%</label> {% endcomment %}
 
-<div style="display:flex;">
+{% comment %} <div style="display:flex;">
    <div class ="form-check">
       <label><input class="form-check-input" type="radio" name="descuento" value=5>5%</label> 
       
@@ -151,10 +151,10 @@
 <div class ="form-check">
    <label><input class="form-check-input" type="radio" name="descuento" value=70>70%</label> 
 </div>
-</div>
+</div> {% endcomment %}
 <!--<p style="color:red; margin-left:119px; font-weight:bold; font-size:14px;">El total y las noches se sacan automaticamente</p> -->
-<br>
-<p style="font-size: 14px; color: green;">SI DESEA HACER DESCUENTO AL TOTAL DEL IMPORTE CALCULADO</p><br>
+
+{% comment %} <p style="font-size: 14px; color: green;">SI DESEA HACER DESCUENTO AL TOTAL DEL IMPORTE CALCULADO</p><br>
 
 <div style="display:flex;">
    <div class ="form-check">
@@ -250,7 +250,7 @@
 <div class ="form-check">
    <label><input class="form-check-input" type="radio" name="aumento" value=45>45%</label> 
 </div>
-</div>
+</div> {% endcomment %}
 <br>
 <br>
 <p style="color:red; margin-left:300px; font-weight:bold; font-size:14px;">* campos obligatorios</p><br>
@@ -263,7 +263,7 @@
 
 <input type="submit" value="GUARDAR Y CALCULAR" class="btn btn-info"><br><br>
 
-<p style = "font-size: 13px;">VER CONTRATOS ACTIVOS / ELIMINAR / LATE CHECK OUT / CAMBIAR TOTAL</p>
+<p style = "font-size: 13px;">VER CONTRATOS / ELIMINAR / LATE CHECK OUT / CAMBIAR TOTAL</p>
  <a href= "{% url 'modificarContrato' %}"  style="margin:auto"><button type="button" class="btn btn-info">VER CONTRATOS ACTIVOS</button></a><br><br>
 
  <p style = "font-size: 13px;">VER TODOS LOS CONTRATOS ACTIVOS Y NO ACTIVOS</p>
@@ -273,7 +273,7 @@
   
  <!-- <a href= "#"  style="margin:auto"><button type="button" class="btn btn-info">AGREGAR LATE CHECK OUT</button></a><br> -->
  <p style = "font-size: 13px;">CON LIMPIAR FORMULARIO PUEDE LIMPIAR EL FORMULARIO Y VOLVER A CARGAR</p>
- <a href= "{% url 'Contrato' %}"  style="margin:auto"><button type="button" class="btn btn-dark">LIMPIAR FORMULARIO</button></a><br><br>
+ <!-- <a href= "{% url 'Contrato' %}"  style="margin:auto"><button type="button" class="btn btn-dark">LIMPIAR FORMULARIO</button></a><br><br> -->
 
 
 

@@ -10,6 +10,8 @@ from django.views.generic import View
 from .utilitario import render_to_pdf
 from django.http import HttpResponse
 
+#import json
+
 
 # Create your views here.
 
@@ -160,9 +162,9 @@ def guardarContrato(request):
           totals= request.POST.get("total")
           late_check_out = request.POST.get("late_chack_out")
           
-          descuento= request.POST.get("descuento")
-          descuento_total= request.POST.get("descuento_total")
-          aumento= request.POST.get("aumento")
+          descuento_porNoche= request.POST.get("descuento_importe_noche")
+          descuento_total_importe= request.POST.get("descuento_total_calcularo")
+          aumento_Total= request.POST.get("aumento_total")
           
      #.........................cambiar formato calendario.....................
           fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M') # strptime lo convierto a objeto datetime, el segundo parametro le dice como interpretar la fecha, cual es la hora, el dia, el mes etc
@@ -173,8 +175,10 @@ def guardarContrato(request):
           fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
           fechaFormateada2 = fechaConvertida2.strftime('%Y-%m-%dT%H:%M') 
           
-          habitacion = Habitacion.objects.get(id= habitacions)
-          huesped = Huesped.objects.get(id=huespeds)
+          #habitacion = Habitacion.objects.get(id= habitacions)
+          #huesped = Huesped.objects.get(id=huespeds)
+          habitacion = get_object_or_404(Habitacion, id=habitacions)
+          huesped = get_object_or_404(Huesped, id=huespeds)
           
           #-------------------------id contrato para ponerle True----------------------
           id_contrato = contrato.id
@@ -199,27 +203,26 @@ def guardarContrato(request):
           #total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
            #para volver atras--------------
           
-          if descuento != None and descuento_total != None:
+          """ if descuento != 0 and descuento_total != 0:
                
-               messages.error(request, "ingreso porcentajes en varios casilleros")
+               messages.error(request, "ingreso porcentajes en varias opciones")
                return redirect('Contrato')
           
-          elif  descuento != None and aumento != None:
-               messages.error(request, "ingreso porcentajes en varios casilleros")
+          elif  descuento != 0 and aumento != 0:
+               messages.error(request, "ingreso porcentajes en varias opciones")
                return redirect('Contrato')
-          elif descuento_total != None and aumento != None:
-               messages.error(request,"ingreso porcentajes en varios casilleros")
+          elif descuento_total != 0 and aumento != 0:
+               messages.error(request,"ingreso porcentajes en varias opciones")
                return redirect('Contrato')
           
-          elif descuento_total != None and aumento != None and descuento != None:
-                messages.error(request,"ingreso porcentajes en varios casilleros")
+          elif descuento_total != 0 and aumento != 0 and descuento != 0:
+                messages.error(request,"ingreso porcentajes en varias opciones")
                 return redirect('Contrato')
-          
+           """
                
                
-          
-        
-          if descuento != None:
+         
+          if int(descuento_porNoche) != 0:
                messages.success(request, "agrego descuento")
               # total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
               # total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
@@ -233,33 +236,43 @@ def guardarContrato(request):
                           total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
                           contrato.importe_estadia= total_estadia_con_descuento_Late
                           contrato.total= total_estadia_con_descuento_Late + float(importe_otros_gast)
-                          #------para volver atras--------------------------
+                         
                           
                     
                          
-          elif  descuento_total != None:
+          elif int(descuento_total_importe) != 0:
                  
-                  contrato.importe_estadia= importeEstadia
-                
-                  descuentoTotal = total* float(descuento_total) /100
-                  descuentoTotal2 = descuentoTotal
-                  contrato.total= total - descuentoTotal2
-                  messages.success(request, "agrego descuento")
-                  
-          elif aumento != None:
                contrato.importe_estadia= importeEstadia
                 
-               aumento_total = total* float(aumento) /100
+               descuentoTotal = total* float(descuento_total_importe) /100
+               descuentoTotal2 = descuentoTotal
+                  
+               
+               contrato.total= total - descuentoTotal2
+               
+               messages.success(request, "agrego descuento al total")
+          
+       
+                  
+          elif int(aumento_Total) != 0:
+               contrato.importe_estadia= importeEstadia
+                
+               aumento_total = total* float(aumento_Total) /100
                aumento_total2 = aumento_total
                contrato.total= total + aumento_total2
                messages.success(request, "agrego un aumento al total")
-              
+               
+               
+               #--------------------------------------------agregue esto------2 opciones---
+        
+             
                
                
           else:
                contrato.importe_estadia= importeEstadia
                contrato.total= total
-                    
+               
+              
      
           
           contrato.habitacion =habitacion # obtuve la habitacion mediante el id
@@ -268,18 +281,18 @@ def guardarContrato(request):
           contrato.fecha_entrada= fechaFormateada
           contrato.fecha_salida = fechaFormateada2
           
-         
+          #-------------------agregue los descuentos ---------------------
+          
+          contrato.descuento_importe_noche=descuento_porNoche
+          contrato.descuento_total_calcularo=descuento_total_importe
+          contrato.aumento_total= aumento_Total
+          
+         #----------------------------------------------------------- 
        
-          #contrato.importe_estadia= importeEstadia
-                    
-          #contrato.importe_estadia= importeEstadia (era el de antes que funcionaba perfecto)
           contrato.importe_otros_gasto = importe_otros_gast
-          #----------------poner true cuando guardo el estado--------------
+        
           contrato.estado=true_variable
-        # contrato.late_chack_out = late_check_out #lo agregue nuevo
-          #contrato.total = total
-          #-----------le agregue esto para probar--------------
-         
+       
         
          
           
@@ -328,7 +341,7 @@ def guardarContrato(request):
      
      
      
-     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia, 'diferenciaConvertida':diferenciaConvertida, 'descuento':descuento, 'descuento_total': descuento_total, 'aumento':aumento})
+     return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2, 'total': total, 'importe_de_otros_gastos':importe_otros_gast, 'importe_estadia':importeEstadia, 'diferenciaConvertida':diferenciaConvertida, 'descuento':descuento_porNoche, 'descuento_total': descuento_total_importe, 'aumento':aumento_Total})
      
      
    
@@ -374,6 +387,11 @@ def modificarTablaContrato(request, id_contrato):
           #--------------------------------------------------------
           
           huesped = Huesped.objects.get(id= huespeds)
+          
+          
+          descuento= request.POST.get("descuento_importe_noche")
+          descuento_total= request.POST.get("descuento_total_calcularo")
+          aumento= request.POST.get("aumento_tota")
           
           
           
@@ -432,6 +450,14 @@ def modificarTablaContrato(request, id_contrato):
                #---------------agregue el huesped-----------------
                contrato.huesped=huesped
                
+                #-------------------agregue los descuentos ---------------------
+          
+               contrato.descuento_importe_noche=descuento
+               contrato.descuento_total_calcularo=descuento_total
+               contrato.aumento_total= aumento
+          
+               #----------------------------------------------------------- 
+               
                
               
                
@@ -456,6 +482,9 @@ def modificarTablaContrato(request, id_contrato):
      
      else:
           
+          
+         
+         
           formContrato = FormContrato(instance=contrato)
           
      
@@ -658,10 +687,16 @@ def ponerOcupada_ultimaHabitacion(request, habitacions):
 def lateCheckout(request, id_contrato):
      formContrato=FormContrato()
      
+     #-----para volver atras ----------------
+     
+     
+     
+     
     # contrato = Contrato.objects.get(id= id_contrato)
      contrato = get_object_or_404(Contrato, id=id_contrato)
-
-    
+     
+      #-----para volver atras -------------------
+   
      
      fecha_entra = contrato.fecha_entrada
      fechaFormateada = fecha_entra.strftime('%Y-%m-%dT%H:%M') 
@@ -680,11 +715,27 @@ def lateCheckout(request, id_contrato):
           if fechaConvertida2.hour <10 or fechaConvertida2.hour>=18:
                 messages.error(request, "El horario no corresponde")
                 return redirect('modificarContrato')
+          
+          
           elif  fechaConvertida2.hour ==10 or fechaConvertida2.minute==0:
                messages.error(request, "El horario no corresponde al late check out")
                return redirect('modificarContrato')
           
+          elif fechaConvertida2.day != contrato.fecha_salida.day:
+               messages.error(request, "El dia no corresponde al late check out")
+               return redirect('modificarContrato')
+          
+          
+          #------- agrego esto para ver que pasa----------------y para volver atras-----
+          
+        
+          
+          
+          
+          
+          
           else:
+              
                
               
                fechaFormateada2 = fechaConvertida2.strftime('%Y-%m-%dT%H:%M') 
@@ -804,14 +855,15 @@ def descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, hab
          
           importe_otros_gast= request.POST.get("importe_otros_gasto")
           
-          descuento= request.POST.get("descuento")
+          descuento= request.POST.get("descuento_importe_noche")
+          # descuento= request.POST.get("descuento")
         
          
      
           importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           
-          print("radioButton descuento---", descuento)
+         
           
           retas1 = importeEstadia 
           
@@ -855,15 +907,16 @@ def descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, 
          
           importe_otros_gast= request.POST.get("importe_otros_gasto")
           
-          descuento= request.POST.get("descuento")
+          #descuento= request.POST.get("descuento")
+          descuento= request.POST.get("descuento_importe_noche")
           
         
-         
+
      
           importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
           
-          print("radioButton descuento---", descuento)
+        
           
           retas1 = importeEstadia 
           
@@ -892,12 +945,30 @@ def descuento_al_total(request):
      
      pass
    
-     
+  
+# acordarme de hacer editar contrato por si el cliente cambia la fecha de retirada   
     
-   
-     
+""" def convertir_jason():
+    contrato = Contrato()
     
+    junio = list()
+    
+    
+    for contr in contrato:
+          if contrato.fecha_entrada.month==6:
+            junio.append(contr)
+            count_junio = junio.count
+            
+           # diccionario = [{"junio": count_junio}] # en jason se ponen entre []
+            
+           # datos_jason = json.dumps(diccionario) #esto no va
+            
+            #let text = '{"diccionario" : [{"junio": count_junio}]}' # en formato javascrip usa comillas simples
+            
+           # const obj = JSON.parse(text) # convertimos a javascrip con JSON.parse
+            
+            
      
-   
      
      
+ """

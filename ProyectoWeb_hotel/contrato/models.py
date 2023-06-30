@@ -11,6 +11,13 @@ import datetime
 
 
  #Create your models here.
+ 
+descuento_importeNoche = [(0, '0'),(5, '5'), (10, '10'), (15, '15'), (20, '20'), (25, '25'), (30, '35'), (40, '40'), (45, '45'), (50, '50'), (55, '55'), (60, '60'), (70, '70')] #es una tupla
+ 
+descuento_importeTotal = [(0, '0'),(5, '5'), (10, '10'), (15, '15'), (20, '20'), (25, '25'), (30, '30'),  (35, '35'),(40, '40'), (45, '45'), (50, '50'), (55, '55'), (60, '60'), (70, '70')] #es una tupla
+
+aumento_total = [(0, '0'),(4, '4'), (5, '5'), (10, '10'), (15, '15'), (20, '20'), (25, '25'), (30, '30'), (35, '35'), (40, '40'), (45, '45'), (50, '50')] #es una tupla
+
 
 class Huesped(models.Model):
      
@@ -60,6 +67,15 @@ class Contrato(models.Model):
    # late_chack_out = models.CharField(max_length=4, choices=(('SI', 'SI'), ('NO', 'NO')), default=1)
     total = models.FloatField()
     estado = models.BooleanField()
+    #-------------------%--------------------------
+    descuento_importe_noche= models.IntegerField( null= False, blank=False, choices=descuento_importeNoche, default= 1)
+    descuento_total_calcularo=models.IntegerField(null= False, blank=False, choices=descuento_importeTotal, default=1)
+    
+    aumento_total=models.IntegerField(null= False, blank=False, choices=aumento_total, default=1)
+    
+    
+    
+    #-------------------------------------------------------------
     created = models.DateTimeField(auto_now_add=True)  # aca guardamos la fecha que se creo un servicio
     updated = models.DateTimeField(auto_now=True)  # aca guardamos cuando se actualiza
     
