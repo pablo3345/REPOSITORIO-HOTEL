@@ -135,19 +135,19 @@ class Contrato(models.Model):
        
        
       
-        print(" la diferencia de dia es ",diferencia.days)
-        print("la fecha de entrada es ", fechaConvertida, "la fecha de salida es ", fechaConvertida2)
+        #print(" la diferencia de dia es ",diferencia.days)
+       # print("la fecha de entrada es ", fechaConvertida, "la fecha de salida es ", fechaConvertida2)
         
         
           #--------------------------check out 10--------------------------
         if fechaConvertida2== fecha_modificada:
-          print("hora reemplazada", fecha_modificada)
+          #print("hora reemplazada", fecha_modificada)
        
           if fechaConvertida.hour <10 and diferencia.days >00:
             
             diferenciaConvertida = diferencia.days
             diferenciaConvertida = diferenciaConvertida #+1
-            print(diferenciaConvertida)
+           # print(diferenciaConvertida)
            
           
        
@@ -156,31 +156,31 @@ class Contrato(models.Model):
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno")
+             # print(diferenciaConvertida, "(10) debo sumarle uno")
              
           elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
          
-              print("igual a 10 (10)", diferenciaConvertida)
+             # print("igual a 10 (10)", diferenciaConvertida)
               
           
              
         
           elif diferencia.days <1:
                diferenciaConvertida=1
-               print("menos de un dia (10)", diferenciaConvertida)
+              # print("menos de un dia (10)", diferenciaConvertida)
                
           elif fechaConvertida.hour >= 10: #le agregue el = al 00
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
+             # print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
               
           
          
           subtotal1 = float(habitacion.precio_por_noche) * float(diferenciaConvertida)
           total = subtotal1+ float(importe_otros_gasto)
-          print("el total es ", total)
+          #print("el total es ", total)
           
           
        
@@ -193,16 +193,16 @@ class Contrato(models.Model):
          
           fechaConvertida2=fecha_modificada
           
-          print("if perteneciente a late")
+          #print("if perteneciente a late")
           if fecha_modificada.hour ==10 and fecha_modificada.minute ==0:
             fecha_modificada = fechaConvertida2.replace(hour=10, minute=0)
             fechaConvertida2= fecha_modificada
-            print("fecha_modificada =", fecha_modificada)
+           # print("fecha_modificada =", fecha_modificada)
             if fechaConvertida.hour <10 and diferencia.days >00:
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
-              print(diferenciaConvertida, "late")
+            #  print(diferenciaConvertida, "late")
            
           
        
@@ -212,32 +212,32 @@ class Contrato(models.Model):
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno (late)")
+             # print(diferenciaConvertida, "(10) debo sumarle uno (late)")
              
             elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
          
-              print("igual a 10 (10), (late)", diferenciaConvertida)
+             # print("igual a 10 (10), (late)", diferenciaConvertida)
               
           
              
         
             elif diferencia.days <1:
                diferenciaConvertida=1
-               print("menos de un dia (10), (late)", diferenciaConvertida)
+              # print("menos de un dia (10), (late)", diferenciaConvertida)
                
             elif fechaConvertida.hour >= 10: #le agregue el = al 00
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22 (late)")
+             # print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22 (late)")
               
           
         
           subtotal1 = float(habitacion.precio_por_noche) * float(diferenciaConvertida)
           total = subtotal1+ float(importe_otros_gasto)
           total = total + float(habitacion.check_out_lates)
-          print("el total es ", total)
+         # print("el total es ", total)
        
           
             
@@ -245,7 +245,7 @@ class Contrato(models.Model):
      
      
        
-        print("el total de todo el alojamiento es ", total) 
+       # print("el total de todo el alojamiento es ", total) 
             
         
         
@@ -286,8 +286,8 @@ class Contrato(models.Model):
         
      
       
-        print(" la diferencia de dia es ",diferencia.days)
-        print("la fecha de entrada es ", fechaConvertida, "la fecha de salida es ", fechaConvertida2)
+        #print(" la diferencia de dia es ",diferencia.days)
+       # print("la fecha de entrada es ", fechaConvertida, "la fecha de salida es ", fechaConvertida2)
         
         
           #--------------------------check out 10--------------------------
@@ -297,7 +297,7 @@ class Contrato(models.Model):
             
             diferenciaConvertida = diferencia.days
             diferenciaConvertida = diferenciaConvertida #+1
-            print(diferenciaConvertida)
+           # print(diferenciaConvertida)
           
        
          
@@ -305,7 +305,7 @@ class Contrato(models.Model):
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno")
+             # print(diferenciaConvertida, "(10) debo sumarle uno")
               
             
               
@@ -314,19 +314,19 @@ class Contrato(models.Model):
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
          
-              print("igual a 10 (10)", diferenciaConvertida)
+             # print("igual a 10 (10)", diferenciaConvertida)
               
           
              
         
           elif diferencia.days <1:
                diferenciaConvertida=1
-               print("menos de un dia (10)", diferenciaConvertida)
+             #  print("menos de un dia (10)", diferenciaConvertida)
                
           elif fechaConvertida.hour >= 10: #le agregue el = al 00
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
+           #   print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
               
           
          
@@ -345,16 +345,16 @@ class Contrato(models.Model):
          
           fechaConvertida2=fecha_modificada
           
-          print("if perteneciente a late")
+        #  print("if perteneciente a late")
           if fecha_modificada.hour ==10 and fecha_modificada.minute ==0:
             fecha_modificada = fechaConvertida2.replace(hour=10, minute=0)
             fechaConvertida2= fecha_modificada
-            print("fecha_modificada =", fecha_modificada)
+         #   print("fecha_modificada =", fecha_modificada)
             if fechaConvertida.hour <10 and diferencia.days >00:
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
-              print(diferenciaConvertida, "late")
+             # print(diferenciaConvertida, "late")
            
           
        
@@ -364,25 +364,25 @@ class Contrato(models.Model):
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno (late)")
+            #  print(diferenciaConvertida, "(10) debo sumarle uno (late)")
              
             elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
          
-              print("igual a 10 (10), (late)", diferenciaConvertida)
+            #  print("igual a 10 (10), (late)", diferenciaConvertida)
               
           
              
         
             elif diferencia.days <1:
                diferenciaConvertida=1
-               print("menos de un dia (10), (late)", diferenciaConvertida)
+              # print("menos de un dia (10), (late)", diferenciaConvertida)
                
             elif fechaConvertida.hour >= 10: #le agregue el = al 00
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22 (late)")
+            #  print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22 (late)")
               
           
         
@@ -408,7 +408,7 @@ class Contrato(models.Model):
              
      
        
-        print("el total de todo el alojamiento es ", total)
+      # print("el total de todo el alojamiento es ", total)
         
         return subtotal1
       
@@ -443,8 +443,8 @@ class Contrato(models.Model):
         
      
       
-        print(" la diferencia de dia es ",diferencia.days)
-        print("la fecha de entrada es ", fechaConvertida, "la fecha de salida es ", fechaConvertida2)
+       # print(" la diferencia de dia es ",diferencia.days)
+       # print("la fecha de entrada es ", fechaConvertida, "la fecha de salida es ", fechaConvertida2)
         
         
           #--------------------------check out 10--------------------------
@@ -454,7 +454,7 @@ class Contrato(models.Model):
             
             diferenciaConvertida = diferencia.days
             diferenciaConvertida = diferenciaConvertida #+1
-            print(diferenciaConvertida)
+           # print(diferenciaConvertida)
           
        
          
@@ -462,7 +462,7 @@ class Contrato(models.Model):
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno")
+             # print(diferenciaConvertida, "(10) debo sumarle uno")
               
             
               
@@ -471,19 +471,19 @@ class Contrato(models.Model):
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
          
-              print("igual a 10 (10)", diferenciaConvertida)
+            #  print("igual a 10 (10)", diferenciaConvertida)
               
           
              
         
           elif diferencia.days <1:
                diferenciaConvertida=1
-               print("menos de un dia (10)", diferenciaConvertida)
+             #  print("menos de un dia (10)", diferenciaConvertida)
                
           elif fechaConvertida.hour >= 10: #le agregue el = al 00
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
+             # print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22")
               
           
          
@@ -502,16 +502,16 @@ class Contrato(models.Model):
          
           fechaConvertida2=fecha_modificada
           
-          print("if perteneciente a late")
+        #  print("if perteneciente a late")
           if fecha_modificada.hour ==10 and fecha_modificada.minute ==0:
             fecha_modificada = fechaConvertida2.replace(hour=10, minute=0)
             fechaConvertida2= fecha_modificada
-            print("fecha_modificada =", fecha_modificada)
+           # print("fecha_modificada =", fecha_modificada)
             if fechaConvertida.hour <10 and diferencia.days >00:
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
-              print(diferenciaConvertida, "late")
+             # print(diferenciaConvertida, "late")
            
           
        
@@ -521,25 +521,25 @@ class Contrato(models.Model):
             
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno (late)")
+             # print(diferenciaConvertida, "(10) debo sumarle uno (late)")
              
             elif fechaConvertida.hour ==10 and fechaConvertida.minute ==00:
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida #+1
          
-              print("igual a 10 (10), (late)", diferenciaConvertida)
+             # print("igual a 10 (10), (late)", diferenciaConvertida)
               
           
              
         
             elif diferencia.days <1:
                diferenciaConvertida=1
-               print("menos de un dia (10), (late)", diferenciaConvertida)
+            #   print("menos de un dia (10), (late)", diferenciaConvertida)
                
             elif fechaConvertida.hour >= 10: #le agregue el = al 00
               diferenciaConvertida = diferencia.days
               diferenciaConvertida = diferenciaConvertida+1 #+2
-              print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22 (late)")
+           #   print(diferenciaConvertida, "(10) debo sumarle uno, para la hora 22 (late)")
               
           
         
@@ -565,7 +565,7 @@ class Contrato(models.Model):
              
      
        
-        print("el total de todo el alojamiento es ", total)
+      #  print("el total de todo el alojamiento es ", total)
         
         return diferenciaConvertida
       

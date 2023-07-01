@@ -211,23 +211,21 @@ def guardarContrato(request):
          # elif  int(descuento_porNoche) != 0 and int(aumento_Total) != 0:
              #   messages.error(request, "ingreso porcentajes en varias opciones")
              #   return redirect('Contrato')
-          elif int(descuento_total_importe) != 0 and int(aumento_Total) != 0:
-               messages.error(request,"ingreso porcentajes en varias opciones")
-               return redirect('Contrato')
+         # elif int(descuento_total_importe) != 0 and int(aumento_Total) != 0:
+             #  messages.error(request,"ingreso porcentajes en varias opciones")
+              # return redirect('Contrato')
           
           elif int(descuento_total_importe) != 0 and int(aumento_Total) != 0 and int(descuento_porNoche) != 0:
                 messages.error(request,"ingreso porcentajes en varias opciones")
                 return redirect('Contrato')
           
-               
-               
+              
          
           if int(descuento_porNoche) != 0:
                messages.success(request, "agrego descuento")
                
              
-              # total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
-              # total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+             
                if fechaConvertida2.hour==10 and fechaConvertida2.minute==0:
                      total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
                      contrato.importe_estadia= total_estadia_con_descuento_diez
@@ -241,31 +239,36 @@ def guardarContrato(request):
                           contrato.total= total_estadia_con_descuento_Late + float(importe_otros_gast)
                         
                          
-                          
                     
-                         
-          elif int(descuento_total_importe) != 0:
-                 
-               contrato.importe_estadia= importeEstadia
-                
-               descuentoTotal = total* float(descuento_total_importe) /100
-               descuentoTotal2 = descuentoTotal
-                  
-               
-               contrato.total= total - descuentoTotal2
-               
-               messages.success(request, "agrego descuento al total")
+                    
           
-       
+                     
+                     
+        
                   
-          # elif int(aumento_Total) != 0:
-          #      contrato.importe_estadia= importeEstadia
+          elif int(aumento_Total) != 0: # esto lo agregue a lo ultimo de la noche
+                 contrato.importe_estadia= importeEstadia
                 
-          #      aumento_total = total* float(aumento_Total) /100
-          #      aumento_total2 = aumento_total
-          #      contrato.total= total + aumento_total2
+                 aumento_total = total* float(aumento_Total) /100
+                 aumento_total2 = aumento_total
+                 contrato.total= total + aumento_total2
              
-          #      messages.success(request, "agrego un aumento al total")
+                 messages.success(request, "agrego un aumento al total del importe")
+          
+          
+          elif  int(descuento_total_importe) !=0: # esto lo agregue ahor para volver atras-----
+                 contrato.importe_estadia= importeEstadia
+                
+                 descuentoTotal = total* float(descuento_total_importe) /100
+                 descuentoTotal2 = descuentoTotal
+                  
+               
+                 contrato.total= total - descuentoTotal2
+                 
+               
+               
+                 messages.success(request, "agrego descuento al total")
+                
                
                
           
@@ -273,8 +276,11 @@ def guardarContrato(request):
                
           else:
                
+               
                contrato.importe_estadia= importeEstadia
                contrato.total= total
+              
+                         
                
               
      
@@ -316,36 +322,109 @@ def guardarContrato(request):
            contrato.save()
           
            
-           #habitacionOcupada(request, habitacions)
-           if int(aumento_Total) != 0:
-               if fechaConvertida2.hour==10 and fechaConvertida2.minute==0:
+          
+           """  if int(aumento_Total) != 0 and int(descuento_total_importe) != 0: # le agregue  and descuento_total_importe==0:
+                 contrato.importe_estadia= importeEstadia
+                
+                 descuentoTotal = total* float(descuento_total_importe) /100
+                 descuentoTotal2 = descuentoTotal
+                  
+               
+                 contrato.total= total - descuentoTotal2
+                 
+                 contrato.save()
+               
+                 messages.success(request, "agrego descuento al total importe")
+                 #----------------------------------------
+                 
+                 total= contrato.importe_estadia
+                      
+                 estadia_mas_otros_gastos = float(contrato.importe_estadia)+ float(contrato.importe_otros_gasto)
+                      
+                 descuento =estadia_mas_otros_gastos*float(descuento_total_importe)/100
+                      
+                      
+                 tota2 = estadia_mas_otros_gastos- descuento
+                      
+                 tota2 = tota2 + tota2 *float(aumento_Total)/100
+                          
+                     
+                      
+                 contrato.total = tota2
+                 
+                 messages.success(request, "agrego aumento al total importe")
+                      
+                 contrato.save()
+                     
+               #--------------------------------------lo traje de arriba---------------------------
+           elif int(aumento_Total) != 0 and int(descuento_porNoche) !=0:
+                 
+                   if fechaConvertida2.hour==10 and fechaConvertida2.minute==0:
                      total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
                      contrato.importe_estadia= total_estadia_con_descuento_diez
-                     #--------------------------------------------------------------
-                     aux = total_estadia_con_descuento_diez + float(importe_otros_gast)
-                   
+                     contrato.total = total_estadia_con_descuento_diez + float(importe_otros_gast)
+                    
+                    
+                   else:
+                    if fechaConvertida2.hour >=10 and fechaConvertida2.hour <18:
+                          total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+                          contrato.importe_estadia= total_estadia_con_descuento_Late
+                          contrato.total= total_estadia_con_descuento_Late + float(importe_otros_gast)
+                        
+                         
+                    
                 
-                     aumento_total = aux * float(aumento_Total) /100
-                     aumento_total2 = aumento_total
-                     contrato.total= aux + aumento_total2
-                    
-                     contrato.save()
-             
-                     messages.success(request, "agrego un aumento al total")
+          #---------------------aumento-------------------------------
+                   contrato.importe_estadia= importeEstadia
+                      
+                   total= contrato.importe_estadia
+                      
+                   estadia_mas_otros_gastos = float(contrato.importe_estadia)+ float(contrato.importe_otros_gasto)
+                      
+                  # descuento =estadia_mas_otros_gastos*float(descuento_total_importe)/100
+                      
+                      
+                   #tota2 = estadia_mas_otros_gastos- descuento
+                      
+                   tota2 = estadia_mas_otros_gastos  *float(aumento_Total)/100
+                   
+                   total3 = estadia_mas_otros_gastos+tota2
+                          
                      
-               elif  fechaConvertida2.hour >=10 and fechaConvertida2.hour <18:
-                     total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
-                     contrato.importe_estadia= total_estadia_con_descuento_Late
-                     aux = total_estadia_con_descuento_Late + float(importe_otros_gast)
+                   contrato.total = total3
+                      
+                   contrato.save()
+                   messages.success(request, "agrego un aumento total") """
+               
+                
+                
+                
+                
+               #  elif int(aumento_Total) !=0:
+                  
+               #        contrato.importe_estadia= importeEstadia
+                
+               #       #--------para volver atras --------------------------
+                      
+               #        total= contrato.importe_estadia
+                      
+               #        estadia_mas_otros_gastos = float(contrato.importe_estadia)+ float(contrato.importe_otros_gasto)
+                      
+               #        descuento =estadia_mas_otros_gastos*float(descuento_total_importe)/100
+                      
+                      
+               #        tota2 = estadia_mas_otros_gastos- descuento
+                      
+               #        tota2 = tota2 + tota2 *float(aumento_Total)/100
+                          
                      
-                     aumento_total = aux * float(aumento_Total) /100
-                     aumento_total2 = aumento_total
-                     contrato.total= aux + aumento_total2
-                    
-                     contrato.save()
-                     messages.success(request, "agrego un aumento al total")
+               #        contrato.total = tota2
+                      
+               #        contrato.save()
+               #        messages.success(request, "agrego un descuento y un aumento al total")
+               
                      
-          # messages.success(request, "agrego un aumento al total")
+         
                
                
            

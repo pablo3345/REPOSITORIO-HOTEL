@@ -60,7 +60,7 @@ def mostrarPanel(request):
        #fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
       # dia_delta = datetime.timedelta(seconds=1)
       # fecha_futura = fecha_sali+dia_delta
-       print("fecha sali panel de control", fecha_sali, "y now", hoy)
+     
       
       
       
