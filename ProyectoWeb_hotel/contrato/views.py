@@ -614,8 +614,10 @@ def modificarTablaContrato(request, id_contrato):
      if request.method == "POST":
           #contrato = get_object_or_404(Contrato, id=id_contrato)
           variable_true = True
-     
+        
           habitacions = contrato.habitacion.id
+          
+          #---------------------------------
           huespeds =request.POST.get("huesped")# id
           #--------------------------------------------------------
           
@@ -698,14 +700,14 @@ def modificarTablaContrato(request, id_contrato):
              
              
                 if fechaConvertida2.hour==10 and fechaConvertida2.minute==0:
-                     total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+                     total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez_actualizar_tabla(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
                      contrato.importe_estadia= total_estadia_con_descuento_diez
                      contrato.total = total_estadia_con_descuento_diez + float(importe_otros_gast)
                     
                     
                 else:
                     if fechaConvertida2.hour >=10 and fechaConvertida2.hour <18:
-                          total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+                          total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate_actualizarTabla(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
                           contrato.importe_estadia= total_estadia_con_descuento_Late
                           contrato.total= total_estadia_con_descuento_Late + float(importe_otros_gast)
                         
@@ -766,7 +768,7 @@ def modificarTablaContrato(request, id_contrato):
                 messages.success(request, "aplico un descuento por cada noche y un aumento sobre el total")
              #---------------------------para volver atras-------------------
                 if fechaConvertida2.hour==10 and fechaConvertida2.minute==0:
-                     total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+                     total_estadia_con_descuento_diez =descuento_delTotal_Promocion_chekOut_diez_actualizar_tabla(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
                      contrato.importe_estadia= total_estadia_con_descuento_diez
                      contrato.total = total_estadia_con_descuento_diez + float(importe_otros_gast)
                      
@@ -782,7 +784,7 @@ def modificarTablaContrato(request, id_contrato):
                     
                 else:
                     if fechaConvertida2.hour >=10 and fechaConvertida2.hour <18:
-                          total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+                          total_estadia_con_descuento_Late =descuento_delTotal_Promocion_menosLate_actualizarTabla(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
                           contrato.importe_estadia= total_estadia_con_descuento_Late
                           contrato.total= total_estadia_con_descuento_Late + float(importe_otros_gast)
                           
@@ -1320,7 +1322,9 @@ def descuento_delTotal_Promocion_menosLate(request, fecha_entra, fecha_sali, hab
      
           habitacions = request.POST.get("habitacion")
           
-          habitacion = Habitacion.objects.get(id = habitacions)
+          habitacion = get_object_or_404(Habitacion, id=habitacions)
+          
+         # habitacion = Habitacion.objects.get(id = habitacions)
         
           fecha_entra = request.POST.get("fecha_entrada")
           fecha_sali = request.POST.get("fecha_salida")
@@ -1372,7 +1376,8 @@ def descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, 
      
           habitacions = request.POST.get("habitacion")
           
-          habitacion = Habitacion.objects.get(id = habitacions)
+         # habitacion = Habitacion.objects.get(id = habitacions)
+          habitacion = get_object_or_404(Habitacion, id=habitacions)
         
           fecha_entra = request.POST.get("fecha_entrada")
           fecha_sali = request.POST.get("fecha_salida")
@@ -1413,36 +1418,106 @@ def descuento_delTotal_Promocion_chekOut_diez(request, fecha_entra, fecha_sali, 
 
           
           
-def descuento_al_total(request): 
+#----------para volver atras -------------PARA DESCUENTO POR NOCHE EN ACTUALIZAR TABLA-------------------
+def descuento_delTotal_Promocion_menosLate_actualizarTabla(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast):
+          contrato= Contrato()
+          
+          
      
-     pass
-   
-  
-# acordarme de hacer editar contrato por si el cliente cambia la fecha de retirada   
-    
-""" def convertir_jason():
-    contrato = Contrato()
-    
-    junio = list()
-    
-    
-    for contr in contrato:
-          if contrato.fecha_entrada.month==6:
-            junio.append(contr)
-            count_junio = junio.count
-            
-           # diccionario = [{"junio": count_junio}] # en jason se ponen entre []
-            
-           # datos_jason = json.dumps(diccionario) #esto no va
-            
-            #let text = '{"diccionario" : [{"junio": count_junio}]}' # en formato javascrip usa comillas simples
-            
-           # const obj = JSON.parse(text) # convertimos a javascrip con JSON.parse
-            
-            
+          #habitacions = request.POST.get("habitacion")
+          
+          habitacion = get_object_or_404(Habitacion, id=habitacions)
+          
+         # habitacion = Habitacion.objects.get(id = habitacions)
+        
+          fecha_entra = request.POST.get("fecha_entrada")
+          fecha_sali = request.POST.get("fecha_salida")
+         
+          importe_otros_gast= request.POST.get("importe_otros_gasto")
+          
+          descuento= request.POST.get("descuento_importe_noche")
+          # descuento= request.POST.get("descuento")
+        
+         
      
-     
-     
- """
+          importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+         
+          
+          retas1 = importeEstadia 
+          
+          resta2 = retas1- float(habitacion.check_out_lates)
+          
+          resta3 = resta2 / diferenciaConvertida
+          
+          #..................aca tengo el precio por noche de la habitacion-----------
+          
+          total1 = resta3 * int(descuento) /100
+          #..................................................
+          total2 = diferenciaConvertida*total1
+          
+          #----------------------------------------------
+          
+          total_con_descuento = importeEstadia - total2
+          
+          #------------le agrego el late check aut---------------------
+          
+          
+          
+          
+          
+          
+          return total_con_descuento # este seria el importe de estadia NO  el total
 
- 
+
+
+def descuento_delTotal_Promocion_chekOut_diez_actualizar_tabla(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast):
+          contrato= Contrato()
+          
+         
+          
+     
+         #habitacions = request.POST.get("habitacion")
+          
+         # habitacion = Habitacion.objects.get(id = habitacions)
+          habitacion = get_object_or_404(Habitacion, id=habitacions)
+        
+          fecha_entra = request.POST.get("fecha_entrada")
+          fecha_sali = request.POST.get("fecha_salida")
+         
+          importe_otros_gast= request.POST.get("importe_otros_gasto")
+          
+          #descuento= request.POST.get("descuento")
+          descuento= request.POST.get("descuento_importe_noche")
+          
+        
+
+     
+          importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+        
+          
+          retas1 = importeEstadia 
+          
+          resta2 = retas1
+          
+          resta3 = resta2 / diferenciaConvertida
+          
+          #..................aca tengo el precio por noche de la habitacion-----------
+          #para volver-------------------------------------
+          
+          total1 = resta3 * int(descuento) /100
+          #..................................................
+          total2 = diferenciaConvertida*total1
+          
+          #----------------------------------------------
+          
+          total_con_descuento = importeEstadia - total2
+          
+          
+          
+          return total_con_descuento # este seria el importe de estadia NO  el total
+
+          
