@@ -2,23 +2,35 @@
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
  // agregue esto-------------------------
+ //var diccionario = JSON.parse(datos_diccionario);
 
+
+
+ 
+
+ //mayo= console.log(diccionario[0]);
+ //junio=console.log(diccionario[1]);
+ //julio= console.log(diccionario[2]);
  //---------------------------------------
 
 // Bar Chart Example
 var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
- 
+ //convierto json a js
+
+
+
+
  
  
   type: 'bar',
   data: {
-    labels: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
+    labels: ["mayo", "junio", "julio"],
     datasets: [{
       label: "Revenue",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 6251, 7841, 1, 1498, 5000],
+      data: [1000, 3000, 4000],
     }],
   },
   options: {

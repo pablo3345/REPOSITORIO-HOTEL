@@ -10,7 +10,7 @@ from django.views.generic import View
 from .utilitario import render_to_pdf
 from django.http import HttpResponse
 
-#import json
+import json
 
 
 # Create your views here.
@@ -165,6 +165,9 @@ def guardarContrato(request):
           descuento_porNoche= request.POST.get("descuento_importe_noche")
           descuento_total_importe= request.POST.get("descuento_total_calcularo")
           aumento_Total= request.POST.get("aumento_total")
+          
+          # -----json eliminar-------------------------------------------
+        
           
      #.........................cambiar formato calendario.....................
           fechaConvertida = datetime.datetime.strptime(fecha_entra, '%Y-%m-%dT%H:%M') # strptime lo convierto a objeto datetime, el segundo parametro le dice como interpretar la fecha, cual es la hora, el dia, el mes etc
@@ -1520,4 +1523,5 @@ def descuento_delTotal_Promocion_chekOut_diez_actualizar_tabla(request, fecha_en
           
           return total_con_descuento # este seria el importe de estadia NO  el total
 
+          
           
