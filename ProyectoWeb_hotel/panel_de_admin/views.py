@@ -18,6 +18,12 @@ def mostrarPanel(request):
     ultimoFecha = datetime.datetime.now()
     ultimo= ultimoFecha.year
     
+    anteultimo_anio = ultimo -1 
+    
+   
+   
+    
+    
 
     
     enero=list()
@@ -33,6 +39,9 @@ def mostrarPanel(request):
     noviembre=list()
     diciembre=list()
     #------------
+    actual=list()
+    anteUltimo=list()
+    #------------
     cantidadEnero=0
     
     cantidadFebrero=0
@@ -47,6 +56,44 @@ def mostrarPanel(request):
     cantidadOctubre=0
     cantidadNoviembre=0
     cantidadDiciembre=0
+    
+    #--------------
+    total_anioActual=0
+    total_anioAnterior=0
+    
+    
+    #---año anterior---
+     #------------
+    cantidadEneroAnterior=0
+    
+    cantidadFebreroAnterior=0
+    cantidadMarzoAnterior=0
+    cantidadAbrilAnterior=0
+    cantidadMayoAnterior=0
+    
+    cantidadJunioAnterior=0
+    cantidadJulioAnterior=0
+    cantidadAgostoAnterior=0
+    cantidadSeptiembreAnterior=0
+    cantidadOctubreAnterior=0
+    cantidadNoviembreAnterior=0
+    cantidadDiciembreAnterior=0
+    
+    eneroAnt=list()
+    febreroAnt=list()
+    marzoAnt=list()
+    abrilAnt=list()
+    mayoAnt=list()
+    junioAnt=list()
+    julioAnt=list()
+    agostoAnt=list()
+    septiembreAnt=list()
+    octubreAnt=list()
+    noviembreAnt=list()
+    diciembreAnt=list()
+    
+    
+    
     
     
     
@@ -123,77 +170,149 @@ def mostrarPanel(request):
           # ultimo_ocupado= habitacionesOcupadas[-1]
           
           
-          #--------------------------------DIAGRAMA----------------------------------------------------
+          #--------------------------------DIAGRAMA----------------volver atras----------------------------------------
           
           
     for con in contratos:
        #---------------------------enero------------------------------------------------------------
-       if con.fecha_entrada.month==1 and con.fecha_salida.month==1 and con.fecha_entrada.year==ultimo:
+       if con.fecha_entrada.month==1  and con.fecha_entrada.year==ultimo:
          enero.append(con)
          cantidadEnero= len(enero)
          #-----------------------------------------------------------------------------------------------
           #---------------------------febrero------------------------------------------------------------
-       elif con.fecha_entrada.month==2 and con.fecha_salida.month==2 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==2 and con.fecha_entrada.year==ultimo:
          febrero.append(con)
          cantidadFebrero= len(febrero)
          #-----------------------------------------------------------------------------------------------
           #---------------------------marzo------------------------------------------------------------
-       elif con.fecha_entrada.month==3 and con.fecha_salida.month==3 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==3  and con.fecha_entrada.year==ultimo:
          marzo.append(con)
          cantidadMarzo= len(marzo)
          #-----------------------------------------------------------------------------------------------
           #---------------------------abril------------------------------------------------------------
-       elif con.fecha_entrada.month==4 and con.fecha_salida.month==4 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==4 and con.fecha_entrada.year==ultimo:
          abril.append(con)
          cantidadAbril= len(abril)
          #-----------------------------------------------------------------------------------------------
           #---------------------------mayo------------------------------------------------------------
-       elif con.fecha_entrada.month==5 and con.fecha_salida.month==5 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==5 and con.fecha_entrada.year==ultimo:
          mayo.append(con)
          cantidadMayo= len(mayo)
          #-----------------------------------------------------------------------------------------------
          
        #---------------------------junio------------------------------------------------------------
-       elif con.fecha_entrada.month==6 and con.fecha_salida.month==6 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==6 and con.fecha_entrada.year==ultimo:
          junio.append(con)
          cantidadJunio= len(junio)
          #-----------------------------------------------------------------------------------------------
          
            #---------------------------julio------------------------------------------------------------
-       elif con.fecha_entrada.month==7 and con.fecha_salida.month==7 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==7 and con.fecha_entrada.year==ultimo:
          julio.append(con)
          cantidadJulio= len(julio)
          #-----------------------------------------------------------------------------------------------
           #---------------------------agosto------------------------------------------------------------
-       elif con.fecha_entrada.month==8 and con.fecha_salida.month==8 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==8 and con.fecha_entrada.year==ultimo:
          agosto.append(con)
          cantidadAgosto= len(agosto)
          #-----------------------------------------------------------------------------------------------
           #---------------------------septiembre------------------------------------------------------------
-       elif con.fecha_entrada.month==9 and con.fecha_salida.month==9 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==9  and con.fecha_entrada.year==ultimo:
          septiembre.append(con)
          cantidadSeptiembre= len(septiembre)
          #-----------------------------------------------------------------------------------------------
           #---------------------------octubre------------------------------------------------------------
-       elif con.fecha_entrada.month==10 and con.fecha_salida.month==10 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==10 and con.fecha_entrada.year==ultimo:
          octubre.append(con)
          cantidadOctubre= len(octubre)
          #-----------------------------------------------------------------------------------------------
           #---------------------------noviembre------------------------------------------------------------
-       elif con.fecha_entrada.month==11 and con.fecha_salida.month==11 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==11  and con.fecha_entrada.year==ultimo:
          noviembre.append(con)
          cantidadNoviembre= len(noviembre)
          #-----------------------------------------------------------------------------------------------
           #---------------------------diciembre------------------------------------------------------------
-       elif con.fecha_entrada.month==12 and con.fecha_salida.month==12 and con.fecha_entrada.year==ultimo:
+       elif con.fecha_entrada.month==12 and con.fecha_entrada.year==ultimo:
          diciembre.append(con)
          cantidadDiciembre= len(diciembre)
+         
+         
+         
+         
+         
+         #--------------------------------CONTRATOS DEL AÑO ANTERIOR------------------------------------------------------
+         
+       elif con.fecha_entrada.month==1  and con.fecha_entrada.year== anteultimo_anio:
+         eneroAnt.append(con)
+         cantidadEneroAnterior= len(eneroAnt)
          #-----------------------------------------------------------------------------------------------
+          #---------------------------febrero------------------------------------------------------------
+       elif con.fecha_entrada.month==2 and con.fecha_entrada.year== anteultimo_anio:
+         febreroAnt.append(con)
+         cantidadFebreroAnterior= len(febreroAnt)
+         #-----------------------------------------------------------------------------------------------
+          #---------------------------marzo------------------------------------------------------------
+       elif con.fecha_entrada.month==3  and con.fecha_entrada.year== anteultimo_anio:
+         marzoAnt.append(con)
+         cantidadMarzoAnterior= len(marzoAnt)
+         #-----------------------------------------------------------------------------------------------
+          #---------------------------abril------------------------------------------------------------
+       elif con.fecha_entrada.month==4 and con.fecha_entrada.year== anteultimo_anio:
+         abrilAnt.append(con)
+         cantidadAbrilAnterior= len(abrilAnt)
+         #-----------------------------------------------------------------------------------------------
+          #---------------------------mayo------------------------------------------------------------
+       elif con.fecha_entrada.month==5 and con.fecha_entrada.year== anteultimo_anio:
+         mayoAnt.append(con)
+         cantidadMayoAnterior= len(mayoAnt)
+         #-----------------------------------------------------------------------------------------------
+         
+       #---------------------------junio------------------------------------------------------------
+       elif con.fecha_entrada.month==6 and con.fecha_entrada.year== anteultimo_anio:
+         junioAnt.append(con)
+         cantidadJunioAnterior= len(junioAnt)
+         #-----------------------------------------------------------------------------------------------
+         
+           #---------------------------julio------------------------------------------------------------
+       elif con.fecha_entrada.month==7 and con.fecha_entrada.year== anteultimo_anio:
+         julioAnt.append(con)
+         cantidadJulioAnterior= len(julioAnt)
+         #-----------------------------------------------------------------------------------------------
+          #---------------------------agosto------------------------------------------------------------
+       elif con.fecha_entrada.month==8 and con.fecha_entrada.year== anteultimo_anio:
+         agostoAnt.append(con)
+         cantidadAgostoAnterior= len(agostoAnt)
+         #-----------------------------------------------------------------------------------------------
+          #---------------------------septiembre------------------------------------------------------------
+       elif con.fecha_entrada.month==9  and con.fecha_entrada.year== anteultimo_anio:
+         septiembreAnt.append(con)
+         cantidadSeptiembreAnterior= len(septiembreAnt)
+         #-----------------------------------------------------------------------------------------------
+          #---------------------------octubre------------------------------------------------------------
+       elif con.fecha_entrada.month==10 and con.fecha_entrada.year== anteultimo_anio:
+         octubreAnt.append(con)
+         cantidadOctubreAnterior= len(octubreAnt)
+         #-----------------------------------------------------------------------------------------------
+          #---------------------------noviembre------------------------------------------------------------
+       elif con.fecha_entrada.month==11  and con.fecha_entrada.year== anteultimo_anio:
+         noviembreAnt.append(con)
+         cantidadNoviembreAnterior= len(noviembreAnt)
+         #-----------------------------------------------------------------------------------------------
+          #---------------------------diciembre------------------------------------------------------------
+       elif con.fecha_entrada.month==12 and con.fecha_entrada.year== anteultimo_anio:
+         diciembreAnt.append(con)
+         cantidadDiciembreAnterior= len(diciembreAnt)
+         
+       total_anioActual= cantidadEnero+cantidadFebrero+cantidadMarzo+cantidadAbril+cantidadMayo+cantidadJunio +cantidadJulio + cantidadAgosto +cantidadSeptiembre+ cantidadOctubre + cantidadNoviembre + cantidadDiciembre
+       total_anioAnterior= cantidadEneroAnterior +cantidadFebreroAnterior +cantidadMarzoAnterior +cantidadAbrilAnterior +cantidadMayoAnterior +cantidadJunioAnterior +cantidadJulioAnterior + cantidadAgostoAnterior +cantidadSeptiembreAnterior+ cantidadOctubreAnterior + cantidadNoviembreAnterior + cantidadDiciembreAnterior
+      
+      
+         
          
        data={"mesEnero": cantidadEnero, "mesFebrero":cantidadFebrero, "mesMarzo":cantidadMarzo, "mesAbril":cantidadAbril,
              "mesMayo": cantidadMayo, "mesJunio": cantidadJunio, "mesJulio": cantidadJulio, "mesAgosto": cantidadAgosto,
              "mesSeptiembre": cantidadSeptiembre, "mesOctubre": cantidadOctubre, "mesNoviembre":cantidadNoviembre,
-             "mesDiciembre": cantidadDiciembre}
+             "mesDiciembre": cantidadDiciembre, "total_anioActual": total_anioActual, "total_anioAnterior":total_anioAnterior, "ultimo":ultimo, "anteultimo":anteultimo_anio}
          
          
       

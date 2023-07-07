@@ -127,11 +127,14 @@
           
             <div id="layoutSidenav_content" style="background:#D5D8DC;">
                 <a style="margin-left:780px; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Contrato' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a CONTRATO</a> <!--le ahregue esto -->     
-                <a style="margin-left:780px; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Home' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a><br> <!--le ahregue esto -->     <br>    
-               
+                <a style="margin-left:780px; font-weight:bold; text-decoration:none;font-size:20px;" href="{% url 'Home' %}"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a><br> <!--le ahregue esto -->    
+                   
+                <h4 style="margin-left:260px; color:#7045bb">Ingresos del año actual {{data.ultimo}} total {{data.total_anioActual}}</h4>
+                 <h4 style="margin-left:260px;color:#7045bb">Ingresos del año anterior {{data.anteultimo}} total {{data.total_anioAnterior}}</h4><br>
                 <main>
                     {% include "panel_de_admin/diagramas.html" %} <!-- con esto me importa el widget !-->
                  <br>
+                
                     {% comment %} <!------------------------------------------ ---------------DIAGRAMA---------- -->
                   
                   
