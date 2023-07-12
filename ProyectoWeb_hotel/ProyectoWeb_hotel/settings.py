@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     "crispy_bootstrap5", #para el formulario crispy de bootstra5
     'panel_de_admin',
-    'productos'
+    'productos',
+    'reservas'
    
 ]
 

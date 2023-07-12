@@ -17,8 +17,8 @@ class FormContrato(forms.ModelForm):
                 super(FormContrato, self).__init__(*args, **kwargs) # para filtrar el select de habitacion libres
                 self.fields['habitacion'].queryset= Habitacion.objects.filter(estado="Null")
                 
-        
-            
+                
+      
       
     
         class Meta:

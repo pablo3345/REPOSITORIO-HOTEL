@@ -17,6 +17,7 @@ class FormHuesped(forms.ModelForm):
                'localidad',
                'codigo_postal',
                'pais',
+               'telefono',
                'demas_huespedes',
                'patente_vehiculo',
                'modelo_vehiculo',
@@ -37,6 +38,7 @@ class FormHuesped(forms.ModelForm):
                'localidad': 'Localidad',
                'codigo_postal': 'Codigo Postal',
                'pais': 'Pais',
+               'telefono': 'Telefono',
                'demas_huespedes': 'Demas huespedes',
                'patente_vehiculo': 'Patente vehiculo',
                'modelo_vehiculo': 'Modelo vehiculo',
@@ -58,6 +60,7 @@ class FormHuesped(forms.ModelForm):
                'localidad': forms.TextInput(),
                'codigo_postal': forms.TextInput(),
                'pais': forms.TextInput(),
+               'telefono':forms.TextInput(),
                
                'demas_huespedes': forms.Textarea(attrs={'placeholder':'puede poner DNI, nombre, apellido, direccion'}),
                'patente_vehiculo': forms.TextInput(),

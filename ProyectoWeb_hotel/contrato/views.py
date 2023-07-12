@@ -37,7 +37,8 @@ def mostrarContrato(request):
      
      else:
           formHuesped=FormHuesped()
-  
+          #---agrego esto para mandar el huesped reserva ahuesped contrato
+        
     
      return render(request, "contrato/contrato.html", {'formHuesped': form, 'formContrato': form2})
  
@@ -71,6 +72,7 @@ def modificarTablaHuesped(request, id_huesped):
      localidad = request.POST.get("localidad")
      codigo_postal =  request.POST.get("codigo_postal")
      pais= request.POST.get("pais")
+     telefono= request.POST.get("telefono")
      
      if request.method =='POST':
           
@@ -87,6 +89,7 @@ def modificarTablaHuesped(request, id_huesped):
           huesped.localidad= localidad
           huesped.codigo_postal= codigo_postal
           huesped.pais=pais
+          huesped.telefono= telefono
           
          
           
@@ -661,25 +664,28 @@ def modificarTablaContrato(request, id_contrato):
           
           fechaFormateada = fechaConvertida.strftime('%Y-%m-%dT%H:%M') 
           
-          
-          #paraAnular_habitacionAnterior_Actualizar(request, contrato)
-          total =calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
-          
-          importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
-          
-          diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
-          
-          
-             #-------fuera del horario----------
+             #-------fuera del horario----volver atras------
           if fechaConvertida2.hour <10 or fechaConvertida2.hour>=18:
                 messages.error(request, "El horario no corresponde")
                 return redirect('Contrato')
            
+          
+          
+         
+          
            
            
            
            
           else:
+                #paraAnular_habitacionAnterior_Actualizar(request, contrato)
+               total =calcularTotal(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+               importeEstadia =calcularImporteEstadia(request, fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+               diferenciaConvertida = contrato.nochesDeEstadia(fecha_entra, fecha_sali, habitacions, importe_otros_gast)
+          
+          
                if int(descuento_porNoche) != 0 and int(descuento_total_importe) != 0:
                
                 messages.error(request, "ingreso porcentajes en varias opciones")
@@ -760,7 +766,7 @@ def modificarTablaContrato(request, id_contrato):
                 contrato.descuento_total_calcularo=descuento_total_importe
                 contrato.aumento_total= aumento_Total
           
-         #----------------------------------------------------------- 
+         #-----------------------------para------------------------------ 
        
                 contrato.importe_otros_gasto = importe_otros_gast
         
@@ -903,6 +909,8 @@ def modificarTablaContrato(request, id_contrato):
                contrato.huesped = huesped
                contrato.fecha_entrada= fechaFormateada
                contrato.fecha_salida = fechaFormateada2
+               
+            
           
                 #-------------------agregue los descuentos ---------------------
           
@@ -960,8 +968,8 @@ def modificarTablaContrato(request, id_contrato):
      else:
           
           
-         
-         
+          contrato.fecha_salida=  str(contrato.fecha_salida)
+          contrato.fecha_entrada=  str(contrato.fecha_entrada)
           formContrato = FormContrato(instance=contrato)
           
      
@@ -1164,16 +1172,18 @@ def ponerOcupada_ultimaHabitacion(request, habitacions):
 def lateCheckout(request, id_contrato):
      formContrato=FormContrato()
      
-     #-----para volver atras ----------------
+     #-----para volver atrass-------------------------
      
      
      
+    
      
-    # contrato = Contrato.objects.get(id= id_contrato)
+     
+     
+ 
      contrato = get_object_or_404(Contrato, id=id_contrato)
      
-      #-----para volver atras -------------------
-   
+    
      
      fecha_entra = contrato.fecha_entrada
      fechaFormateada = fecha_entra.strftime('%Y-%m-%dT%H:%M') 
@@ -1186,6 +1196,14 @@ def lateCheckout(request, id_contrato):
      if request.method == "POST":
           fecha_sali = request.POST.get("fecha_salida")
           fechaConvertida2 = datetime.datetime.strptime(fecha_sali, '%Y-%m-%dT%H:%M')
+          
+         
+          
+          
+          
+          
+          
+          
         
      
           
@@ -1194,7 +1212,7 @@ def lateCheckout(request, id_contrato):
                 return redirect('modificarContrato')
           
           
-          elif  fechaConvertida2.hour ==10 or fechaConvertida2.minute==0:
+          elif  fechaConvertida2.hour ==10 and fechaConvertida2.minute==0 and fechaConvertida2.second==0:
                messages.error(request, "El horario no corresponde al late check out")
                return redirect('modificarContrato')
           
@@ -1203,8 +1221,12 @@ def lateCheckout(request, id_contrato):
                return redirect('modificarContrato')
           
           
-          #------- agrego esto para ver que pasa----------------y para volver atras-----
+          #------- -----para volver atras-----------------------------------------------------
           
+            #-----para volver atras------------------------
+            
+         
+         
         
           
           
@@ -1223,6 +1245,18 @@ def lateCheckout(request, id_contrato):
                contrato.importe_estadia= importeEstadia
                contrato.total= total
                contrato.fecha_salida= fechaFormateada2
+               
+               #print("fecha", contrato.fecha_salida)
+               
+               
+               
+              
+               
+               
+               
+               
+               
+              
                try:
                     
                     
@@ -1234,10 +1268,20 @@ def lateCheckout(request, id_contrato):
                     
                   messages.error(request, "El late check out no se agrego...")
                   return redirect('modificarContrato')
-                    
+             
+     else:
+      if contrato.fecha_salida.hour==10 and contrato.fecha_salida.minute==0 and contrato.fecha_salida.second==0:
+           contrato.fecha_salida.second +1
+           contrato.fecha_salida = str(contrato.fecha_salida)  
+           formContrato=FormContrato(instance=contrato)
+     
+      else:
            
+           contrato.fecha_salida = str(contrato.fecha_salida)  
+           formContrato=FormContrato(instance=contrato)
+     
           
-          
+      
           
      
      

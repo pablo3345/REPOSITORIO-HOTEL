@@ -23,4 +23,5 @@ urlpatterns = [
     path('contrato/', include("contrato.urls")),
     path('panelAdmin/', include("panel_de_admin.urls")),
     path('productos/', include("productos.urls")),
+    path('mostrarReservas/', include("reservas.urls"))
 ]

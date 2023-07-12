@@ -31,6 +31,8 @@ class Huesped(models.Model):
     codigo_postal =models.CharField(max_length=40)
     pais =models.CharField(max_length=40)
     #----------------------------------------
+    telefono= models.CharField(max_length=40, null= True, blank=True)
+    #----------------------------------------
     demas_huespedes = models.CharField(max_length= 1500,  null= True, blank=True)
     patente_vehiculo= models.CharField(max_length=20,  null= True, blank=True)
     modelo_vehiculo= models.CharField(max_length=40,  null= True, blank=True)

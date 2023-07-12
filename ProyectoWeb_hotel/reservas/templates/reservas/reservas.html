@@ -1,0 +1,173 @@
+
+<html>
+
+
+ {% load static %}
+<head>
+    <link href="{% static 'proyectoWebApp/css/ContenedorFormulario.css' %}" rel="stylesheet">
+    <link href="{% static 'proyectoWebApp/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'proyectoWebApp/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'proyectoWebApp/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'proyectoWebApp/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'proyectoWebApp/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'proyectoWebApp/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'proyectoWebApp/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  
+</head>
+
+
+<body>
+   {% load crispy_forms_tags %}
+   {% block content %}
+
+   {% if messages %}
+   {% for message in messages %}
+       <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+           {{ message }}
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+   {% endfor %}
+{% endif %}
+
+<a  href="{% url 'Home' %}"  style="font-size:23px; margin-left:990px; font-weight:bold; text-decoration:none;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar al HOME</a>
+<a  href="{% url 'Contrato' %}"  style="font-size:23px; margin-left:990px; font-weight:bold; text-decoration:none;"><img src="{% static 'proyectoWebApp/img/logo volver mas chico.png' %}" alt="">&nbsp; regresar a CONTRATO</a>
+
+
+
+<form  method ="post" class="ContenedorFormulario" style="float:left; margin-left:70px; color:#663366" ><!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
+	{% csrf_token %}
+
+   <br>
+
+   <h1 style="margin:center; text-align:center; font-family: arial; background:#663366; color:white; ">Registrar huesped reserva</h1><br>
+
+
+
+<table>
+
+
+{{FormHuesped_reservas|crispy}}
+
+
+</table>
+
+<p style="color:red; margin-left:260px; font-weight:bold; font-size:14px;">* campos obligatorios</p>
+
+
+
+
+
+ <input type="submit" value="GUARDAR HUESPED RESERVA" class="btn btn-info"><br><br>
+
+
+ <p style = "font-size: 13px;">VER TABLA HUESPED RESERVA, EDITAR / ELIMINAR</p>
+
+
+
+<a href= "#" style="margin:auto;"><button type="button" class="btn btn-info">VER TABLA Y ACTUALIZAR</button></a><br><br>
+<!-- <p style = "font-size: 13px;">CON LIMPIAR FORMULARIO PUEDE LIMPIAR EL FORMULARIO Y VOLVER A CARGAR</p>
+ <a href= "{% url 'Contrato' %}"  style="margin:auto"><button type="button" class="btn btn-dark">LIMPIAR FORMULARIO</button></a><br><br> -->
+
+
+<br>
+<br>
+<br>
+</form>
+  
+  
+  
+
+     
+    
+
+    
+    </div>
+    
+    
+    
+      <!-- -------------------------------------------------SEGUND FORMULARIO------------------------------------------------------------- -->
+
+    
+<form action="guardarReserva" method ="post" enctype="multipart/form-data" class="ContenedorFormulario" style="float:right; margin-right:70px; color:#663366;";> <!-- enctype="multipart/form-data"......para el calendario, va al lado del post-->
+	{% csrf_token %}
+
+   <br>
+
+   <h1 style="margin:center; text-align:center; font-family: arial; background:#663366; color:white; ">Registrar Reserva</h1><br>
+   
+
+
+
+<table>
+
+{{FormReservas|crispy}}
+
+
+
+
+</table>
+<br>
+
+
+<br>
+<br>
+<p style="color:red; margin-left:300px; font-weight:bold; font-size:14px;">* campos obligatorios</p><br>
+<p style = "font-size: 13px;">EL IMPORTE Y LOS DIAS DE ESTADIA SE CALCULAN AUTOMATICAMENTE</p>
+
+
+
+
+ 
+
+<input type="submit" value="GUARDAR Y CALCULAR" class="btn btn-info"><br><br>
+
+<p style = "font-size: 13px;">VER RESERVAS / EDITAR / ELIMINAR</p>
+  <a href= "{% url 'ModificarReservas' %}"  style="margin:auto"><button type="button" class="btn btn-info">VER RESERVAS</button></a><br><br> 
+
+ <!-- <p style = "font-size: 13px;">VER TODOS LOS CONTRATOS ACTIVOS Y NO ACTIVOS</p> -->
+
+ <!-- <a href= "#"  style="margin:auto"><button type="button" class="btn btn-info">VER CONTRATOS ACTIVOS Y NO ACTIVOS</button></a><br><br> -->
+
+  
+ <!-- <a href= "#"  style="margin:auto"><button type="button" class="btn btn-info">AGREGAR LATE CHECK OUT</button></a><br> -->
+ <!-- <p style = "font-size: 13px;">CON LIMPIAR FORMULARIO PUEDE LIMPIAR EL FORMULARIO Y VOLVER A CARGAR</p> -->
+ <!-- <a href= "{% url 'Contrato' %}"  style="margin:auto"><button type="button" class="btn btn-dark">LIMPIAR FORMULARIO</button></a><br><br> -->
+
+
+
+
+<!--  <a href= "#" style="margin:auto;"><button type="button" class="btn btn-info">CALCULAR EL TOTAL</button></a> -->
+<br>
+<br>
+{% comment %} <h4 style="color:green">Noches de estadia: {{diferenciaConvertida}} </h4>
+<h4 style="color:green">Descuento en el precio de la habitacion: {{descuento}} %</h4>
+<h4 style="color:green">Descuento al total importe: {{descuento_total}} %</h4>
+<h4 style="color:green">Aumento sobre el total: {{aumento}} %</h4> {% endcomment %}
+
+
+<br>
+<br>
+</form>
+
+
+
+
+
+
+   
+ 
+      
+
+
+
+
+
+
+
+   {% endblock %}
+
+</body>
+
+
+
+</html>
